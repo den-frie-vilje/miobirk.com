@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mio Birk — Ikke Bare Køn</title>
+<!-- Mockup only: type loads from Google Fonts for portability. Production
+     self-hosts Archivo and IBM Plex Mono via @fontsource, per the
+     sovereignty principles. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -13,7 +16,8 @@
   --bone-deep:#E5E1D6;
   --ink:#161411;
   --ink-soft:#4E4A43;
-  --magenta:#B4005A;
+  --magenta:#B4005A;      /* the accent on light grounds */
+  --magenta-light:#FF4D9C; /* the same signal adapted to ink grounds */
   --rule:var(--ink);
   --pad:clamp(1.2rem,4vw,3.2rem);
 }
@@ -49,6 +53,11 @@ nav a{
   flex:1;text-align:center;text-decoration:none;text-transform:uppercase;
   font-weight:600;font-size:.92rem;letter-spacing:.08em;padding:.8rem .5rem;
 }
+@media (max-width:40rem){
+  nav ul{flex-direction:column}
+  nav li+li{border-left:0;border-top:2px solid var(--rule)}
+  nav a{text-align:left;padding:.8rem var(--pad)}
+}
 nav a:hover{background:var(--ink);color:var(--bone)}
 nav .num{font-family:"IBM Plex Mono",monospace;color:var(--magenta);font-weight:500;padding-right:.5em}
 nav a:hover .num{color:var(--bone)}
@@ -61,8 +70,8 @@ nav a:hover .num{color:var(--bone)}
   font-size:clamp(4rem,17.5vw,15rem);font-weight:850;
 }
 .hero h1 .w1{display:block;font-variation-settings:"wdth" 125}
-.hero h1 .w2{display:block;font-variation-settings:"wdth" 68;font-weight:500;font-style:italic;color:var(--magenta)}
-.hero h1 .w3{display:block;font-variation-settings:"wdth" 112}
+.hero h1 .w2{display:block;font-variation-settings:"wdth" 68;font-weight:500;font-style:italic;color:var(--magenta);font-size:.9em}
+.hero h1 .w3{display:block;font-variation-settings:"wdth" 112;font-size:1.08em}
 .hero-foot{
   display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;margin-top:2.2rem;
 }
@@ -88,21 +97,17 @@ nav a:hover .num{color:var(--bone)}
   display:flex;flex-direction:column;justify-content:space-between;padding:1.3rem 1.2rem;
   border:2px solid var(--ink);
 }
-.cover .cover-top{font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;display:flex;justify-content:space-between}
+.cover .cover-top{font-family:"IBM Plex Mono",monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;display:flex;justify-content:space-between}
 .cover h3{text-transform:uppercase;font-weight:850;font-variation-settings:"wdth" 108;font-size:1.75rem;line-height:.95;letter-spacing:-.01em}
-.cover h3 .accent{color:#FF4D9C}
+.cover h3 .accent{color:var(--magenta-light)}
 .cover .cover-sub{font-size:.92rem;line-height:1.35;margin-top:.7rem;font-weight:500}
-.cover .cover-author{font-family:"IBM Plex Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.cover .cover-author{font-family:"IBM Plex Mono",monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
 .book-text{padding:var(--pad)}
-.book-text .tags{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.3rem}
-.tag{
-  font-family:"IBM Plex Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
-  border:1.5px solid var(--ink);padding:.28rem .6rem;
-}
-.tag.hot{border-color:var(--magenta);color:var(--magenta)}
-.book-text h3{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:800;font-variation-settings:"wdth" 110;line-height:1.05;text-transform:uppercase;letter-spacing:-.005em;margin-bottom:1.2rem;max-width:22ch}
+.book-text .kicker{font-family:"IBM Plex Mono",monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--magenta);margin-bottom:1.1rem}
+.book-text h3{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:800;font-variation-settings:"wdth" 110;line-height:1.05;text-transform:uppercase;letter-spacing:-.005em;margin-bottom:.8rem;max-width:22ch}
+.book-text .standfirst{font-size:1.15rem;font-weight:600;margin-bottom:1.2rem}
 .book-text p{max-width:58ch;margin-bottom:1rem}
-.book-text .fine{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--ink-soft);line-height:1.7;margin-top:.4rem}
+.book-text .fine{font-size:.85rem;color:var(--ink-soft);line-height:1.6;margin-top:.4rem}
 .btn{
   display:inline-block;margin-top:1.4rem;background:var(--ink);color:var(--bone);text-decoration:none;
   text-transform:uppercase;font-weight:700;letter-spacing:.08em;font-size:.92rem;
@@ -116,7 +121,7 @@ nav a:hover .num{color:var(--bone)}
 .pub-table{width:100%;border-collapse:collapse}
 .pub-table caption{position:absolute;left:-9999px}
 .pub-table th{
-  font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:500;text-transform:uppercase;
+  font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:500;text-transform:uppercase;
   letter-spacing:.1em;text-align:left;color:var(--ink-soft);
   border-bottom:2px solid var(--rule);padding:.6rem var(--pad) .6rem 0;
 }
@@ -127,34 +132,46 @@ nav a:hover .num{color:var(--bone)}
 .pub-table .ti{font-weight:700;font-size:1.05rem;line-height:1.35}
 .pub-table .ti a{text-decoration:none}
 .pub-table .ti a:hover{color:var(--magenta);text-decoration:underline;text-underline-offset:3px}
-.pub-table .ge{width:8rem}
-.pub-table .ge span{font-family:"IBM Plex Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;border:1.5px solid var(--magenta);color:var(--magenta);padding:.2rem .55rem;white-space:nowrap}
-.pub-table .ve{font-size:.95rem;color:var(--ink-soft);font-style:italic;width:22rem}
-@media (max-width:56rem){.pub-table .ve{display:none}}
-@media (max-width:40rem){.pub-table .ge{display:none}}
+.pub-table .ge{width:10rem}
+.pub-table .ge span{font-family:"IBM Plex Mono",monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;border:1.5px solid var(--magenta);color:var(--magenta);padding:.2rem .55rem;white-space:nowrap}
+.pub-table .ve{font-size:.95rem;color:var(--ink-soft);font-style:italic;width:20rem}
+/* Below 56rem the table restacks as card rows; year, genre and venue stay
+   first-class at every viewport. */
+@media (max-width:56rem){
+  .pub-table thead{display:none}
+  .pub-table,.pub-table tbody,.pub-table tr,.pub-table td{display:block}
+  .pub-table tr{border-bottom:1px solid #B7B1A3;padding:1.05rem var(--pad);display:grid;grid-template-columns:auto 1fr;gap:.3rem 1rem;align-items:baseline}
+  .pub-table td,.pub-table td:first-child,.pub-table th:first-child{border:0;padding:0}
+  .pub-table .yr{grid-column:1;grid-row:1}
+  .pub-table .ge{grid-column:2;grid-row:1;width:auto;justify-self:start}
+  .pub-table .ti{grid-column:1/-1;grid-row:2}
+  .pub-table .ve{grid-column:1/-1;grid-row:3;width:auto}
+  .pub-table tr:hover td{background:transparent}
+  .pub-table tr:hover{background:var(--bone-deep)}
+}
 .pub-foot{padding:1.6rem var(--pad) 2.2rem;border-bottom:2px solid var(--rule)}
 
 /* Contact: inverted */
 .contact{background:var(--ink);color:var(--bone);padding:clamp(2.6rem,7vh,4.5rem) var(--pad);border-bottom:2px solid var(--rule)}
-.contact .idx{font-family:"IBM Plex Mono",monospace;color:#FF4D9C;font-size:.9rem;margin-bottom:1.2rem;display:block}
+.contact .idx{font-family:"IBM Plex Mono",monospace;color:var(--magenta-light);font-size:.9rem;margin-bottom:1.2rem;display:block}
 .contact h2{
   text-transform:uppercase;font-weight:850;font-variation-settings:"wdth" 116;
   font-size:clamp(2rem,6vw,4.2rem);line-height:.95;letter-spacing:-.01em;max-width:16ch;margin-bottom:1.6rem;
 }
 .contact p{max-width:52ch;margin-bottom:1rem;color:#D9D4C9}
 .contact a{color:var(--bone)}
-.contact a:hover{color:#FF4D9C}
+.contact a:hover{color:var(--magenta-light)}
 .contact .mail{
   display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:clamp(1rem,2.6vw,1.5rem);
   border:2px solid var(--bone);padding:.9rem 1.4rem;margin-top:1.2rem;text-decoration:none;
 }
-.contact .mail:hover{background:#FF4D9C;border-color:#FF4D9C;color:var(--ink)}
+.contact .mail:hover{background:var(--magenta-light);border-color:var(--magenta-light);color:var(--ink)}
 .contact .socials{margin-top:1.8rem;display:flex;gap:1.6rem}
 .contact .socials a{font-family:"IBM Plex Mono",monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em}
 
 /* Footer */
 footer{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1rem var(--pad) 1.2rem}
-footer p{font-family:"IBM Plex Mono",monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+footer p{font-family:"IBM Plex Mono",monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
 </style>
 </head>
 <body>
@@ -163,7 +180,7 @@ footer p{font-family:"IBM Plex Mono",monospace;font-size:.75rem;text-transform:u
 <header>
   <div class="topbar">
     <a class="brand" href="#">Mio Birk</a>
-    <p class="meta">Kønsforsker, ph.d. — København, DK</p>
+    <p class="meta">Kønsforsker, ph.d. – København</p>
   </div>
   <nav aria-label="Hovedmenu">
     <ul>
@@ -176,13 +193,13 @@ footer p{font-family:"IBM Plex Mono",monospace;font-size:.75rem;text-transform:u
 
 <main id="indhold">
   <section class="hero" aria-labelledby="hero-h">
-    <p class="kicker">Et arkiv over køn, seksualitet og alt det, de væves sammen med</p>
+    <p class="kicker">Køn, seksualitet og alt det, de væves sammen med</p>
     <h1 id="hero-h"><span class="w1">Ikke</span><span class="w2">bare</span><span class="w3">køn</span></h1>
     <div class="hero-foot">
       <p>Køn er altid i bevægelse. For at forstå kønnets betydning må vi tage
       højde for alt det, køn væves sammen med. Når noget handler om køn,
       handler det derfor ikke bare om køn.</p>
-      <p class="mono-note">MIOBIRK.COM<br>EST. 2019 / PH.D. AARHUS UNIVERSITET<br>FORSKNING · ESSAYS · POESI</p>
+      <p class="mono-note">MIOBIRK.COM<br>PH.D. 2019 · AARHUS UNIVERSITET<br>FORSKNING · ESSAYS · POESI</p>
     </div>
   </section>
 
@@ -196,28 +213,24 @@ footer p{font-family:"IBM Plex Mono",monospace;font-size:.75rem;text-transform:u
         <div class="cover" role="img" aria-label="Bogomslag: Tvivlen Skygger for Trygheden">
           <p class="cover-top"><span>Ikke Bare Køn</span><span>2026</span></p>
           <div>
-            <h3 aria-hidden="true">Tvivlen skygger for <span class="accent">trygheden</span></h3>
+            <h3 aria-hidden="true"><span class="accent">Tvivlen</span> skygger for trygheden</h3>
             <p class="cover-sub" aria-hidden="true">Når biseksuelle lander mellem to stole</p>
           </div>
           <p class="cover-author" aria-hidden="true">Mio Tiger Birk, ph.d.</p>
         </div>
       </div>
       <div class="book-text">
-        <div class="tags">
-          <span class="tag hot">Gratis</span>
-          <span class="tag">Bi+ trivsel</span>
-          <span class="tag">Dansk kontekst</span>
-          <span class="tag">Offerfonden</span>
-        </div>
-        <h3>Hvorfor lander biseksuelle mellem to stole?</h3>
+        <p class="kicker">Ny bog · Gratis</p>
+        <h3>Tvivlen Skygger for Trygheden</h3>
+        <p class="standfirst">Når biseksuelle lander mellem to stole</p>
         <p>Tvivl og manglende synlighed kan forme biseksuelle og andre
         bi+&nbsp;personers liv – fra nære relationer til uddannelse og
         arbejdsliv. Med afsæt i bi- og panseksuelles egne fortællinger og
         forskning tilbyder bogen ny viden om bi+&nbsp;personers trivsel og
         tryghed i en dansk kontekst.</p>
-        <p>Især henvendt til dig, der arbejder med at forebygge diskrimination
-        og vold. Men alle kan læse med.</p>
-        <p class="fine">STØTTET AF RÅDET FOR OFFERFONDEN · INDHOLDET ER ALENE FORFATTERENS ANSVAR</p>
+        <p>Bogen er især henvendt til dig, der arbejder med at forebygge
+        diskrimination og vold, men alle kan læse med.</p>
+        <p class="fine">Støttet af Rådet for Offerfonden. Indholdet er alene forfatterens ansvar.</p>
         <a class="btn" href="#">Læs bogen →</a>
       </div>
     </div>
@@ -243,7 +256,7 @@ footer p{font-family:"IBM Plex Mono",monospace;font-size:.75rem;text-transform:u
         <tr>
           <td class="yr">2026</td>
           <td class="ti"><a href="#">Mellem To Stole: Når alle er det lidt, er ingen det fuldt ud</a></td>
-          <td class="ge"><span>Artikel</span></td>
+          <td class="ge"><span>Formidling</span></td>
           <td class="ve">ADHD-medlemsmagasinet</td>
         </tr>
         <tr>
@@ -255,19 +268,19 @@ footer p{font-family:"IBM Plex Mono",monospace;font-size:.75rem;text-transform:u
         <tr>
           <td class="yr">2024</td>
           <td class="ti"><a href="#">Phallic Metaphors and Metonyms: Emerging Meanings of Viagra and Masculinity in News Media</a></td>
-          <td class="ge"><span>Forskning</span></td>
+          <td class="ge"><span>Fagfællebedømt</span></td>
           <td class="ve">Sexualities</td>
         </tr>
         <tr>
           <td class="yr">2024</td>
           <td class="ti"><a href="#">Det Uendelige Univers</a></td>
           <td class="ge"><span>Digt</span></td>
-          <td class="ve">Magasinet Slagtryk</td>
+          <td class="ve">Slagtryk</td>
         </tr>
         <tr>
           <td class="yr">2023</td>
           <td class="ti"><a href="#">Reconfigurations of Illness and Masculinity on Instagram</a></td>
-          <td class="ge"><span>Forskning</span></td>
+          <td class="ge"><span>Fagfællebedømt</span></td>
           <td class="ve">Mediekultur</td>
         </tr>
       </tbody>
@@ -279,7 +292,7 @@ footer p{font-family:"IBM Plex Mono",monospace;font-size:.75rem;text-transform:u
 
   <section class="contact" id="kontakt" aria-labelledby="kon-h">
     <span class="idx" aria-hidden="true">03 / KONTAKT</span>
-    <h2 id="kon-h">Forsker, formidler, underviser</h2>
+    <h2 id="kon-h">Forsker, formidler, digter</h2>
     <p>Med Ikke Bare Køn undersøger jeg kønnets betydning i samspil med temaer
     som seksualitet, trivsel og diskrimination. Jeg trækker på en ph.d. i
     samfundsvidenskab fra Aarhus Universitet og bred erfaring med at skrive og

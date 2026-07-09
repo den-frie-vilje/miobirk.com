@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mio Birk — Ikke Bare Køn</title>
+<!-- Mockup only: type loads from Google Fonts for portability. Production
+     self-hosts Fraunces and Source Serif 4 via @fontsource, per the
+     sovereignty principles. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
@@ -53,9 +56,9 @@ header{padding:2.6rem 1.5rem 0;text-align:center}
   color:var(--ink-soft);font-size:.95rem;margin-top:.35rem;
 }
 nav{margin:1.4rem auto 0;max-width:46rem}
-nav ul{list-style:none;display:flex;justify-content:center;gap:2.4rem;flex-wrap:wrap;
+nav ul{list-style:none;display:flex;justify-content:center;gap:clamp(1.1rem,4vw,2.4rem);flex-wrap:wrap;
   border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:.7rem 0}
-nav a{font-variant-caps:all-small-caps;letter-spacing:.18em;font-weight:600;font-size:1.02rem;
+nav a{font-weight:600;font-size:1rem;letter-spacing:.01em;
   color:var(--ink);text-decoration:none}
 nav a:hover{color:var(--lavender-deep)}
 
@@ -75,8 +78,7 @@ section{padding:0 1.5rem}
   max-width:14ch;margin:0 auto;
 }
 .hero h1 em{font-style:italic;font-weight:380;color:var(--lavender-deep)}
-.hero .ornament{color:var(--lavender);font-size:1.5rem;margin:2.2rem 0 1.8rem;letter-spacing:.6em}
-.manifest{max-width:34rem;margin:0 auto;text-align:left;font-size:1.28rem;line-height:1.7}
+.manifest{max-width:34rem;margin:2.6rem auto 0;text-align:left;font-size:1.28rem;line-height:1.7}
 .manifest p::first-letter{
   font-family:Fraunces,serif;
   font-variation-settings:"opsz" 144,"SOFT" 60;
@@ -85,7 +87,7 @@ section{padding:0 1.5rem}
   padding:.06em .09em 0 0;color:var(--lavender-deep);
 }
 .hero-more{margin-top:2.4rem}
-.hero-more a{font-variant-caps:all-small-caps;letter-spacing:.2em;font-weight:600;font-size:1.05rem}
+.hero-more a{font-style:italic;font-size:1.05rem}
 
 /* Section heads */
 .sec-head{text-align:center;margin:0 auto 2.6rem;max-width:var(--measure)}
@@ -103,12 +105,13 @@ section{padding:0 1.5rem}
 /* Book feature */
 .book{background:var(--lavender-wash);padding-top:clamp(3.5rem,7vh,5.5rem);padding-bottom:clamp(3.5rem,7vh,5.5rem)}
 .book-grid{max-width:58rem;margin:0 auto;display:grid;grid-template-columns:minmax(15rem,19rem) 1fr;gap:3.4rem;align-items:center}
-@media (max-width:47rem){.book-grid{grid-template-columns:1fr;gap:2.4rem;justify-items:center}.book-text{text-align:center}.book-text .bib{text-align:left}}
+@media (max-width:47rem){.book-grid{grid-template-columns:1fr;gap:2.4rem;justify-items:center}}
 .cover{
   aspect-ratio:21/29.7;width:100%;max-width:19rem;
   background:var(--lavender);color:var(--paper);
   display:flex;flex-direction:column;justify-content:space-between;
-  padding:1.6rem 1.5rem;box-shadow:14px 14px 0 rgba(33,29,26,.12);
+  padding:1.6rem 1.5rem;border:1px solid var(--lavender-deep);
+  box-shadow:0 10px 28px -12px rgba(33,29,26,.35);
 }
 .cover .cover-top{font-variant-caps:all-small-caps;letter-spacing:.22em;font-weight:500;font-size:.85rem;display:flex;justify-content:space-between}
 .cover h3{
@@ -123,12 +126,13 @@ section{padding:0 1.5rem}
   font-weight:480;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.14;margin-bottom:1.1rem;
 }
 .book-text h3 em{font-style:italic;font-weight:420}
+.book-text .standfirst{font-style:italic;font-size:1.2rem;color:var(--ink-soft);margin-bottom:1.2rem}
 .book-text p{max-width:34rem;margin-bottom:1rem}
 .book-text .note{font-size:.98rem;color:var(--ink-soft);font-style:italic}
 .btn{
   display:inline-block;margin-top:1.2rem;
   background:var(--lavender-deep);color:var(--paper);text-decoration:none;
-  font-variant-caps:all-small-caps;letter-spacing:.2em;font-weight:600;font-size:1.05rem;
+  font-weight:600;font-size:1rem;letter-spacing:.02em;
   padding:.75rem 1.9rem;border:1px solid var(--lavender-deep);
   transition:background .18s ease,color .18s ease;
 }
@@ -169,13 +173,11 @@ section{padding:0 1.5rem}
 
 /* Footer */
 footer{padding:3rem 1.5rem 3.4rem;text-align:center}
-footer .foot-rule{max-width:46rem;margin:0 auto 1.8rem;border-top:1px solid var(--rule);position:relative}
-footer .foot-rule::after{content:"❦";position:absolute;top:-.85rem;left:50%;transform:translateX(-50%);
-  background:var(--paper);padding:0 1rem;color:var(--lavender-deep);font-size:1.1rem}
+footer .foot-rule{max-width:46rem;margin:0 auto 1.8rem;border-top:1px solid var(--rule)}
 footer .foot-name{font-family:Fraunces,serif;font-variation-settings:"opsz" 144;font-weight:520;font-size:1.25rem}
 footer .foot-meta{font-variant-caps:all-small-caps;letter-spacing:.22em;color:var(--ink-soft);font-size:.95rem;margin-top:.5rem}
 footer .foot-links{margin-top:1rem;display:flex;justify-content:center;gap:1.8rem}
-footer .foot-links a{font-variant-caps:all-small-caps;letter-spacing:.16em;font-weight:600;font-size:.98rem}
+footer .foot-links a{font-size:.95rem;font-weight:600}
 </style>
 </head>
 <body>
@@ -183,7 +185,7 @@ footer .foot-links a{font-variant-caps:all-small-caps;letter-spacing:.16em;font-
 
 <header>
   <p class="masthead-name"><a href="#">Mio Birk</a></p>
-  <p class="masthead-sub">Ikke Bare Køn · Kønsforsker, ph.d.</p>
+  <p class="masthead-sub">Kønsforsker · Formidler · Digter</p>
   <nav aria-label="Hovedmenu">
     <ul>
       <li><a href="#bog">Mellem To Stole</a></li>
@@ -196,7 +198,6 @@ footer .foot-links a{font-variant-caps:all-small-caps;letter-spacing:.16em;font-
 <main id="indhold">
   <section class="hero" aria-labelledby="hero-h">
     <h1 id="hero-h">Ikke <em>bare</em> køn</h1>
-    <p class="ornament" aria-hidden="true">·&thinsp;·&thinsp;·</p>
     <div class="manifest">
       <p>Køn er altid i bevægelse. For at forstå kønnets betydning må vi tage
       højde for alt det, køn væves sammen med. Når noget handler om køn,
@@ -210,14 +211,15 @@ footer .foot-links a{font-variant-caps:all-small-caps;letter-spacing:.16em;font-
       <div class="cover" role="img" aria-label="Bogomslag: Tvivlen Skygger for Trygheden">
         <p class="cover-top"><span>Ikke Bare Køn</span><span>2026</span></p>
         <div>
-          <h3 aria-hidden="true">Tvivlen skygger for trygheden</h3>
+          <h3 aria-hidden="true">Tvivlen Skygger for Trygheden</h3>
           <p class="cover-sub" aria-hidden="true">Når biseksuelle lander mellem to stole</p>
         </div>
         <p class="cover-author" aria-hidden="true">Mio Tiger Birk, ph.d.</p>
       </div>
       <div class="book-text">
         <p class="kicker">Ny bog · Gratis</p>
-        <h3 id="bog-h">Hvorfor lander biseksuelle <em>mellem to stole?</em></h3>
+        <h3 id="bog-h">Tvivlen Skygger for Trygheden</h3>
+        <p class="standfirst">Når biseksuelle lander mellem to stole</p>
         <p>Tvivl og manglende synlighed kan forme biseksuelle og andre
         bi+&nbsp;personers liv – fra nære relationer til uddannelse og
         arbejdsliv. Med afsæt i bi- og panseksuelles egne fortællinger og
@@ -243,7 +245,7 @@ footer .foot-links a{font-variant-caps:all-small-caps;letter-spacing:.16em;font-
         <span class="venue">Ikke Bare Køn,</span> <span class="year">2026.</span>
       </li>
       <li>
-        <span class="genre">Artikel</span>
+        <span class="genre">Formidling</span>
         <span class="title"><a href="#">Mellem To Stole: Når alle er det lidt, er ingen det fuldt ud.</a></span>
         <span class="venue">ADHD-medlemsmagasinet,</span> <span class="year">2026.</span>
       </li>
@@ -253,17 +255,17 @@ footer .foot-links a{font-variant-caps:all-small-caps;letter-spacing:.16em;font-
         <span class="venue">Towards Intersectional Feminist Singlehood Studies,</span> <span class="year">2025.</span>
       </li>
       <li>
-        <span class="genre">Forskning</span>
+        <span class="genre">Fagfællebedømt</span>
         <span class="title"><a href="#">Phallic Metaphors and Metonyms: Emerging Meanings of Viagra and Masculinity in News Media.</a></span>
         <span class="venue">Sexualities,</span> <span class="year">2024.</span>
       </li>
       <li>
         <span class="genre">Digt</span>
         <span class="title"><a href="#">Det Uendelige Univers.</a></span>
-        <span class="venue">Magasinet Slagtryk,</span> <span class="year">2024.</span>
+        <span class="venue">Slagtryk,</span> <span class="year">2024.</span>
       </li>
       <li>
-        <span class="genre">Forskning</span>
+        <span class="genre">Fagfællebedømt</span>
         <span class="title"><a href="#">Reconfigurations of Illness and Masculinity on Instagram.</a></span>
         <span class="venue">Mediekultur,</span> <span class="year">2023.</span>
       </li>
@@ -276,13 +278,13 @@ footer .foot-links a{font-variant-caps:all-small-caps;letter-spacing:.16em;font-
       <div class="sec-head" style="margin-bottom:1.8rem">
         <p class="rule"><span>Om &amp; kontakt</span></p>
       </div>
-      <blockquote id="om-h">»Når noget handler om køn, handler det ikke bare om køn.«</blockquote>
+      <blockquote id="om-h">»Når noget handler om køn, handler det derfor ikke bare om køn.«</blockquote>
       <p>Med Ikke Bare Køn undersøger jeg kønnets betydning i samspil med
       temaer som seksualitet, trivsel og diskrimination. Jeg trækker på min
       erfaring som forsker, formidler og underviser, og på en ph.d. i
       samfundsvidenskab fra Aarhus Universitet.</p>
       <p>Er du interesseret i at høre mere, er du velkommen til at skrive.</p>
-      <p class="sign">// Mio Tiger Birk, ph.d.</p>
+      <p class="sign">– Mio Tiger Birk, ph.d.</p>
       <div class="contact-row">
         <a class="btn" href="mailto:kontakt@miobirk.com">Skriv til mig</a>
       </div>

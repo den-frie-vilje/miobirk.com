@@ -13,7 +13,10 @@ constraints; they differ in temperament.
   design history (lavender, zine and archive culture, fluidity) rather than
   rainbow cliché.
 - Open-source typefaces only (all chosen faces are OFL-licensed and cover
-  Danish æ ø å).
+  Danish æ ø å). The mockups load them from Google Fonts for portability;
+  production self-hosts via @fontsource, per the sovereignty principles.
+- Genre labels are honest about register: Bog, Fagfællebedømt, Formidling,
+  Essay, Digt. Peer review is named, and a poem is never dressed as less.
 - Legibility first: body measure 60 to 75 characters, generous leading,
   WCAG 2.1 AA contrast, visible focus states, reduced-motion respected.
 - Danish content, taken verbatim from the existing site.
@@ -81,3 +84,10 @@ Whether each direction (a) sounds like Mio rather than a template, (b) holds
 scholarly credibility and queer voice simultaneously, (c) keeps long Danish
 text genuinely legible, and (d) is distinct enough from the other two to be a
 real choice.
+
+## Critique round
+
+All three mockups went through an art critique and a literary critique after
+the first iteration; the findings and the applied refinements are recorded in
+`CRITIQUE.md`. Rendered screenshots (desktop and mobile) of the refined
+mockups are in `screenshots/`.
