@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mio Birk — Ikke Bare Køn</title>
+<!-- Mockup only: type loads from Google Fonts for portability. Production
+     self-hosts Fraunces and Newsreader via @fontsource. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF8F2;
+  --paper-deep:#F4EFE5;
+  --ink:#1B181B;
+  --ink-soft:#575159;
+  --rule:#DCD5CA;
+  /* Register triad: sRGB fallbacks first; P3 overrides below. */
+  --rosa:#F20587;      /* poetry, the literary */
+  --lilla:#A928E8;     /* the between: formidling, essays, the book */
+  --blaa:#0A47F5;      /* research */
+  --rosa-tekst:#B8005F;
+  --lilla-tekst:#7C3AA0;
+  --blaa-tekst:#1C3FC7;
+  /* Flag-canonical, used only in the tri-stripe rule */
+  --flag-rosa:#D60270; --flag-lilla:#9B4F96; --flag-blaa:#0038A8;
+}
+@supports (color: color(display-p3 1 1 1)){
+  :root{
+    --rosa:color(display-p3 .937 .02 .494);
+    --lilla:color(display-p3 .63 .19 .92);
+    --blaa:color(display-p3 .05 .28 .96);
+  }
+}
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:Newsreader,Georgia,serif;font-optical-sizing:auto;
+  font-size:1.125rem;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.fr{font-family:Fraunces,serif;font-optical-sizing:auto}
+a{color:var(--lilla-tekst);text-decoration-thickness:1.5px;text-underline-offset:3px;transition:color .18s ease,text-decoration-color .18s ease}
+a:hover{color:var(--ink);text-decoration-color:var(--rosa)}
+a:focus-visible{outline:2.5px solid var(--lilla);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:var(--paper);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:1rem;top:1rem}
+.wrap{max-width:70rem;margin:0 auto;padding:0 clamp(1.2rem,4vw,2.8rem)}
+.sans-label{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:Newsreader,serif}
+
+/* The flag, quoted once: 2:1:2 */
+.flagrule{display:grid;grid-template-columns:1fr;height:10px}
+.flagrule i{display:block}
+.flagrule .s1{height:4px;background:var(--flag-rosa)}
+.flagrule .s2{height:2px;background:var(--flag-lilla)}
+.flagrule .s3{height:4px;background:var(--flag-blaa)}
+
+/* Masthead */
+header .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;padding:1.4rem 0 1rem}
+.brand{font-family:Fraunces,serif;font-variation-settings:"opsz" 144,"WONK" 1;font-weight:640;font-size:1.7rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand:hover{color:var(--lilla-tekst);text-decoration:none}
+nav ul{list-style:none;display:flex;gap:clamp(1.1rem,3vw,2rem);flex-wrap:wrap}
+nav a{font-size:1rem;font-weight:600;color:var(--ink);text-decoration:none}
+nav a:hover{color:var(--ink);box-shadow:0 2px 0 var(--rosa)}
+
+/* Hero */
+.hero{padding:clamp(3rem,9vh,6rem) 0 clamp(2.8rem,7vh,4.5rem)}
+.hero .kicker{color:var(--lilla-tekst);font-weight:600;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.6rem}
+.hero h1{
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 144,"WONK" 1,"SOFT" 30;
+  font-weight:680;font-size:clamp(3.4rem,10vw,8rem);line-height:1.0;letter-spacing:-.018em;
+  max-width:12ch;
+}
+.hero h1 .u{box-shadow:inset 0 -0.14em var(--paper), inset 0 -0.26em var(--lilla)}
+.hero .standfirst{max-width:36rem;margin-top:2rem;font-size:clamp(1.25rem,2.3vw,1.5rem);line-height:1.5}
+.hero .byline{margin-top:1.4rem;font-style:italic;color:var(--ink-soft)}
+
+/* Section chrome */
+.sec{padding:clamp(3rem,7vh,4.8rem) 0;border-top:1px solid var(--rule)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:2.2rem;flex-wrap:wrap}
+.sec-head h2{font-family:Fraunces,serif;font-variation-settings:"opsz" 144;font-weight:620;font-size:clamp(2rem,4.4vw,3rem);letter-spacing:-.015em}
+.sec-head a{font-size:.98rem;font-weight:600}
+
+/* Book (purple register: the between) */
+.book{background:var(--paper-deep)}
+.book-grid{display:grid;grid-template-columns:minmax(13rem,17rem) 1fr;gap:clamp(2.2rem,5vw,4.5rem);align-items:center}
+@media (max-width:48rem){.book-grid{grid-template-columns:1fr;justify-items:start}}
+.cover{
+  aspect-ratio:21/29.7;width:100%;max-width:17rem;background:var(--ink);color:var(--paper);
+  display:flex;flex-direction:column;justify-content:space-between;padding:1.4rem 1.3rem;
+  border-top:8px solid var(--lilla);
+  box-shadow:0 18px 40px -20px rgba(27,24,27,.55);
+}
+.cover .ct{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8;display:flex;justify-content:space-between}
+.cover h3{font-family:Fraunces,serif;font-variation-settings:"opsz" 100,"WONK" 1;font-weight:600;font-size:1.8rem;line-height:1.08;letter-spacing:-.01em}
+.cover .cs{font-style:italic;font-size:1rem;margin-top:.7rem;opacity:.92}
+.cover .ca{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.book-text .tag{color:var(--lilla-tekst);font-weight:600;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+.book-text h3{font-family:Fraunces,serif;font-variation-settings:"opsz" 144;font-weight:640;font-size:clamp(1.9rem,3.8vw,2.7rem);line-height:1.08;letter-spacing:-.012em;margin-bottom:.5rem}
+.book-text .standfirst{font-style:italic;font-size:1.3rem;color:var(--ink-soft);margin-bottom:1.2rem}
+.book-text p{max-width:56ch;margin-bottom:1rem}
+.book-text .fine{font-size:.92rem;color:var(--ink-soft)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.4rem;margin-top:1.4rem}
+.btn{
+  display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;
+  font-weight:600;font-size:1rem;padding:.85rem 1.9rem;border:2px solid var(--ink);
+  box-shadow:4px 4px 0 var(--lilla);
+  transition:box-shadow .18s ease,transform .18s ease;
+}
+.btn:hover{box-shadow:6px 6px 0 var(--rosa);transform:translate(-1px,-1px);color:var(--paper)}
+
+/* Publications: the register system at work */
+.toc{list-style:none;max-width:48rem}
+.toc li{padding:1.35rem 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:auto 1fr;gap:.2rem 1.1rem}
+.toc li::before{content:"";width:5px;height:100%;grid-row:1/span 3;grid-column:1;background:var(--reg,var(--rule))}
+.toc li.r-blaa{--reg:var(--blaa)}
+.toc li.r-lilla{--reg:var(--lilla)}
+.toc li.r-rosa{--reg:var(--rosa)}
+.toc .t-meta{grid-column:2;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.toc li.r-blaa .t-meta{color:var(--blaa-tekst)}
+.toc li.r-lilla .t-meta{color:var(--lilla-tekst)}
+.toc li.r-rosa .t-meta{color:var(--rosa-tekst)}
+.toc .t-meta .yr{color:var(--ink-soft);font-weight:500;letter-spacing:.02em}
+.toc h3{grid-column:2;font-weight:600;font-size:1.35rem;line-height:1.3;margin-top:.2rem}
+.toc h3 a{color:var(--ink);text-decoration:none}
+.toc h3 a:hover{box-shadow:0 2px 0 var(--reg,var(--rosa))}
+.toc .t-sub{grid-column:2;margin-top:.25rem;font-size:1.02rem}
+.toc .t-sub .venue{font-style:italic;color:var(--ink-soft)}
+.reg-key{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:2rem;font-size:.88rem;font-weight:600;letter-spacing:.05em}
+.reg-key span{display:inline-flex;align-items:center;gap:.5rem}
+.reg-key i{width:14px;height:14px;display:inline-block}
+.reg-key .k-blaa i{background:var(--blaa)} .reg-key .k-blaa{color:var(--blaa-tekst)}
+.reg-key .k-lilla i{background:var(--lilla)} .reg-key .k-lilla{color:var(--lilla-tekst)}
+.reg-key .k-rosa i{background:var(--rosa)} .reg-key .k-rosa{color:var(--rosa-tekst)}
+
+/* Doors */
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.6rem,3vw,2.8rem)}
+@media (max-width:48rem){.doors{grid-template-columns:1fr}}
+.door{border-top:4px solid var(--dc,var(--ink));padding-top:1.1rem}
+.door.d1{--dc:var(--blaa)} .door.d2{--dc:var(--lilla)} .door.d3{--dc:var(--rosa)}
+.door h3{font-family:Fraunces,serif;font-variation-settings:"opsz" 100;font-weight:620;font-size:1.45rem;margin-bottom:.55rem}
+.door p{font-size:1.02rem;max-width:36ch;margin-bottom:.7rem}
+.door a{font-weight:600;font-size:.98rem}
+
+/* Om */
+.om{max-width:46rem}
+.om .display{
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 100,"SOFT" 40;font-style:italic;
+  font-weight:480;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.32;margin-bottom:1.6rem;letter-spacing:-.008em;
+}
+.om p{max-width:58ch;margin-bottom:1rem}
+.om .sign{font-style:italic;color:var(--ink-soft)}
+
+/* Footer */
+footer{margin-top:1rem}
+footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:baseline;padding:1.8rem 0 2.4rem;border-top:1px solid var(--rule)}
+footer .fname{font-family:Fraunces,serif;font-variation-settings:"opsz" 144,"WONK" 1;font-weight:640;font-size:1.2rem}
+footer p,footer a{font-size:.95rem;color:var(--ink-soft)}
+footer .flinks{display:flex;gap:1.5rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#indhold">Gå til indhold</a>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="#">Mio Birk</a>
+      <nav aria-label="Hovedmenu">
+        <ul>
+          <li><a href="#bog">Bogen</a></li>
+          <li><a href="#udgivelser">Udgivelser</a></li>
+          <li><a href="#indgange">Foredrag</a></li>
+          <li><a href="#indgange">Presse</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="flagrule" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div>
+</header>
+
+<main id="indhold">
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Ikke Bare Køn · Mio Tiger Birk, ph.d.</p>
+      <h1>Ikke <span class="u">bare</span> køn</h1>
+      <p class="standfirst">Køn er altid i bevægelse. For at forstå kønnets
+      betydning må vi tage højde for alt det, køn væves sammen med. Når noget
+      handler om køn, handler det derfor ikke bare om køn.</p>
+      <p class="byline">Kønsforsker, formidler og digter</p>
+    </div>
+  </section>
+
+  <section class="sec book" id="bog" aria-labelledby="bog-h">
+    <div class="wrap">
+      <div class="book-grid">
+        <div class="cover" role="img" aria-label="Bogomslag: Tvivlen Skygger for Trygheden">
+          <p class="ct"><span>Ikke Bare Køn</span><span>2026</span></p>
+          <div>
+            <h3 aria-hidden="true">Tvivlen Skygger for Trygheden</h3>
+            <p class="cs" aria-hidden="true">Når biseksuelle lander mellem to stole</p>
+          </div>
+          <p class="ca" aria-hidden="true">Mio Tiger Birk, ph.d.</p>
+        </div>
+        <div class="book-text">
+          <p class="tag">Ny bog · Gratis</p>
+          <h3 id="bog-h">Tvivlen Skygger for Trygheden</h3>
+          <p class="standfirst">Når biseksuelle lander mellem to stole</p>
+          <p>Tvivl og manglende synlighed kan forme biseksuelle og andre
+          bi+&nbsp;personers liv – fra nære relationer til uddannelse og
+          arbejdsliv. Med afsæt i bi- og panseksuelles egne fortællinger og
+          forskning tilbyder bogen ny viden om bi+&nbsp;personers trivsel og
+          tryghed i en dansk kontekst.</p>
+          <p>Bogen er især henvendt til dig, der arbejder med at forebygge
+          diskrimination og vold, men alle kan læse med.</p>
+          <p class="fine">Bogen er gratis takket være støtte fra Offerfonden.
+          Du skal ikke oprette dig eller oplyse din e-mail.</p>
+          <div class="actions">
+            <a class="btn" href="#">Hent bogen gratis</a>
+            <a href="#">Læs i browseren</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="udgivelser" aria-labelledby="pub-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="pub-h">Udgivelser</h2>
+        <a href="#">Alle udgivelser →</a>
+      </div>
+      <ul class="toc">
+        <li class="r-lilla">
+          <p class="t-meta">Bog <span class="yr">· 2026</span></p>
+          <h3><a href="#">Tvivlen Skygger for Trygheden: Når biseksuelle lander mellem to stole</a></h3>
+          <p class="t-sub"><span class="venue">Ikke Bare Køn.</span> Ny viden om bi+ personers trivsel og tryghed i en dansk kontekst.</p>
+        </li>
+        <li class="r-lilla">
+          <p class="t-meta">Formidling <span class="yr">· 2026</span></p>
+          <h3><a href="#">Mellem To Stole: Når alle er det lidt, er ingen det fuldt ud</a></h3>
+          <p class="t-sub"><span class="venue">ADHD-medlemsmagasinet.</span></p>
+        </li>
+        <li class="r-lilla">
+          <p class="t-meta">Essay <span class="yr">· 2025</span></p>
+          <h3><a href="#">Cat Ladies, Herbivores and Incels: Competing Meanings of Singlehood</a></h3>
+          <p class="t-sub"><span class="venue">Towards Intersectional Feminist Singlehood Studies.</span> Om konkurrerende kulturelle forestillinger om at være single.</p>
+        </li>
+        <li class="r-blaa">
+          <p class="t-meta">Fagfællebedømt <span class="yr">· 2024</span></p>
+          <h3><a href="#">Phallic Metaphors and Metonyms: Emerging Meanings of Viagra and Masculinity in News Media</a></h3>
+          <p class="t-sub"><span class="venue">Sexualities.</span> Om de betydninger af maskulinitet, Viagra sætter i spil i nyhedsmedierne.</p>
+        </li>
+        <li class="r-rosa">
+          <p class="t-meta">Digt <span class="yr">· 2024</span></p>
+          <h3><a href="#">Det Uendelige Univers</a></h3>
+          <p class="t-sub"><span class="venue">Slagtryk.</span></p>
+        </li>
+        <li class="r-blaa">
+          <p class="t-meta">Fagfællebedømt <span class="yr">· 2023</span></p>
+          <h3><a href="#">Reconfigurations of Illness and Masculinity on Instagram</a></h3>
+          <p class="t-sub"><span class="venue">Mediekultur.</span> Om sygdom og maskulinitet på Instagram.</p>
+        </li>
+      </ul>
+      <div class="reg-key" aria-hidden="true">
+        <span class="k-blaa"><i></i>Forskning</span>
+        <span class="k-lilla"><i></i>Det, der lander imellem</span>
+        <span class="k-rosa"><i></i>Poesi</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="indgange" aria-labelledby="ind-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="ind-h">Foredrag, presse og læsning</h2>
+      </div>
+      <div class="doors">
+        <div class="door d1">
+          <h3>Foredrag og undervisning</h3>
+          <p>Jeg holder foredrag og underviser om køn, seksualitet og bi+
+          trivsel, fra fagmiljøer til foreninger. Honorar efter aftale.</p>
+          <a href="#kontakt">Book et foredrag →</a>
+        </div>
+        <div class="door d2">
+          <h3>Presse</h3>
+          <p>Pressefotos med kreditering, kort og lang biografi, og hvordan
+          jeg omtales korrekt.</p>
+          <a href="#">Pressemateriale →</a>
+        </div>
+        <div class="door d3">
+          <h3>Læsning</h3>
+          <p>Forskning, essays og digte, ordnet efter genre, med fulde
+          henvisninger.</p>
+          <a href="#udgivelser">Til udgivelserne →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="kontakt" aria-labelledby="om-h">
+    <div class="wrap">
+      <div class="om">
+        <h2 id="om-h" style="position:absolute;left:-9999px">Om og kontakt</h2>
+        <p class="display">Med Ikke Bare Køn undersøger jeg kønnets betydning
+        i samspil med temaer som seksualitet, trivsel og diskrimination.</p>
+        <p>Jeg trækker på min erfaring som forsker, formidler og underviser,
+        og på en ph.d. i samfundsvidenskab fra Aarhus Universitet. Er du
+        interesseret i at høre mere, er du velkommen til at skrive til mig på
+        <a href="mailto:kontakt@miobirk.com">kontakt@miobirk.com</a>.</p>
+        <p class="sign">– Mio Tiger Birk, ph.d.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <p class="fname">Ikke Bare Køn</p>
+      <p>Mio Tiger Birk · © 2026</p>
+      <div class="flinks">
+        <a href="https://bsky.app/profile/ikkebarekon.bsky.social">Bluesky</a>
+        <a href="http://www.linkedin.com/in/mio-birk-7b188460">LinkedIn</a>
+        <a href="mailto:kontakt@miobirk.com">E-mail</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
