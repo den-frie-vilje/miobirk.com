@@ -59,4 +59,37 @@ Implications fixed for round 2, whatever the visual direction:
 
 ## Editorial pages: the grammar of serious publications
 
-(Findings from the editorial survey follow in the next commit.)
+Surveyed directly: The Paris Review, London Review of Books, The White
+Review, The Gentlewoman, Zetland (Aeon rate-limited the fetch). The
+long-running broad survey agent had not reported by its deadline and was
+superseded by this tighter pass.
+
+The shared grammar of pages that read as serious publications:
+
+- Sentence case headlines. Nobody shouts; authority arrives through scale
+  contrast and consistency, not caps or colour.
+- Serif carries the intellectual register (body and often display); a quiet
+  sans carries navigation and metadata. The pairing is the oldest signal of
+  "publication" there is, and every surveyed literary title uses it.
+- Category labels are small, understated tags; hierarchy is typographic
+  scale, not boxes or chips.
+- Bylines and attribution are first-class objects, set consistently under or
+  beside every title.
+- Article lists are tables of contents, not card walls: title, byline, and a
+  two-to-three sentence excerpt presented as a discrete intellectual unit
+  (the LRB contents model). The Paris Review adds numbered series ("The Art
+  of Poetry No. 120"): numbering as quiet authority.
+- Near-monochrome grounds: black or near-black text on white or warm white.
+  At most one signature accent (the LRB's red). Photography and artwork
+  provide the variety; decoration does not.
+- Zetland, the Danish reference, adds two humane moves the British titles
+  lack: honest reading times on every piece, and conversational, direct
+  microcopy ("Bliv medlem for 60 kr"), warmth without loss of seriousness.
+- The Gentlewoman shows the profile mode: restrained modern grotesque,
+  gallery-like modularity, the subject treated with biographical elegance,
+  charm carried by tone of voice rather than ornament.
+
+Three transferable editorial modes emerged, and they anchor the three new
+directions: the intellectual review (LRB, The Paris Review), the humane
+Scandinavian editorial (Zetland), and the elegant profile magazine (The
+Gentlewoman, The White Review).
