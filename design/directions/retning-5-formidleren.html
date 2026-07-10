@@ -35,24 +35,24 @@ a:hover{color:var(--ink)}
 a:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
 .skip{position:absolute;left:-9999px;background:var(--green);color:var(--butter);padding:.6rem 1rem;z-index:10}
 .skip:focus{left:1rem;top:1rem}
-.wrap{max-width:66rem;margin:0 auto;padding:0 clamp(1.2rem,4vw,2.5rem)}
+.wrap{max-width:60rem;margin:0 auto;padding:0 clamp(1.2rem,4vw,2.5rem)}
 .meta{font-family:"Instrument Sans",system-ui,sans-serif;font-size:.85rem;color:var(--ink-soft)}
 
-/* Green masthead band */
-header{background:var(--green);color:var(--butter)}
+/* Light masthead; the green is saved for the book panel and footer */
+header{background:var(--butter);border-bottom:1px solid var(--rule)}
 .mast{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:1.1rem 0}
-.mast .name{font-family:Literata,serif;font-weight:700;font-size:1.45rem;color:var(--butter);text-decoration:none}
-.mast .name span{font-weight:400;font-style:italic}
+.mast .name{font-family:Literata,serif;font-weight:700;font-size:1.45rem;color:var(--green);text-decoration:none}
+.mast .name span{font-weight:400;font-style:italic;color:var(--ink-soft)}
 nav ul{list-style:none;display:flex;gap:clamp(1rem,3vw,1.9rem);flex-wrap:wrap}
-nav a{font-family:"Instrument Sans",system-ui,sans-serif;font-size:.92rem;font-weight:600;color:var(--butter);text-decoration:none;opacity:.92}
-nav a:hover{opacity:1;color:var(--butter);text-decoration:underline;text-underline-offset:4px}
+nav a{font-family:"Instrument Sans",system-ui,sans-serif;font-size:.92rem;font-weight:600;color:var(--ink);text-decoration:none}
+nav a:hover{color:var(--green);text-decoration:underline;text-underline-offset:4px}
 
 /* Hero */
 .hero{padding:clamp(3rem,8vh,5.5rem) 0 clamp(2.6rem,6vh,4.2rem)}
 .hero .over{font-family:"Instrument Sans",system-ui,sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.04em;color:var(--ochre);margin-bottom:1rem}
 .hero h1{
   font-weight:640;font-size:clamp(2.3rem,5.6vw,3.9rem);line-height:1.12;letter-spacing:-.012em;
-  max-width:24ch;
+  max-width:24ch;text-wrap:balance;
 }
 .hero p.tale{max-width:36rem;margin-top:1.5rem;font-size:1.22rem;line-height:1.62}
 .hero .who{margin-top:1.3rem;font-family:"Instrument Sans",system-ui,sans-serif;font-size:.92rem;color:var(--ink-soft)}
@@ -74,15 +74,16 @@ nav a:hover{opacity:1;color:var(--butter);text-decoration:underline;text-underli
 .bog-text h2{font-weight:640;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.12;margin-bottom:.4rem}
 .bog-text .standfirst{font-style:italic;font-size:1.25rem;opacity:.92;margin-bottom:1.1rem}
 .bog-text p{max-width:54ch;margin-bottom:1rem;color:#F1EAD8}
-.bog-text .honest{font-family:"Instrument Sans",system-ui,sans-serif;font-size:.9rem;color:#DCD2BA}
+.bog-text .honest{font-family:"Instrument Sans",system-ui,sans-serif;font-size:.88rem;color:#F1EAD8}
+.bog-text .actions{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.2rem;margin-top:1.2rem}
 .bog-text a.btn{
-  display:inline-block;margin-top:1.2rem;background:var(--butter);color:var(--green);text-decoration:none;
+  display:inline-block;background:var(--butter);color:var(--green);text-decoration:none;
   font-family:"Instrument Sans",system-ui,sans-serif;font-weight:700;font-size:1rem;
   padding:.85rem 1.8rem;border-radius:3px;border:1.5px solid var(--butter);
   transition:background .18s ease,color .18s ease;
 }
 .bog-text a.btn:hover{background:transparent;color:var(--butter)}
-.bog-text .also{margin-left:1rem;color:var(--butter)}
+.bog-text .also{color:var(--butter)}
 .bog-text .also:hover{color:#F4C87E}
 
 /* Sections */
@@ -182,10 +183,13 @@ footer .flinks{display:flex;gap:1.4rem}
           tryghed i en dansk kontekst.</p>
           <p>Bogen er især henvendt til dig, der arbejder med at forebygge
           diskrimination og vold, men alle kan læse med.</p>
-          <p class="honest">Bogen er gratis, fordi Offerfonden har betalt for
-          den. Du skal ikke oprette dig eller give din e-mail.</p>
-          <a class="btn" href="#">Hent bogen gratis</a>
-          <a class="also" href="#">eller læs den i browseren</a>
+          <p class="honest">Bogen er gratis, fordi projektet bag den er
+          støttet af Offerfonden. Du skal ikke oprette dig eller give din
+          e-mail.</p>
+          <div class="actions">
+            <a class="btn" href="#">Hent bogen gratis</a>
+            <a class="also" href="#">eller læs den i browseren</a>
+          </div>
         </div>
       </div>
     </div>
@@ -194,40 +198,40 @@ footer .flinks{display:flex;gap:1.4rem}
   <section class="sec" id="udgivelser" aria-labelledby="pub-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="pub-h">Læs mere af mig</h2>
-        <a href="#">Alle 17 udgivelser →</a>
+        <h2 id="pub-h">Mere at læse</h2>
+        <a href="#">Alle udgivelser →</a>
       </div>
       <ul class="pubs">
         <li>
-          <p class="pmeta">Formidling <span class="rt">· 6 min</span></p>
+          <p class="pmeta">Formidling <span class="rt">· ca. 6 min</span></p>
           <h3><a href="#">Mellem To Stole: Når alle er det lidt, er ingen det fuldt ud</a></h3>
           <p class="pvenue">ADHD-medlemsmagasinet, 2026</p>
         </li>
         <li>
-          <p class="pmeta">Essay <span class="rt">· 18 min</span></p>
+          <p class="pmeta">Essay</p>
           <h3><a href="#">Cat Ladies, Herbivores and Incels: Competing Meanings of Singlehood</a></h3>
           <p class="pvenue">Towards Intersectional Feminist Singlehood Studies, 2025</p>
           <p class="pdesc">Om konkurrerende kulturelle forestillinger om at være single.</p>
         </li>
         <li>
-          <p class="pmeta">Fagfællebedømt <span class="rt">· 35 min</span></p>
+          <p class="pmeta">Fagfællebedømt</p>
           <h3><a href="#">Phallic Metaphors and Metonyms: Emerging Meanings of Viagra and Masculinity in News Media</a></h3>
           <p class="pvenue">Sexualities, 2024</p>
-          <p class="pdesc">Om Viagras indflydelse på maskulinitet i nyhedsmedierne.</p>
+          <p class="pdesc">Om de betydninger af maskulinitet, Viagra sætter i spil i nyhedsmedierne.</p>
         </li>
         <li>
-          <p class="pmeta">Digt <span class="rt">· 2 min</span></p>
+          <p class="pmeta">Digt</p>
           <h3><a href="#">Det Uendelige Univers</a></h3>
           <p class="pvenue">Slagtryk, 2024</p>
         </li>
         <li>
-          <p class="pmeta">Fagfællebedømt <span class="rt">· 30 min</span></p>
+          <p class="pmeta">Fagfællebedømt</p>
           <h3><a href="#">Reconfigurations of Illness and Masculinity on Instagram</a></h3>
           <p class="pvenue">Mediekultur, 2023</p>
           <p class="pdesc">Om sygdom og maskulinitet på Instagram.</p>
         </li>
         <li>
-          <p class="pmeta">Formidling <span class="rt">· 8 min</span></p>
+          <p class="pmeta">Formidling <span class="rt">· ca. 8 min</span></p>
           <h3><a href="#">Venner og alkohol har stor betydning for unge kvinders opfattelse af egne seksuelle grænser</a></h3>
           <p class="pvenue">Videnskab.dk, 2020</p>
         </li>
@@ -242,10 +246,10 @@ footer .flinks{display:flex;gap:1.4rem}
       </div>
       <div class="doorgrid">
         <div class="door">
-          <h3>Skal jeg holde foredrag?</h3>
+          <h3>Vil du booke et foredrag?</h3>
           <p>Jeg holder foredrag og underviser om køn, seksualitet og bi+
           trivsel – for fagfolk, foreninger og alle andre.</p>
-          <a href="#kontakt">Skriv om et foredrag →</a>
+          <a href="#kontakt">Skriv til mig om et foredrag →</a>
         </div>
         <div class="door">
           <h3>Er du journalist?</h3>
@@ -255,8 +259,8 @@ footer .flinks{display:flex;gap:1.4rem}
         </div>
         <div class="door">
           <h3>Vil du bare læse?</h3>
-          <p>Så er du det rigtige sted. Start med bogen – den er gratis –
-          eller find et essay eller et digt ovenfor.</p>
+          <p>Så er du kommet til det rigtige sted. Start med bogen – den er
+          gratis – eller find et essay eller et digt ovenfor.</p>
           <a href="#bog">Til bogen →</a>
         </div>
       </div>

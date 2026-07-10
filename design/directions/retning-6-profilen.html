@@ -50,31 +50,33 @@ nav a:hover{color:var(--blue)}
 @media (max-width:48rem){.hero-grid{grid-template-columns:1fr;justify-items:center}.hero-text{text-align:center}.hero-text p{margin-left:auto;margin-right:auto}}
 .portrait{
   width:100%;max-width:19rem;aspect-ratio:4/5;border-radius:50%/40%;
-  background:
-    radial-gradient(120% 90% at 30% 20%, var(--blue-soft) 0%, transparent 55%),
-    radial-gradient(110% 100% at 75% 85%, #9FB4CD 0%, transparent 60%),
-    linear-gradient(160deg,#E7E9EA 0%, #B9C6D6 55%, var(--blue) 140%);
-  border:1px solid var(--rule);
+  background:var(--blue-soft);
+  box-shadow:inset 0 0 0 8px var(--white), inset 0 0 0 9px var(--rule);
+  display:flex;align-items:center;justify-content:center;
+}
+.portrait span{
+  font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);text-align:center;line-height:1.8;padding:0 2rem;
 }
 .pcredit{font-size:.78rem;color:var(--ink-soft);text-align:center;margin-top:.7rem;letter-spacing:.03em}
 .hero-text .over{font-size:.88rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:1.1rem}
 .hero-text h1{
-  font-weight:500;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.22;letter-spacing:-.008em;
-  max-width:22ch;margin-bottom:1.3rem;
+  font-weight:500;font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.12;letter-spacing:-.012em;
+  max-width:19ch;margin-bottom:1.3rem;text-wrap:balance;
 }
-.hero-text h1 em{font-style:italic}
 .hero-text p{max-width:48ch;font-size:1.1rem;margin-bottom:.9rem}
 .hero-text .who{font-size:.95rem;color:var(--ink-soft)}
 
-/* Section chrome */
+/* Section chrome: the masthead keeps the one ceremonial centre axis;
+   sections sit left on the grid */
 .sec{padding:clamp(2.8rem,7vh,4.5rem) 0;border-top:1px solid var(--rule)}
-.sec-head{text-align:center;margin-bottom:2.2rem}
+.sec-head{text-align:left;margin-bottom:2.2rem}
 .sec-head .no{font-size:.82rem;font-weight:600;letter-spacing:.2em;color:var(--blue);text-transform:uppercase}
-.sec-head h2{font-weight:500;font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.008em;margin-top:.4rem}
-.sec-head h2 em{font-style:italic}
+.sec-head h2{font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);letter-spacing:-.012em;margin-top:.4rem}
+.sec-head h2 em{font-style:italic;font-weight:500}
 
 /* Book */
-.book-grid{display:grid;grid-template-columns:1fr minmax(12.5rem,15.5rem);gap:clamp(2.2rem,5vw,4rem);align-items:center;max-width:56rem;margin:0 auto}
+.book-grid{display:grid;grid-template-columns:1fr minmax(12.5rem,15.5rem);gap:clamp(2.2rem,5vw,4rem);align-items:center;max-width:56rem}
 @media (max-width:48rem){.book-grid{grid-template-columns:1fr;justify-items:center}.book-text{text-align:center}.book-text p{margin-left:auto;margin-right:auto}}
 .cover{
   aspect-ratio:21/29.7;width:100%;max-width:15.5rem;background:var(--ink);color:var(--white);
@@ -93,25 +95,30 @@ nav a:hover{color:var(--blue)}
 .btn{
   display:inline-block;margin-top:1.2rem;background:var(--ink);color:var(--white);text-decoration:none;
   font-weight:600;font-size:.95rem;letter-spacing:.02em;
-  padding:.8rem 2rem;border-radius:100px;border:1.5px solid var(--ink);
+  padding:.8rem 2rem;border-radius:0;border:1.5px solid var(--ink);
   transition:background .18s ease,color .18s ease;
 }
 .btn:hover{background:transparent;color:var(--ink)}
 
 /* Index of writing */
-.index{max-width:46rem;margin:0 auto;list-style:none}
+.index{max-width:46rem;list-style:none}
 .index li{display:grid;grid-template-columns:1fr auto;gap:1.2rem;align-items:baseline;padding:1.05rem .2rem;border-bottom:1px solid var(--rule)}
 .index li:first-child{border-top:1px solid var(--rule)}
 .index h3{font-weight:600;font-size:1.12rem;line-height:1.35}
 .index h3 a{color:var(--ink);text-decoration:none}
 .index h3 a:hover{color:var(--blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .index .ivenue{display:block;font-weight:400;font-style:italic;color:var(--ink-soft);font-size:.95rem;margin-top:.15rem}
+.index .idesc{display:block;font-weight:400;color:var(--ink);font-size:.98rem;margin-top:.3rem}
 .index .ilabel{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);white-space:nowrap}
-.index-more{text-align:center;margin-top:2rem}
+@media (max-width:40rem){
+  .index li{grid-template-columns:1fr;gap:.2rem}
+  .index .ilabel{order:-1;white-space:normal}
+}
+.index-more{margin-top:2rem}
 .index-more a{font-weight:600;font-size:.95rem}
 
 /* Henvendelser */
-.calls{max-width:46rem;margin:0 auto}
+.calls{max-width:46rem}
 .calls dl{display:grid;grid-template-columns:auto 1fr;gap:.9rem 2rem}
 @media (max-width:40rem){.calls dl{grid-template-columns:1fr;gap:.2rem}
   .calls dt{margin-top:1rem}}
@@ -120,7 +127,7 @@ nav a:hover{color:var(--blue)}
 .calls dd a{font-weight:600}
 
 /* Om */
-.om{max-width:42rem;margin:0 auto;text-align:center}
+.om{max-width:42rem}
 .om p{margin-bottom:1rem}
 .om .sign{font-style:italic;color:var(--ink-soft)}
 
@@ -154,15 +161,17 @@ footer .flinks a{font-size:.9rem;font-weight:600}
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <div class="portrait" role="img" aria-label="Portræt af Mio Tiger Birk (pladsholder)"></div>
-          <p class="pcredit">Portræt følger · foto krediteres her</p>
+          <div class="portrait" role="img" aria-label="Portræt af Mio Tiger Birk (pladsholder)">
+            <span aria-hidden="true">Portræt<br>følger</span>
+          </div>
+          <p class="pcredit">Foto krediteres her</p>
         </div>
         <div class="hero-text">
           <p class="over">Ikke Bare Køn</p>
           <h1 id="hero-h">Køn er altid i bevægelse. Når noget handler om køn,
-          handler det ikke <em>bare</em> om køn.</h1>
-          <p>Med Ikke Bare Køn undersøger jeg kønnets betydning i samspil med
-          temaer som seksualitet, trivsel og diskrimination – gennem
+          handler det ikke bare om køn.</h1>
+          <p>For at forstå kønnets betydning må vi tage højde for alt det,
+          køn væves sammen med. Med Ikke Bare Køn gør jeg det gennem
           forskning, essays og digte.</p>
           <p class="who">Mio Tiger Birk, ph.d. i samfundsvidenskab, Aarhus
           Universitet</p>
@@ -206,12 +215,13 @@ footer .flinks a{font-size:.9rem;font-weight:600}
     <div class="wrap">
       <div class="sec-head">
         <p class="no">Udgivelser</p>
-        <h2 id="pub-h">Fra fagfællebedømt forskning <em>til poesi</em></h2>
+        <h2 id="pub-h">Fra fagfællebedømt forskning til poesi</h2>
       </div>
       <ul class="index">
         <li>
           <h3><a href="#">Tvivlen Skygger for Trygheden: Når biseksuelle lander mellem to stole</a>
-            <span class="ivenue">Ikke Bare Køn, 2026</span></h3>
+            <span class="ivenue">Ikke Bare Køn, 2026</span>
+            <span class="idesc">Ny viden om bi+ personers trivsel og tryghed i en dansk kontekst.</span></h3>
           <span class="ilabel">Bog</span>
         </li>
         <li>
@@ -221,12 +231,14 @@ footer .flinks a{font-size:.9rem;font-weight:600}
         </li>
         <li>
           <h3><a href="#">Cat Ladies, Herbivores and Incels: Competing Meanings of Singlehood</a>
-            <span class="ivenue">Towards Intersectional Feminist Singlehood Studies, 2025</span></h3>
+            <span class="ivenue">Towards Intersectional Feminist Singlehood Studies, 2025</span>
+            <span class="idesc">Om konkurrerende kulturelle forestillinger om at være single.</span></h3>
           <span class="ilabel">Essay</span>
         </li>
         <li>
           <h3><a href="#">Phallic Metaphors and Metonyms: Emerging Meanings of Viagra and Masculinity in News Media</a>
-            <span class="ivenue">Sexualities, 2024</span></h3>
+            <span class="ivenue">Sexualities, 2024</span>
+            <span class="idesc">Om de betydninger af maskulinitet, Viagra sætter i spil i nyhedsmedierne.</span></h3>
           <span class="ilabel">Fagfællebedømt</span>
         </li>
         <li>
@@ -236,7 +248,8 @@ footer .flinks a{font-size:.9rem;font-weight:600}
         </li>
         <li>
           <h3><a href="#">Reconfigurations of Illness and Masculinity on Instagram</a>
-            <span class="ivenue">Mediekultur, 2023</span></h3>
+            <span class="ivenue">Mediekultur, 2023</span>
+            <span class="idesc">Om sygdom og maskulinitet på Instagram.</span></h3>
           <span class="ilabel">Fagfællebedømt</span>
         </li>
       </ul>
@@ -274,7 +287,7 @@ footer .flinks a{font-size:.9rem;font-weight:600}
           <h2 id="om-h">Forsker, formidler, digter</h2>
         </div>
         <p>Jeg trækker på min erfaring som forsker, formidler og underviser,
-        og på en ph.d. i samfundsvidenskab fra Aarhus Universitet. I tillæg
+        og på en ph.d. i samfundsvidenskab fra Aarhus Universitet. Derudover
         har jeg bred erfaring med at skrive og tale om køn og seksualitet på
         tværs af faglige fællesskaber.</p>
         <p class="sign">– Mio Tiger Birk, ph.d.</p>
