@@ -22,6 +22,15 @@ bisexual pride flag.
   AA-checked darker variants exist for any accent used as text on light
   grounds. The flag-canonical values appear in exactly one device: a
   2:1:2 tri-stripe rule, the flag quoted rather than worn.
+- **The triad's fence (from the round-3 critique):** a colour appears only
+  where a genre word anchors it (the publication list, the register key)
+  or where the overlap argument itself is made (purple on the book and on
+  the site's central phrase). Never one-of-each across doors or sentences;
+  interactions stay inside their element's register. Strictly, the purple
+  is the argument: it is the flag's own overlap stripe pointed at a book
+  about landing between. The blue-research and pink-poetry assignments
+  are convention, not flag semantics, and shipping the triad at all is
+  Mio's call to make knowingly; she answers for it at seminars, not us.
 - **The queer position** (per Soulellis): queerness as practice, not skin.
   The palette is the argument (purple is the overlap between pink and
   blue; her book is about landing between), the voice stays hers, and
@@ -40,7 +49,10 @@ statement of the register system.
 Dark. Near-black night ground, warm cream text, the triad as glowing neon
 on dark, where P3 actually earns its keep. Display type enormous; neon
 reserved for large type, rules and marks; body text always cream. The
-boldest and most atmospheric; queer nightlife meets the library.
+boldest and most atmospheric. Both round-3 critics concluded it should
+not ship as the identity but as the dark scheme of Overlappet
+(prefers-color-scheme: dark); it is kept as a mockup so that judgement
+can be made against the corrected page rather than an argument.
 
 ## Retning 9: Overstregning (the highlighter)
 
