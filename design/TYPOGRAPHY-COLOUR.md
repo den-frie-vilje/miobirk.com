@@ -130,3 +130,30 @@ P3 color(display-p3 1 .89 .35); ink on it measures 12.6:1. Fraunces and
 Newsreader are retired from the direction; Space Grotesk and Space Mono
 are both OFL and self-hosted via @fontsource in production. The earlier
 research on Fraunces/Newsreader stands as record of the road not taken.
+
+## The illustration layer (from the book itself, 2026-07-11)
+
+The book PDF (designed by Ole, per its colophon) settles the illustration
+question. It is set in Palatino, Avenir Next, and Typefesse (Océane Juvin,
+Velvetyne Type Foundry, OFL), and Typefesse is its illustration system:
+the cover title shadows itself in offset Typefesse over a bi-gradient, and
+interior pages carry oversized, cropped Typefesse glyphs stroked in a
+pink-to-purple-to-blue gradient as full-page vignettes.
+
+The site copies that treatment rather than inventing one: the real cover
+(rendered from the PDF, design/assets/omslag.png) replaces the CSS
+stand-in, and Typefesse Pleine and Claire-Obscure (woff2 in
+design/assets/fonts/, OFL, from velvetyne.fr) provide oversized
+overlapping background vignettes in the hero and small margin vignettes
+beside sections, filled with the triad gradient
+(rosa 0%, lilla 48%, blaa 100%). Vignettes are aria-hidden, pointer-inert,
+and hidden on narrow viewports where they would sit behind text.
+
+Two corrections the book forced: the subtitle is "Når biseksuelle falder
+mellem to stole" (the site's own list had said "lander"; the cover, title
+page and colophon all say "falder", and the book governs), and the
+Offerfonden formula is now known verbatim from the colophon and appears in
+the book section: "Dette materiale er støttet økonomisk af Offerfonden.
+Materialets udførelse, indhold og resultater er alene forfatterens ansvar.
+De vurderinger og synspunkter, der fremgår af materialet, er forfatterens
+egne og deles ikke nødvendigvis af Rådet for Offerfonden."

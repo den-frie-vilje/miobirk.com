@@ -14,6 +14,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+/* Typefesse (Océane Juvin, Velvetyne, OFL): the book's illustration layer,
+   carried onto the site as oversized cropped glyph vignettes in the book's
+   own pink-to-blue gradient. */
+@font-face{font-family:'Typefesse Pleine';src:url('../assets/fonts/typefesse-pleine.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'Typefesse Claire-Obscure';src:url('../assets/fonts/typefesse-claire-obscure.woff2') format('woff2');font-display:swap}
 :root{
   --paper:#FBF8F2;
   --paper-deep:#F4EFE5;
@@ -66,6 +71,24 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 .flagmark .s2{height:2px;background:var(--flag-lilla)}
 .flagmark .s3{height:4px;background:var(--flag-blaa)}
 
+/* Typefesse vignettes: oversized overlapping glyphs in the background,
+   plus small ones in the margins, as in the book's interior pages. */
+.vignette{
+  position:absolute;line-height:1;pointer-events:none;user-select:none;
+  background:linear-gradient(170deg,var(--rosa) 0%,var(--lilla) 48%,var(--blaa) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.v-pleine{font-family:'Typefesse Pleine',sans-serif}
+.v-claire{font-family:'Typefesse Claire-Obscure',sans-serif}
+.has-vignettes{position:relative;overflow:hidden}
+.hero .v1{font-size:clamp(18rem,42vw,34rem);top:-.18em;right:-4rem;opacity:.9}
+.hero .v2{font-size:clamp(12rem,26vw,21rem);top:.42em;right:14rem;opacity:.9}
+@media (max-width:56rem){.hero .v1{right:-8rem;opacity:.5}.hero .v2{display:none}}
+.side-vignette{font-size:9rem;opacity:.85}
+#udgivelser .side-vignette{top:8rem;right:2rem}
+#kontakt .side-vignette{top:2.5rem;right:3rem;font-size:11rem}
+@media (max-width:56rem){.side-vignette{display:none}}
+
 /* Masthead */
 header .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;padding:1.4rem 0 1rem}
 .brand{font-weight:700;font-size:1.5rem;color:var(--ink);text-decoration:none;letter-spacing:0}
@@ -96,21 +119,16 @@ header{border-bottom:1px solid var(--rule)}
 .book{background:var(--paper-deep)}
 .book-grid{display:grid;grid-template-columns:minmax(13rem,17rem) 1fr;gap:clamp(2.2rem,5vw,4.5rem);align-items:center}
 @media (max-width:48rem){.book-grid{grid-template-columns:1fr;justify-items:start}}
-.cover{
-  aspect-ratio:21/29.7;width:100%;max-width:17rem;background:var(--ink);color:var(--paper);
-  display:flex;flex-direction:column;justify-content:space-between;padding:1.4rem 1.3rem;
-  border-top:8px solid var(--lilla);
+.cover-img{
+  display:block;width:100%;max-width:17rem;height:auto;
   box-shadow:0 18px 40px -20px rgba(27,24,27,.55);
 }
-.cover .ct{font-family:"Space Mono",monospace;font-size:.75rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;opacity:.8;display:flex;justify-content:space-between}
-.cover h3{font-weight:500;font-size:1.7rem;line-height:1.15;letter-spacing:0}
-.cover .cs{font-style:italic;font-size:1rem;margin-top:.7rem;opacity:.92}
-.cover .ca{font-family:"Space Mono",monospace;font-size:.72rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
 .book-text .tag{color:var(--lilla-tekst);font-family:"Space Mono",monospace;font-weight:400;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
 .book-text h3{font-weight:400;font-size:clamp(1.8rem,3.6vw,2.5rem);line-height:1.25;letter-spacing:0;margin-bottom:.5rem}
 .book-text .standfirst{font-style:italic;font-size:1.3rem;color:var(--ink-soft);margin-bottom:1.2rem}
 .book-text p{max-width:56ch;margin-bottom:1rem}
 .book-text .fine{font-size:.92rem;color:var(--ink-soft)}
+.book-text .fine.formula{font-size:.8rem;max-width:52ch}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.4rem;margin-top:1.4rem}
 .btn{
   display:inline-block;background:var(--gul);color:var(--ink);text-decoration:none;
@@ -189,7 +207,9 @@ footer .flinks{display:flex;gap:1.5rem}
 </header>
 
 <main id="indhold">
-  <section class="hero">
+  <section class="hero has-vignettes">
+    <span class="vignette v-pleine v1" aria-hidden="true">ø</span>
+    <span class="vignette v-claire v2" aria-hidden="true">m</span>
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
       <h1>Ikke <span class="u">bare</span> køn</h1>
@@ -203,19 +223,13 @@ footer .flinks{display:flex;gap:1.5rem}
   <section class="sec book" id="bog" aria-labelledby="bog-h">
     <div class="wrap">
       <div class="book-grid">
-        <div class="cover" role="img" aria-label="Bogomslag: Tvivlen Skygger for Trygheden">
-          <p class="ct"><span>Ikke Bare Køn</span><span>2026</span></p>
-          <div>
-            <h3 aria-hidden="true">Tvivlen Skygger for Trygheden</h3>
-            <p class="cs" aria-hidden="true">Når biseksuelle lander mellem to stole</p>
-          </div>
-          <p class="ca" aria-hidden="true">Mio Tiger Birk, ph.d.</p>
-        </div>
+        <img class="cover-img" src="../assets/omslag.png"
+             alt="Bogomslag: Tvivlen Skygger for Trygheden – Når biseksuelle falder mellem to stole. Mio Tiger Birk.">
         <div class="book-text">
           <div class="flagmark" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div>
           <p class="tag">Ny bog · 2026</p>
           <h3 id="bog-h">Tvivlen Skygger for Trygheden</h3>
-          <p class="standfirst">Når biseksuelle lander mellem to stole</p>
+          <p class="standfirst">Når biseksuelle falder mellem to stole</p>
           <p>Tvivl og manglende synlighed kan forme biseksuelle og andre
           bi+&nbsp;personers liv – fra nære relationer til uddannelse og
           arbejdsliv. Med afsæt i bi- og panseksuelles egne fortællinger og
@@ -223,9 +237,13 @@ footer .flinks{display:flex;gap:1.5rem}
           tryghed i en dansk kontekst.</p>
           <p>Bogen er især henvendt til dig, der arbejder med at forebygge
           diskrimination og vold, men alle kan læse med.</p>
-          <p class="fine">Udgivet med støtte fra Offerfonden. Bogen er
-          gratis, og du skal hverken oprette dig eller oplyse din
-          e-mailadresse.</p>
+          <p class="fine">Bogen er gratis, og du skal hverken oprette dig
+          eller oplyse din e-mailadresse.</p>
+          <p class="fine formula">Dette materiale er støttet økonomisk af
+          Offerfonden. Materialets udførelse, indhold og resultater er alene
+          forfatterens ansvar. De vurderinger og synspunkter, der fremgår af
+          materialet, er forfatterens egne og deles ikke nødvendigvis af
+          Rådet for Offerfonden.</p>
           <div class="actions">
             <a class="btn" href="#">Hent bogen gratis</a>
             <a href="#">Læs i browseren</a>
@@ -235,7 +253,8 @@ footer .flinks{display:flex;gap:1.5rem}
     </div>
   </section>
 
-  <section class="sec" id="udgivelser" aria-labelledby="pub-h">
+  <section class="sec has-vignettes" id="udgivelser" aria-labelledby="pub-h">
+    <span class="vignette v-claire side-vignette" aria-hidden="true">b</span>
     <div class="wrap">
       <div class="sec-head">
         <h2 id="pub-h">Udgivelser</h2>
@@ -244,7 +263,7 @@ footer .flinks{display:flex;gap:1.5rem}
       <ul class="toc">
         <li class="r-lilla">
           <p class="t-meta">Bog <span class="yr">· 2026</span></p>
-          <h3><a href="#">Tvivlen Skygger for Trygheden: Når biseksuelle lander mellem to stole</a></h3>
+          <h3><a href="#">Tvivlen Skygger for Trygheden: Når biseksuelle falder mellem to stole</a></h3>
           <p class="t-sub"><span class="venue">Ikke Bare Køn.</span> Ny viden om bi+ personers trivsel og tryghed i en dansk kontekst.</p>
         </li>
         <li class="r-lilla">
@@ -309,7 +328,8 @@ footer .flinks{display:flex;gap:1.5rem}
     </div>
   </section>
 
-  <section class="sec" id="kontakt" aria-labelledby="om-h">
+  <section class="sec has-vignettes" id="kontakt" aria-labelledby="om-h">
+    <span class="vignette v-claire side-vignette" aria-hidden="true">?</span>
     <div class="wrap">
       <div class="om">
         <h2 id="om-h" style="position:absolute;left:-9999px">Om og kontakt</h2>
