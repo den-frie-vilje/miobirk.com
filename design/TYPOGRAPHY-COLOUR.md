@@ -189,10 +189,15 @@ Charset, measured from the shipped woff2 cmaps (173 glyphs): basic Latin
 plus Western European accents; **no æ, ø, Æ or Ø** (å and Å exist).
 Vignettes therefore use base Latin characters only.
 
-The site's implementation: a document-spanning background layer of five
-oversized compositions, each stacking a solid Pleine tint under a
-gradient Claire or Obscure form offset like the book cover's shadow
-play, distributed in the page's open zones with dimmed outline layers
-where they pass near text. Three depth layers parallax-scroll at 0.14,
-0.26 and 0.40 of scroll speed via a small script; the background is
-static without JavaScript and under prefers-reduced-motion.
+The site's implementation: a document-spanning background of twelve
+compositions on an inverse size-to-colour scale. XL ghosts (48 to 56rem)
+sit a whisker off the paper (outline opacity .1) and may pass under
+text; mid pieces (17 to 36rem) are pale (outline .4) and hold the
+edges; the small pieces (8.5 to 12rem) carry full gradient colour and
+live only in margins and open zones. Each composition stacks a solid
+Pleine tint under a gradient Claire or Obscure form offset like the
+book cover's shadow play. Three depth layers parallax-scroll at 0.12,
+0.26 and 0.40 of scroll speed; static without JavaScript and under
+prefers-reduced-motion. The rule that governs the whole layer: ink text
+must stay legible above every piece, so colour strength is inversely
+tied to size and to proximity to text.
