@@ -58,6 +58,7 @@ body{
   font-family:"Space Grotesk",system-ui,sans-serif;
   font-size:1.06rem;line-height:1.5;
   -webkit-font-smoothing:antialiased;
+  position:relative; /* the fesse-sky sizes against the document, not the viewport */
 }
 .mono{font-family:"Space Mono",monospace}
 .serif{font-family:"TeX Gyre Pagella",Palatino,serif}
@@ -76,23 +77,37 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 .flagmark .s2{height:2px;background:var(--flag-lilla)}
 .flagmark .s3{height:4px;background:var(--flag-blaa)}
 
-/* Typefesse vignettes: oversized overlapping glyphs in the background,
-   plus small ones in the margins, as in the book's interior pages. */
-.vignette{
-  position:absolute;line-height:1;pointer-events:none;user-select:none;
+/* Typefesse parallax background. The three styles are designed to be
+   layered (Velvetyne: Pleine "can be used as an additional layer on top
+   of the Claire and Obscure styles"; in the Claire-Obscure file the
+   capitals are Obscure, the lowercase Claire). Each composition stacks a
+   solid Pleine tint under a gradient Claire or Obscure form, offset like
+   the book cover's shadow play. Base Latin only: Typefesse has no
+   ae, oe-slash or their capitals. Three depth layers scroll at
+   different speeds; static without JS or under reduced motion. */
+.fesse-sky{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;user-select:none}
+.fesse-layer{position:absolute;inset:0;will-change:transform}
+.fesse{position:absolute;line-height:1}
+.fesse b{display:block;font-weight:400}
+.fesse .f-solid{color:var(--tint,#F3E2F9)}
+.fesse .f-open{
+  position:absolute;top:.045em;left:.05em;
   background:linear-gradient(170deg,var(--rosa) 0%,var(--lilla) 48%,var(--blaa) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
-.v-pleine{font-family:'Typefesse Pleine',sans-serif}
-.v-claire{font-family:'Typefesse Claire-Obscure',sans-serif}
-.has-vignettes{position:relative;overflow:hidden}
-.hero .v1{font-size:clamp(18rem,42vw,34rem);top:-.18em;right:-4rem;opacity:.9}
-.hero .v2{font-size:clamp(12rem,26vw,21rem);top:.42em;right:14rem;opacity:.9}
-@media (max-width:56rem){.hero .v1{right:-8rem;opacity:.5}.hero .v2{display:none}}
-.side-vignette{font-size:9rem;opacity:.85}
-#udgivelser .side-vignette{top:8rem;right:2rem}
-#kontakt .side-vignette{top:2.5rem;right:3rem;font-size:11rem}
-@media (max-width:56rem){.side-vignette{display:none}}
+.f-pleine{font-family:'Typefesse Pleine',sans-serif}
+.f-claire{font-family:'Typefesse Claire-Obscure',sans-serif}
+.fesse .f-open.f-dim{opacity:.4}
+.fesse.q1{font-size:clamp(20rem,44vw,36rem);top:1rem;right:-7rem}
+.fesse.q2{font-size:clamp(13rem,30vw,24rem);top:16rem;right:16rem;--tint:#DCE4FB}
+.fesse.q3{font-size:clamp(16rem,34vw,28rem);top:86rem;right:-6rem;--tint:#FBDCEC}
+.fesse.q4{font-size:clamp(14rem,30vw,25rem);top:148rem;left:-8rem;--tint:#DCE4FB}
+.fesse.q5{font-size:clamp(15rem,32vw,26rem);top:176rem;right:-5rem;--tint:#F3E2F9}
+@media (max-width:56rem){
+  .fesse.q2,.fesse.q4{display:none}
+  .fesse{opacity:.55}
+}
+header,main,footer{position:relative;z-index:1}
 
 /* Masthead */
 header .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;padding:1.4rem 0 1rem}
@@ -197,6 +212,20 @@ footer .flinks{display:flex;gap:1.5rem}
 <body>
 <a class="skip" href="#indhold">Gå til indhold</a>
 
+<div class="fesse-sky" aria-hidden="true">
+  <div class="fesse-layer" data-speed="0.14">
+    <span class="fesse q3"><b class="f-pleine f-solid">m</b><b class="f-claire f-open f-dim">m</b></span>
+    <span class="fesse q5"><b class="f-pleine f-solid">t</b><b class="f-claire f-open f-dim">t</b></span>
+  </div>
+  <div class="fesse-layer" data-speed="0.26">
+    <span class="fesse q1"><b class="f-pleine f-solid">B</b><b class="f-claire f-open">B</b></span>
+    <span class="fesse q4"><b class="f-pleine f-solid">K</b><b class="f-claire f-open f-dim">K</b></span>
+  </div>
+  <div class="fesse-layer" data-speed="0.4">
+    <span class="fesse q2"><b class="f-pleine f-solid">m</b><b class="f-claire f-open">m</b></span>
+  </div>
+</div>
+
 <header>
   <div class="wrap">
     <div class="bar">
@@ -214,9 +243,7 @@ footer .flinks{display:flex;gap:1.5rem}
 </header>
 
 <main id="indhold">
-  <section class="hero has-vignettes">
-    <span class="vignette v-pleine v1" aria-hidden="true">ø</span>
-    <span class="vignette v-claire v2" aria-hidden="true">m</span>
+  <section class="hero">
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
       <h1>Ikke <span class="u">bare</span> køn</h1>
@@ -260,8 +287,7 @@ footer .flinks{display:flex;gap:1.5rem}
     </div>
   </section>
 
-  <section class="sec has-vignettes" id="udgivelser" aria-labelledby="pub-h">
-    <span class="vignette v-claire side-vignette" aria-hidden="true">b</span>
+  <section class="sec" id="udgivelser" aria-labelledby="pub-h">
     <div class="wrap">
       <div class="sec-head">
         <h2 id="pub-h">Udgivelser</h2>
@@ -335,8 +361,7 @@ footer .flinks{display:flex;gap:1.5rem}
     </div>
   </section>
 
-  <section class="sec has-vignettes" id="kontakt" aria-labelledby="om-h">
-    <span class="vignette v-claire side-vignette" aria-hidden="true">?</span>
+  <section class="sec" id="kontakt" aria-labelledby="om-h">
     <div class="wrap">
       <div class="om">
         <h2 id="om-h" style="position:absolute;left:-9999px">Om og kontakt</h2>
@@ -365,5 +390,27 @@ footer .flinks{display:flex;gap:1.5rem}
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  var layers=[].slice.call(document.querySelectorAll('.fesse-layer'));
+  if(!layers.length) return;
+  var ticking=false;
+  function apply(){
+    ticking=false;
+    if(reduce.matches){layers.forEach(function(l){l.style.transform='none'});return}
+    var y=window.scrollY||0;
+    layers.forEach(function(l){
+      var k=parseFloat(l.dataset.speed)||0.2;
+      l.style.transform='translate3d(0,'+(y*k)+'px,0)';
+    });
+  }
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(apply)}}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  reduce.addEventListener?reduce.addEventListener('change',apply):null;
+  apply();
+})();
+</script>
 </body>
 </html>

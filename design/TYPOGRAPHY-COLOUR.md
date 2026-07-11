@@ -169,3 +169,30 @@ Space Grotesk 400 (reload.dk); functional layer and buttons in Space Mono
 400 (reload.dk); Typefesse as the illustration layer. Note the Pagella
 licence is GUST/LPPL-derived rather than OFL: free and redistributable,
 recorded here as a conscious deviation matching the book's own typography.
+
+## Typefesse variant research (Ole's request, 2026-07-11)
+
+From Velvetyne's own specimen text (Océane Juvin): Typefesse's three
+styles are named after the moon. **Claire** is the most agile and
+contorted, bodies twisting to fit inside the letters, and when set
+together the letters "snuggle against each other". **Obscure** is the
+most graphical and illustration-like, the alphabet as "lock holes"
+through which the reader sees the backside of letters. **Pleine** is the
+heart of the letters, the most readable, and is explicitly designed to
+"be used as an additional layer on top of the Claire and Obscure
+styles". The two shipped files encode this: Typefesse Claire-Obscure
+sets capitals in Obscure and lowercase in Claire; Typefesse Pleine is
+the solid layer. The intended interplay is chromatic layering: Pleine in
+one colour with Claire or Obscure superimposed in another.
+
+Charset, measured from the shipped woff2 cmaps (173 glyphs): basic Latin
+plus Western European accents; **no æ, ø, Æ or Ø** (å and Å exist).
+Vignettes therefore use base Latin characters only.
+
+The site's implementation: a document-spanning background layer of five
+oversized compositions, each stacking a solid Pleine tint under a
+gradient Claire or Obscure form offset like the book cover's shadow
+play, distributed in the page's open zones with dimmed outline layers
+where they pass near text. Three depth layers parallax-scroll at 0.14,
+0.26 and 0.40 of scroll speed via a small script; the background is
+static without JavaScript and under prefers-reduced-motion.
