@@ -157,3 +157,15 @@ the book section: "Dette materiale er støttet økonomisk af Offerfonden.
 Materialets udførelse, indhold og resultater er alene forfatterens ansvar.
 De vurderinger og synspunkter, der fremgår af materialet, er forfatterens
 egne og deles ikke nødvendigvis af Rådet for Offerfonden."
+
+## Titles in serif (Ole, 2026-07-11)
+
+Titles moved to serif. The book supplies which serif: it is set in
+Palatino, and the libre Palatino is TeX Gyre Pagella (GUST e-foundry,
+free GUST Font License, vendored as OTF in design/assets/fonts/). Final
+type system: titles and standfirsts in TeX Gyre Pagella (400 for display,
+700 for list-size titles, italic for standfirsts and bylines); body in
+Space Grotesk 400 (reload.dk); functional layer and buttons in Space Mono
+400 (reload.dk); Typefesse as the illustration layer. Note the Pagella
+licence is GUST/LPPL-derived rather than OFL: free and redistributable,
+recorded here as a conscious deviation matching the book's own typography.
