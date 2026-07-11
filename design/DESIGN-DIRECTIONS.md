@@ -1,5 +1,12 @@
 # Design directions for miobirk.com, round 3
 
+**Decision (Ole, 2026-07-10): Overlappet (retning 7) is the direction.**
+It has since been extended with a neon yellow action colour inspired by
+reload.dk (see `TYPOGRAPHY-COLOUR.md`, "The action colour"): the triad
+carries what things are, the yellow carries what you can do. Natlæsning
+remains a candidate dark scheme; Overstregning's one-mark hero remains an
+available variant. Next step: scaffold the SvelteKit site from Overlappet.
+
 Round 2 was declined as tame. Round 3 keeps the structural lessons (claim-led
 hero, the free book as primary action, three doors, writing by register,
 honest copy) and rebuilds the visual identity on the deep research recorded

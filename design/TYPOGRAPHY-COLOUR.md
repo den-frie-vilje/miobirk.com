@@ -99,3 +99,20 @@ darker text variants exist for every accent used on light grounds.
 
 Flag-canonical values (`#D60270`, `#9B4F96`, `#0038A8`) are reserved for
 the one place the flag itself is quoted (the tri-stripe rule device).
+
+## The action colour (added after Ole chose Overlappet)
+
+Ole pointed to reload.dk as reference and asked for a green or yellow neon
+to complement the triad. Reload's measured system (their site.css tokens)
+is Space Grotesk and Space Mono on a warm near-black `hsl(32 25% 10%)`,
+warm cream, and one loud warm yellow `hsl(51 100% 65%)` doing the action
+work, with blunt Danish microcopy. Yellow was chosen over green: it is the
+Danish register, and it stays clear of the trans-flag pastel field that a
+soft green-adjacent palette could drift towards.
+
+| Token | sRGB fallback | display-p3 | Use |
+|---|---|---|---|
+| gul | `#FFDE33` | `color(display-p3 1 .88 .15)` | actions only: the primary button (ink text, 13.2:1), hover underlines, nav hover, ::selection. Never as text, never as a register. |
+
+The semantic split keeps the triad's fence intact: the triad says what
+things are (registers of her work); the yellow says what you can do.
