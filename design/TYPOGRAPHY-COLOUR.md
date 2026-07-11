@@ -116,3 +116,17 @@ soft green-adjacent palette could drift towards.
 
 The semantic split keeps the triad's fence intact: the triad says what
 things are (registers of her work); the yellow says what you can do.
+
+## Typography revision (Ole, 2026-07-10): reload's system verbatim
+
+Ole judged the offset-shadow buttons horrible and asked to copy reload.dk's
+typography and buttons outright. From reload's site.css tokens: headings
+and body in Space Grotesk 400 (headings letter-spacing 0, line-height
+1.3em; body 1.5em); the functional layer (nav, labels, metadata, buttons)
+in Space Mono 400; primary button solid square yellow, no border, Space
+Mono 400 uppercase, letter-spacing .1em, line-height 1em. The yellow was
+retuned to reload's own darkAccent, hsl(50.85 100% 65.29%) = #FFE04D,
+P3 color(display-p3 1 .89 .35); ink on it measures 12.6:1. Fraunces and
+Newsreader are retired from the direction; Space Grotesk and Space Mono
+are both OFL and self-hosted via @fontsource in production. The earlier
+research on Fraunces/Newsreader stands as record of the road not taken.
