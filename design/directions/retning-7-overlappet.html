@@ -89,29 +89,22 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 .fesse-layer{position:absolute;inset:0;will-change:transform}
 .fesse{position:absolute;line-height:1}
 .fesse b{display:block;font-weight:400}
-.fesse .f-solid{color:var(--tint,#F3E2F9)}
-.fesse .f-open{
-  position:absolute;top:.045em;left:.05em;
-  background:linear-gradient(170deg,var(--rosa) 0%,var(--lilla) 48%,var(--blaa) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  opacity:var(--open,1);
-}
+.fesse .f-solid{color:var(--tint,#F3ECDD)}
+.fesse .f-open{position:absolute;top:.045em;left:.05em}
+.fesse .f-open.f-shade{color:var(--line,#E5DBC3)}
 .f-pleine{font-family:'Typefesse Pleine',sans-serif}
 .f-claire{font-family:'Typefesse Claire-Obscure',sans-serif}
-/* Only very large shapes in the background, positions from a seeded
-   random scatter (seed 2026), overlapping in pairs. The biggest are
-   almost imperceptible (ghost tints, outline .1); the smaller of the
-   large are gently coloured (outline .3). All pale enough that ink
-   text stays legible above them. */
-.fesse.r0{font-size:51rem;top:1rem;left:-23rem;--tint:#F9EEF2}
-.fesse.r1{font-size:32rem;top:31rem;left:-6rem;--tint:#FBDCEC}
-.fesse.r2{font-size:53rem;top:53rem;right:-18rem;--tint:#F2F1FA}
-.fesse.r3{font-size:37rem;top:79rem;right:-0rem;--tint:#DCE4FB}
-.fesse.r4{font-size:58rem;top:100rem;left:-4rem;--tint:#F2F1FA}
-.fesse.r5{font-size:33rem;top:133rem;right:-6rem;--tint:#FBDCEC}
-.fesse.r6{font-size:55rem;top:153rem;right:-24rem;--tint:#F9EEF2}
-.fesse.r7{font-size:50rem;top:178rem;right:-20rem;--tint:#F2F1FA}
-@media (max-width:56rem){.fesse{opacity:.7}}
+/* The background spells TIGER down the page: five huge letters
+   (60 to 116rem), seeded random scatter (seed 2026), overlapping,
+   drawn entirely in shades of the paper (solid a step off the ground,
+   outline a step deeper) so they read as watermarks and ink text stays
+   legible above them. */
+.fesse.r0{font-size:67rem;top:0rem;left:-6rem;--tint:#F4EFE3;--line:#E9E1D0}
+.fesse.r1{font-size:91rem;top:40rem;right:-13rem;--tint:#F4EFE3;--line:#ECE5D6}
+.fesse.r2{font-size:73rem;top:70rem;left:-27rem;--tint:#F6F1E7;--line:#ECE5D6}
+.fesse.r3{font-size:61rem;top:110rem;right:-11rem;--tint:#F6F1E7;--line:#ECE5D6}
+.fesse.r4{font-size:74rem;top:146rem;right:-9rem;--tint:#F4EFE3;--line:#E9E1D0}
+@media (max-width:56rem){.fesse{opacity:.8}}
 /* The hero's own pair: two partially overlapping outline-only glyphs at
    medium size, full gradient, no solid layer. */
 .hero{overflow:hidden}
@@ -227,17 +220,14 @@ footer .flinks{display:flex;gap:1.5rem}
 <a class="skip" href="#indhold">Gå til indhold</a>
 
 <div class="fesse-sky" aria-hidden="true">
-  <div class="fesse-layer" data-speed="0.12">
-    <span class="fesse r0"><b class="f-pleine f-solid">m</b><b class="f-claire f-open" style="--open:.1">m</b></span>
-    <span class="fesse r2"><b class="f-pleine f-solid">t</b><b class="f-claire f-open" style="--open:.1">t</b></span>
-    <span class="fesse r4"><b class="f-pleine f-solid">k</b><b class="f-claire f-open" style="--open:.1">k</b></span>
-    <span class="fesse r6"><b class="f-pleine f-solid">V</b><b class="f-claire f-open" style="--open:.1">V</b></span>
-    <span class="fesse r7"><b class="f-pleine f-solid">a</b><b class="f-claire f-open" style="--open:.1">a</b></span>
+  <div class="fesse-layer" data-speed="0.1">
+    <span class="fesse r1"><b class="f-pleine f-solid">I</b><b class="f-claire f-open f-shade">I</b></span>
   </div>
-  <div class="fesse-layer" data-speed="0.25">
-    <span class="fesse r1"><b class="f-pleine f-solid">o</b><b class="f-claire f-open" style="--open:.3">o</b></span>
-    <span class="fesse r3"><b class="f-pleine f-solid">s</b><b class="f-claire f-open" style="--open:.3">s</b></span>
-    <span class="fesse r5"><b class="f-pleine f-solid">K</b><b class="f-claire f-open" style="--open:.3">K</b></span>
+  <div class="fesse-layer" data-speed="0.22">
+    <span class="fesse r0"><b class="f-pleine f-solid">T</b><b class="f-claire f-open f-shade">T</b></span>
+    <span class="fesse r2"><b class="f-pleine f-solid">G</b><b class="f-claire f-open f-shade">G</b></span>
+    <span class="fesse r3"><b class="f-pleine f-solid">E</b><b class="f-claire f-open f-shade">E</b></span>
+    <span class="fesse r4"><b class="f-pleine f-solid">R</b><b class="f-claire f-open f-shade">R</b></span>
   </div>
 </div>
 

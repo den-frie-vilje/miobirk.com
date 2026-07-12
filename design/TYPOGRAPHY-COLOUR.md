@@ -189,15 +189,15 @@ Charset, measured from the shipped woff2 cmaps (173 glyphs): basic Latin
 plus Western European accents; **no æ, ø, Æ or Ø** (å and Å exist).
 Vignettes therefore use base Latin characters only.
 
-The site's implementation, final form: the background carries only very
-large shapes (30 to 58rem), eight of them, positions from a seeded
-random scatter (seed 2026) nudged so they overlap in pairs. The biggest
-are almost imperceptible (ghost tints, outline opacity .1); the smaller
-of the large are gently coloured (outline .3); all are pale enough that
-ink text stays legible above them. Each stacks a solid Pleine tint
-under a gradient Claire or Obscure form offset like the book cover's
-shadow play. Two depth layers parallax at 0.12 and 0.25 of scroll
-speed; static without JavaScript and under prefers-reduced-motion.
-Separate from the parallax, the hero carries its own pair: two
-partially overlapping outline-only Claire-Obscure glyphs at medium
-size (16 to 19rem) in the full gradient, with no solid layer.
+The site's implementation, final form: the background spells TIGER,
+her middle name, down the page in five huge letters (61 to 91rem),
+positions from a seeded random scatter (seed 2026), overlapping, drawn
+entirely in shades of the paper: solid Pleine a step off the ground
+(#F4EFE3 / #F6F1E7), Claire/Obscure outline a step deeper (#E9E1D0 /
+#ECE5D6), offset like the book cover's shadow play. They read as
+watermarks; ink text stays legible above every letter. Two depth
+layers parallax at 0.10 and 0.22 of scroll speed; static without
+JavaScript and under prefers-reduced-motion. Separate from the
+parallax, the hero carries its own pair: two partially overlapping
+outline-only Claire-Obscure glyphs at medium size (16 to 19rem) in the
+full triad gradient, with no solid layer.
