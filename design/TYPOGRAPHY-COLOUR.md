@@ -189,15 +189,15 @@ Charset, measured from the shipped woff2 cmaps (173 glyphs): basic Latin
 plus Western European accents; **no æ, ø, Æ or Ø** (å and Å exist).
 Vignettes therefore use base Latin characters only.
 
-The site's implementation: a document-spanning background of twelve
-compositions on an inverse size-to-colour scale. XL ghosts (48 to 56rem)
-sit a whisker off the paper (outline opacity .1) and may pass under
-text; mid pieces (17 to 36rem) are pale (outline .4) and hold the
-edges; the small pieces (8.5 to 12rem) carry full gradient colour and
-live only in margins and open zones. Each composition stacks a solid
-Pleine tint under a gradient Claire or Obscure form offset like the
-book cover's shadow play. Three depth layers parallax-scroll at 0.12,
-0.26 and 0.40 of scroll speed; static without JavaScript and under
-prefers-reduced-motion. The rule that governs the whole layer: ink text
-must stay legible above every piece, so colour strength is inversely
-tied to size and to proximity to text.
+The site's implementation, final form: the background carries only very
+large shapes (30 to 58rem), eight of them, positions from a seeded
+random scatter (seed 2026) nudged so they overlap in pairs. The biggest
+are almost imperceptible (ghost tints, outline opacity .1); the smaller
+of the large are gently coloured (outline .3); all are pale enough that
+ink text stays legible above them. Each stacks a solid Pleine tint
+under a gradient Claire or Obscure form offset like the book cover's
+shadow play. Two depth layers parallax at 0.12 and 0.25 of scroll
+speed; static without JavaScript and under prefers-reduced-motion.
+Separate from the parallax, the hero carries its own pair: two
+partially overlapping outline-only Claire-Obscure glyphs at medium
+size (16 to 19rem) in the full gradient, with no solid layer.

@@ -98,33 +98,29 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 }
 .f-pleine{font-family:'Typefesse Pleine',sans-serif}
 .f-claire{font-family:'Typefesse Claire-Obscure',sans-serif}
-/* Inverse scale: the bigger, the fainter; the smaller, the more coloured.
-   Ghost tints sit within a whisker of the paper so ink stays legible
-   above them; full-strength colour is reserved for the small pieces in
-   the margins. */
-.i1{--open:.1}   /* ghosts: almost imperceptible */
-.i2{--open:.4}   /* mid: pale */
-.i3{--open:1}    /* small: coloured */
-/* XL ghosts, slow layer */
-.fesse.g1{font-size:56rem;top:-8rem;left:-12rem;--tint:#F7EFF6}
-.fesse.g2{font-size:48rem;top:84rem;left:4rem;--tint:#F2F1FA}
-.fesse.g3{font-size:52rem;top:150rem;right:-10rem;--tint:#F9EEF2}
-/* L and M, mid layer */
-.fesse.q1{font-size:clamp(20rem,44vw,36rem);top:1rem;right:-7rem;--tint:#F3E2F9}
-.fesse.q3{font-size:clamp(16rem,34vw,28rem);top:86rem;right:-6rem;--tint:#FBDCEC}
-.fesse.q4{font-size:clamp(14rem,30vw,25rem);top:148rem;left:-8rem;--tint:#DCE4FB}
-.fesse.m1{font-size:17rem;top:124rem;right:12rem;--tint:#F3E2F9}
-/* Small and coloured, fast layer, margins and open zones only */
-.fesse.s1{font-size:11rem;top:15rem;right:26rem;--tint:#F7C8E4}
-.fesse.s2{font-size:9.5rem;top:98rem;left:-1.5rem;--tint:#E9CCF6}
-.fesse.s3{font-size:8.5rem;top:132rem;right:2rem;--tint:#C9D6FA}
-.fesse.s4{font-size:10rem;top:174rem;left:1rem;--tint:#F7C8E4}
-.fesse.s5{font-size:12rem;top:192rem;right:3rem;--tint:#E9CCF6}
-@media (max-width:56rem){
-  .fesse.s1,.fesse.s3,.fesse.m1,.fesse.q4{display:none}
-  .fesse{opacity:.6}
-  .fesse.g1,.fesse.g2,.fesse.g3{opacity:1}
-}
+/* Only very large shapes in the background, positions from a seeded
+   random scatter (seed 2026), overlapping in pairs. The biggest are
+   almost imperceptible (ghost tints, outline .1); the smaller of the
+   large are gently coloured (outline .3). All pale enough that ink
+   text stays legible above them. */
+.fesse.r0{font-size:51rem;top:1rem;left:-23rem;--tint:#F9EEF2}
+.fesse.r1{font-size:32rem;top:31rem;left:-6rem;--tint:#FBDCEC}
+.fesse.r2{font-size:53rem;top:53rem;right:-18rem;--tint:#F2F1FA}
+.fesse.r3{font-size:37rem;top:79rem;right:-0rem;--tint:#DCE4FB}
+.fesse.r4{font-size:58rem;top:100rem;left:-4rem;--tint:#F2F1FA}
+.fesse.r5{font-size:33rem;top:133rem;right:-6rem;--tint:#FBDCEC}
+.fesse.r6{font-size:55rem;top:153rem;right:-24rem;--tint:#F9EEF2}
+.fesse.r7{font-size:50rem;top:178rem;right:-20rem;--tint:#F2F1FA}
+@media (max-width:56rem){.fesse{opacity:.7}}
+/* The hero's own pair: two partially overlapping outline-only glyphs at
+   medium size, full gradient, no solid layer. */
+.hero{overflow:hidden}
+.hero .duo{position:absolute;line-height:1;pointer-events:none;user-select:none;
+  background:linear-gradient(170deg,var(--rosa) 0%,var(--lilla) 48%,var(--blaa) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .duo1{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(11rem,24vw,19rem);top:1.5rem;right:11rem}
+.hero .duo2{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(9rem,20vw,16rem);top:7rem;right:2rem}
+@media (max-width:56rem){.hero .duo1{right:-4rem}.hero .duo2{display:none}}
 header,main,footer{position:relative;z-index:1}
 
 /* Masthead */
@@ -232,22 +228,16 @@ footer .flinks{display:flex;gap:1.5rem}
 
 <div class="fesse-sky" aria-hidden="true">
   <div class="fesse-layer" data-speed="0.12">
-    <span class="fesse g1"><b class="f-pleine f-solid">V</b><b class="f-claire f-open i1">V</b></span>
-    <span class="fesse g2"><b class="f-pleine f-solid">s</b><b class="f-claire f-open i1">s</b></span>
-    <span class="fesse g3"><b class="f-pleine f-solid">e</b><b class="f-claire f-open i1">e</b></span>
+    <span class="fesse r0"><b class="f-pleine f-solid">m</b><b class="f-claire f-open" style="--open:.1">m</b></span>
+    <span class="fesse r2"><b class="f-pleine f-solid">t</b><b class="f-claire f-open" style="--open:.1">t</b></span>
+    <span class="fesse r4"><b class="f-pleine f-solid">k</b><b class="f-claire f-open" style="--open:.1">k</b></span>
+    <span class="fesse r6"><b class="f-pleine f-solid">V</b><b class="f-claire f-open" style="--open:.1">V</b></span>
+    <span class="fesse r7"><b class="f-pleine f-solid">a</b><b class="f-claire f-open" style="--open:.1">a</b></span>
   </div>
-  <div class="fesse-layer" data-speed="0.26">
-    <span class="fesse q1"><b class="f-pleine f-solid">B</b><b class="f-claire f-open i2">B</b></span>
-    <span class="fesse q3"><b class="f-pleine f-solid">m</b><b class="f-claire f-open i2">m</b></span>
-    <span class="fesse q4"><b class="f-pleine f-solid">K</b><b class="f-claire f-open i2">K</b></span>
-    <span class="fesse m1"><b class="f-pleine f-solid">a</b><b class="f-claire f-open i2">a</b></span>
-  </div>
-  <div class="fesse-layer" data-speed="0.4">
-    <span class="fesse s1"><b class="f-pleine f-solid">m</b><b class="f-claire f-open i3">m</b></span>
-    <span class="fesse s2"><b class="f-pleine f-solid">t</b><b class="f-claire f-open i3">t</b></span>
-    <span class="fesse s3"><b class="f-pleine f-solid">o</b><b class="f-claire f-open i3">o</b></span>
-    <span class="fesse s4"><b class="f-pleine f-solid">B</b><b class="f-claire f-open i3">B</b></span>
-    <span class="fesse s5"><b class="f-pleine f-solid">k</b><b class="f-claire f-open i3">k</b></span>
+  <div class="fesse-layer" data-speed="0.25">
+    <span class="fesse r1"><b class="f-pleine f-solid">o</b><b class="f-claire f-open" style="--open:.3">o</b></span>
+    <span class="fesse r3"><b class="f-pleine f-solid">s</b><b class="f-claire f-open" style="--open:.3">s</b></span>
+    <span class="fesse r5"><b class="f-pleine f-solid">K</b><b class="f-claire f-open" style="--open:.3">K</b></span>
   </div>
 </div>
 
@@ -269,6 +259,8 @@ footer .flinks{display:flex;gap:1.5rem}
 
 <main id="indhold">
   <section class="hero">
+    <span class="duo duo1" aria-hidden="true">M</span>
+    <span class="duo duo2" aria-hidden="true">b</span>
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
       <h1>Ikke <span class="u">bare</span> køn</h1>
