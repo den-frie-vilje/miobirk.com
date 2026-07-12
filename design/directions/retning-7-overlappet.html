@@ -107,13 +107,13 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 @media (max-width:56rem){.fesse{opacity:.8}}
 /* The hero's own pair: two partially overlapping outline-only glyphs at
    medium size, full gradient, no solid layer. */
-.hero{overflow:hidden}
+.hero{position:relative;overflow:hidden}
 .hero .duo{position:absolute;line-height:1;pointer-events:none;user-select:none;
   background:linear-gradient(170deg,var(--rosa) 0%,var(--lilla) 48%,var(--blaa) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .duo1{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(11rem,24vw,19rem);top:1.5rem;right:11rem}
-.hero .duo2{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(9rem,20vw,16rem);top:7rem;right:2rem}
-@media (max-width:56rem){.hero .duo1{right:-4rem}.hero .duo2{display:none}}
+.hero .duo1{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(15rem,32vw,27rem);top:-1rem;right:14rem}
+.hero .duo2{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(12rem,26vw,22rem);top:6rem;right:-3rem}
+@media (max-width:56rem){.hero .duo1{right:-6rem}.hero .duo2{display:none}}
 header,main,footer{position:relative;z-index:1}
 
 /* Masthead */
@@ -249,7 +249,7 @@ footer .flinks{display:flex;gap:1.5rem}
 
 <main id="indhold">
   <section class="hero">
-    <span class="duo duo1" aria-hidden="true">M</span>
+    <span class="duo duo1" aria-hidden="true">m</span>
     <span class="duo duo2" aria-hidden="true">b</span>
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
