@@ -110,37 +110,34 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 @keyframes fesseSlow{to{transform:translate3d(0,18rem,0)}}
 @keyframes fesseMid{to{transform:translate3d(0,44rem,0)}}
 @media (prefers-reduced-motion: reduce){.fesse-layer{animation:none!important}}
-/* The hero's object: the m and b intertwined. With WebGL they are
-   three.js liquid-chrome ribbons (the outline cut, poured not molten)
-   with an iridescent holographic sheen, swaying and dripping like
-   mercury; without JavaScript the overlapping outline-only gradient
-   pair stands in at the same spot. */
+/* The hero title: Ikke bare køn written as a tag, one thick black
+   marker drawn on quickly at load. Pure SVG and CSS, no JavaScript:
+   each path carries pathLength="1", so a dash offset animated 1 to 0
+   draws the stroke; --d is its duration, --t its start, sequenced
+   like a fast hand. The emphasis on "bare" is a change of style: the
+   script hand switches to pressed capitals, nothing is added. */
 .hero{position:relative;overflow:hidden}
-.hero .duo{position:absolute;line-height:1;pointer-events:none;user-select:none;
-  background:linear-gradient(170deg,var(--rosa) 0%,var(--lilla) 48%,var(--blaa) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .duo1{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(15rem,32vw,27rem);top:-1rem;right:7rem}
-.hero .duo2{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(12rem,26vw,22rem);top:7rem;right:-1rem}
-.hero.webgl .duo{visibility:hidden}
-.merc{position:absolute;top:-3rem;right:clamp(.5rem,4vw,5rem);
-  width:clamp(20rem,42vw,40rem);height:clamp(20rem,42vw,40rem);
-  pointer-events:none;user-select:none}
-.merc canvas{display:block;width:100%;height:100%}
-@media (max-width:56rem){
-  /* Narrow viewports: the pair gets its own band above the text
-     instead of sitting behind it; ink stays legible. (main .hero so it
-     outweighs the later .hero padding shorthand.) */
-  main .hero{padding-top:17rem}
-  .hero .duo1{font-size:13rem;top:-2rem;right:-3rem}
-  .hero .duo2{display:none}
-  .merc{top:-3rem;right:-3rem;width:19rem;height:19rem}
-}
+.tagline{display:block;width:min(46rem,94%);height:auto;transform:rotate(-2deg);margin-left:-.5rem}
+.tagline path{fill:none;stroke:var(--ink);stroke-width:13;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:tagdraw var(--d,.2s) linear var(--t,0s) forwards}
+.tagline .em path{stroke-width:15}
+@keyframes tagdraw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){.tagline path,.brand .tiger path{animation:none;stroke-dashoffset:0}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 header,main,footer{position:relative;z-index:1}
 
 /* Masthead */
 header .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;padding:1.4rem 0 1rem}
-.brand{font-weight:700;font-size:1.5rem;color:var(--ink);text-decoration:none;letter-spacing:0}
-.brand:hover{color:var(--lilla-tekst);text-decoration:none}
+/* No wordmark in the masthead: a very simple tiger (her middle name)
+   in the same pen, drawn on load with the same technique. */
+.brand{display:inline-block;color:var(--ink);text-decoration:none}
+.brand:hover{color:var(--lilla-tekst)}
+.brand .tiger{display:block;height:3rem;width:auto}
+.brand .tiger path{fill:none;stroke:currentColor;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:tagdraw var(--d,.15s) linear var(--t,0s) forwards}
+@media (max-width:56rem){.brand .tiger{height:2.5rem}}
 nav ul{list-style:none;display:flex;gap:clamp(1.1rem,3vw,2rem);flex-wrap:wrap}
 nav a{font-family:"Space Mono",monospace;font-size:.92rem;font-weight:400;color:var(--ink);text-decoration:none}
 nav a:hover{color:var(--ink);box-shadow:0 3px 0 var(--gul)}
@@ -149,12 +146,7 @@ header{border-bottom:1px solid var(--rule)}
 /* Hero */
 .hero{padding:clamp(3rem,9vh,6rem) 0 clamp(2.8rem,7vh,4.5rem)}
 .hero .kicker{color:var(--lilla-tekst);font-family:"Space Mono",monospace;font-weight:400;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.6rem}
-.hero h1{
-  font-family:"TeX Gyre Pagella",Palatino,serif;
-  font-weight:400;font-size:clamp(3.1rem,8.4vw,6rem);line-height:1.08;letter-spacing:-.01em;
-  max-width:14ch;
-}
-.hero h1 .u{box-shadow:inset 0 -0.14em var(--paper), inset 0 -0.26em var(--lilla)}
+.hero h1{margin:0}
 .hero .standfirst{max-width:36rem;margin-top:2rem;font-size:clamp(1.25rem,2.3vw,1.5rem);line-height:1.5}
 .hero .byline{margin-top:1.4rem;font-family:"TeX Gyre Pagella",Palatino,serif;font-style:italic;color:var(--ink-soft);font-size:1.1rem}
 
@@ -255,7 +247,27 @@ footer .flinks{display:flex;gap:1.5rem}
 <header>
   <div class="wrap">
     <div class="bar">
-      <a class="brand" href="#">Mio Birk</a>
+      <a class="brand" href="#" aria-label="Mio Birk, forside">
+        <svg class="tiger" viewBox="0 0 140 120" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+          <path pathLength="1" style="--d:.2s;--t:0s" d="M 44 30 C 30 40 24 58 28 74 C 33 92 52 102 70 102 C 88 102 107 92 112 74 C 116 58 110 40 96 30"/>
+          <path pathLength="1" style="--d:.08s;--t:.22s" d="M 40 36 C 38 26 40 16 48 12 C 54 20 56 26 54 32"/>
+          <path pathLength="1" style="--d:.08s;--t:.31s" d="M 100 36 C 102 26 100 16 92 12 C 86 20 84 26 86 32"/>
+          <path pathLength="1" style="--d:.04s;--t:.4s" d="M 54 56 L 54 62"/>
+          <path pathLength="1" style="--d:.04s;--t:.45s" d="M 86 56 L 86 62"/>
+          <path pathLength="1" style="--d:.06s;--t:.5s" d="M 65 70 L 75 70 L 70 77 L 65 70"/>
+          <path pathLength="1" style="--d:.05s;--t:.57s" d="M 70 77 C 70 84 63 87 58 84"/>
+          <path pathLength="1" style="--d:.05s;--t:.63s" d="M 70 77 C 70 84 77 87 82 84"/>
+          <path pathLength="1" style="--d:.05s;--t:.69s" d="M 18 64 C 28 65 37 67 43 70"/>
+          <path pathLength="1" style="--d:.05s;--t:.75s" d="M 18 78 C 28 77 37 76 43 76"/>
+          <path pathLength="1" style="--d:.05s;--t:.81s" d="M 122 64 C 112 65 103 67 97 70"/>
+          <path pathLength="1" style="--d:.05s;--t:.87s" d="M 122 78 C 112 77 103 76 97 76"/>
+          <path pathLength="1" style="--d:.04s;--t:.93s" d="M 61 32 C 62 38 62 43 61 47"/>
+          <path pathLength="1" style="--d:.04s;--t:.98s" d="M 70 30 C 70 36 70 42 70 47"/>
+          <path pathLength="1" style="--d:.04s;--t:1.03s" d="M 79 32 C 78 38 78 43 79 47"/>
+          <path pathLength="1" style="--d:.04s;--t:1.08s" d="M 33 60 C 39 61 43 63 47 65"/>
+          <path pathLength="1" style="--d:.04s;--t:1.13s" d="M 107 60 C 101 61 97 63 93 65"/>
+        </svg>
+      </a>
       <nav aria-label="Hovedmenu">
         <ul>
           <li><a href="#bog">Bogen</a></li>
@@ -270,12 +282,38 @@ footer .flinks{display:flex;gap:1.5rem}
 
 <main id="indhold">
   <section class="hero">
-    <span class="duo duo1" aria-hidden="true">m</span>
-    <span class="duo duo2" aria-hidden="true">b</span>
-    <div class="merc" aria-hidden="true"><canvas id="merc-canvas"></canvas></div>
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
-      <h1>Ikke <span class="u">bare</span> køn</h1>
+      <h1><span class="sr-only">Ikke bare køn</span><svg class="tagline" viewBox="0 0 1000 320" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path pathLength="1" style="--d:.12s;--t:0s" d="M 40 118 C 50 110 60 106 66 110 C 60 146 52 192 48 230 C 47 238 54 240 60 234"/>
+          <path pathLength="1" style="--d:.06s;--t:.13s" d="M 104 110 C 97 150 92 196 90 230"/>
+          <path pathLength="1" style="--d:.07s;--t:.2s" d="M 126 160 C 116 172 106 181 96 187 C 104 193 114 212 120 228"/>
+          <path pathLength="1" style="--d:.06s;--t:.28s" d="M 168 106 C 161 147 156 196 154 230"/>
+          <path pathLength="1" style="--d:.07s;--t:.35s" d="M 190 156 C 180 168 170 177 160 183 C 168 189 178 208 184 224"/>
+          <path pathLength="1" style="--d:.09s;--t:.43s" d="M 206 192 C 220 186 228 174 222 165 C 216 157 204 163 200 178 C 195 196 202 220 216 224 C 227 227 238 219 244 208"/>
+        </g>
+        <g class="em">
+          <path pathLength="1" style="--d:.07s;--t:.55s" d="M 300 95 C 293 140 288 192 286 234"/>
+          <path pathLength="1" style="--d:.12s;--t:.63s" d="M 300 98 C 330 88 350 102 344 124 C 339 141 318 148 302 147 C 324 148 348 156 344 182 C 340 208 314 220 292 212"/>
+          <path pathLength="1" style="--d:.09s;--t:.76s" d="M 372 234 C 381 190 393 128 404 96 C 413 128 424 192 431 234"/>
+          <path pathLength="1" style="--d:.04s;--t:.86s" d="M 384 182 C 398 178 414 178 424 182"/>
+          <path pathLength="1" style="--d:.06s;--t:.91s" d="M 462 96 C 457 141 453 192 452 234"/>
+          <path pathLength="1" style="--d:.09s;--t:.98s" d="M 462 100 C 487 90 504 105 498 126 C 493 144 474 152 459 151 C 472 158 488 198 498 232"/>
+          <path pathLength="1" style="--d:.06s;--t:1.08s" d="M 564 98 C 551 141 545 192 543 232"/>
+          <path pathLength="1" style="--d:.03s;--t:1.15s" d="M 564 100 C 580 94 595 94 605 98"/>
+          <path pathLength="1" style="--d:.03s;--t:1.19s" d="M 555 164 C 567 160 579 160 587 163"/>
+          <path pathLength="1" style="--d:.03s;--t:1.23s" d="M 543 230 C 559 234 578 234 590 229"/>
+        </g>
+        <g>
+          <path pathLength="1" style="--d:.06s;--t:1.3s" d="M 668 106 C 661 148 656 198 654 230"/>
+          <path pathLength="1" style="--d:.07s;--t:1.37s" d="M 692 156 C 682 168 672 177 662 183 C 670 189 680 208 686 226"/>
+          <path pathLength="1" style="--d:.08s;--t:1.45s" d="M 740 172 C 733 160 718 163 713 178 C 708 194 717 213 731 211 C 745 209 752 190 746 177 C 743 170 741 168 740 172"/>
+          <path pathLength="1" style="--d:.04s;--t:1.54s" d="M 752 152 L 706 224"/>
+          <path pathLength="1" style="--d:.05s;--t:1.59s" d="M 770 166 C 767 186 765 208 765 228"/>
+          <path pathLength="1" style="--d:.08s;--t:1.65s" d="M 767 186 C 774 170 787 162 795 171 C 801 178 801 206 803 226 C 804 234 814 234 822 224"/>
+        </g>
+      </svg></h1>
       <p class="standfirst">Køn er altid i bevægelse. For at forstå kønnets
       betydning må vi tage højde for alt det, køn væves sammen med. Når noget
       handler om køn, handler det derfor ikke bare om køn.</p>
@@ -445,233 +483,5 @@ footer .flinks{display:flex;gap:1.5rem}
 })();
 </script>
 
-<!-- The hero pair as liquid chrome. Typefesse Claire's m and b (the
-     outline cut), extracted to path data with fontTools, extruded in
-     three.js as stroke ribbons and shaded as mercury: full-metal
-     MeshPhysicalMaterial with thin-film iridescence over a procedural
-     environment built from the site's own triad and yellow. The two
-     letters intertwine in depth and counter-sway; a slow noise field
-     wobbles the ribbons; drips form at each letter's feet and fall.
-     Static under prefers-reduced-motion; without JavaScript or WebGL
-     the overlapping gradient outline pair remains. -->
-<script type="importmap">{"imports":{"three":"../assets/vendor/three.module.min.js"}}</script>
-<script type="module">
-import * as THREE from 'three';
-
-const canvas = document.getElementById('merc-canvas');
-const host = canvas && canvas.parentElement;
-const hero = document.querySelector('.hero');
-if (canvas) boot();
-
-function boot(){
-  let renderer;
-  try{
-    renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
-  }catch(e){ return; }
-  if(!renderer.getContext()) return;
-
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* Typefesse Claire "m" and "b" (the outline cut), font units
-     (upm 2048), y-up. Each glyph is its outer envelope with the solid
-     letter subtracted as holes (nesting computed offline with
-     fontTools; three.js winding detection guesses wrong on these
-     glyphs), so each extrusion is the stroke band itself: poured
-     ribbons of metal rather than molten plates. */
-  const GLYPHS = {"m":{"cmds":[["M",1595,0],["L",1182,0],["Q",1103,-57,1004,-57],["Q",832,-57,743,68],["Q",609,-43,469,-43],["Q",380,-43,305.0,-10.5],["Q",230,22,180,82],["Q",102,172,102,313],["Q",102,346,109,397],["Q",198,921,281,1266],["Q",304,1357,362.5,1421.0],["Q",421,1485,512,1485],["Q",581,1485,645.5,1442.0],["Q",710,1399,748,1327],["L",791,1243],["Q",834,1302,873.5,1339.5],["Q",913,1377,981.0,1405.5],["Q",1049,1434,1133,1434],["Q",1267,1434,1371.5,1353.5],["Q",1476,1273,1522,1120],["L",1772,297],["Q",1788,245,1788,195],["Q",1788,111,1734.0,55.5],["Q",1680,0,1595,0],["Z"],["M",1272,1090],["L",1251,1049],["Q",1172,1081,1083,1081],["Q",969,1081,903,1028],["Q",943,953,1016.5,810.5],["Q",1090,668,1120,610],["L",1083,590],["L",711,1307],["Q",679,1368,623.0,1406.0],["Q",567,1444,508,1444],["Q",438,1444,390.5,1389.5],["Q",343,1335,324,1255],["Q",239,902,152,389],["Q",145,342,145,311],["Q",145,189,213,109],["Q",255,57,322.5,28.5],["Q",390,0,469,0],["Q",594,0,721,104],["Q",707,129,700,147],["L",573,80],["L",557,109],["L",684,186],["L",670,229],["L",532,164],["L",516,193],["L",659,270],["L",647,311],["L",496,250],["L",496,283],["Q",496,329,459.0,364.0],["Q",422,399,373,399],["Q",348,399,324,387],["L",307,426],["Q",335,440,373,440],["Q",430,440,476.0,405.0],["Q",522,370,537,313],["L",637,352],["Q",610,450,575.0,587.5],["Q",540,725,518.5,812.5],["Q",497,900,496,901],["L",539,911],["Q",539,908,568.0,792.0],["Q",597,676,638.5,514.5],["Q",680,353,707,260],["Q",748,112,816.5,49.0],["Q",885,-14,1004,-14],["Q",1230,-14,1315,315],["Q",1332,385,1348.0,455.5],["Q",1364,526,1371.0,562.0],["Q",1378,598,1378,600],["L",1421,592],["Q",1420,591,1413.0,554.5],["Q",1406,518,1390.0,446.0],["Q",1374,374,1356,305],["Q",1313,133,1229,43],["L",1595,43],["Q",1659,43,1702.0,86.5],["Q",1745,130,1745,197],["Q",1745,239,1731,285],["L",1481,1108],["Q",1439,1244,1346.0,1317.5],["Q",1253,1391,1133,1391],["Q",1072,1391,1024.0,1377.0],["Q",976,1363,938.0,1334.0],["Q",900,1305,873.5,1275.5],["Q",847,1246,815,1200],["L",883,1069],["Q",963,1126,1085,1126],["Q",1188,1126,1272,1090],["Z"]],"groups":[{"outer":0,"holes":[1]}]},"b":{"cmds":[["M",965,0],["L",209,0],["L",209,1430],["L",1126,1430],["Q",1196,1430,1253.0,1404.0],["Q",1310,1378,1343.0,1336.5],["Q",1376,1295,1393.5,1247.5],["Q",1411,1200,1411,1153],["Q",1411,980,1233,811],["Q",1345,748,1413.0,642.5],["Q",1481,537,1481,424],["Q",1481,215,1350.0,107.5],["Q",1219,0,965,0],["Z"],["M",922,240],["Q",922,218,906.0,204.0],["Q",890,190,866,190],["Q",825,190,772,227],["Q",591,352,471,475],["Q",410,536,410,612],["Q",410,674,453,729],["Q",375,807,375,889],["Q",375,981,451,1057],["Q",551,1157,696,1268],["Q",744,1305,780,1305],["Q",805,1305,819,1288],["Q",831,1273,831,1255],["L",840,1255],["Q",873,1255,885,1237],["Q",895,1224,895,1208],["L",895,1200],["Q",921,1197,936,1182],["Q",950,1168,950,1145],["Q",950,1111,924,1090],["L",502,717],["Q",453,674,453,610],["Q",453,552,502,506],["Q",639,372,819,246],["Q",840,231,856,231],["Q",862,231,868.0,236.0],["Q",874,241,874,248],["Q",874,265,858,281],["L",748,387],["L",770,410],["L",903,291],["Q",913,281,930,281],["Q",954,281,954,301],["Q",954,312,942,324],["L",817,453],["L",840,477],["L",973,354],["Q",996,334,1010,334],["Q",1020,334,1026.0,341.0],["Q",1032,348,1032,356],["Q",1032,367,1022,377],["L",848,547],["Q",867,560,884.0,573.5],["Q",901,587,905,590],["Q",956,628,984.5,650.0],["Q",1013,672,1069.0,717.5],["Q",1125,763,1159.0,796.0],["Q",1193,829,1237.5,878.0],["Q",1282,927,1307.0,968.5],["Q",1332,1010,1350.0,1059.0],["Q",1368,1108,1368,1153],["Q",1368,1194,1353.5,1233.5],["Q",1339,1273,1310.5,1307.5],["Q",1282,1342,1233.5,1363.0],["Q",1185,1384,1124,1384],["L",252,1384],["L",252,43],["L",965,43],["Q",1438,43,1438,424],["Q",1438,526,1371.5,624.0],["Q",1305,722,1200,780],["L",1174,756],["Q",1169,751,1148.0,731.5],["Q",1127,712,1115.5,702.0],["Q",1104,692,1076.5,669.0],["Q",1049,646,1009.0,615.5],["Q",969,585,913,543],["L",1057,403],["Q",1075,385,1075,356],["Q",1075,331,1058.0,313.0],["Q",1041,295,1014,295],["Q",1001,295,995,297],["Q",995,274,978.0,256.0],["Q",961,238,938,238],["Q",926,238,922,240],["Z"],["M",651,1079],["L",629,1106],["L",776,1221],["Q",788,1231,788,1247],["Q",788,1253,783.5,1257.5],["Q",779,1262,774,1262],["Q",761,1262,733,1241],["Q",604,1145,481,1026],["Q",418,963,418,889],["Q",418,822,483,760],["Q",505,782,586.5,850.5],["Q",668,919,711,958],["L",893,1120],["Q",905,1130,905,1141],["Q",905,1148,899.0,1153.5],["Q",893,1159,887,1159],["Q",872,1159,862,1149],["L",700,1018],["L",678,1047],["L",840,1178],["Q",854,1189,854,1202],["Q",854,1207,848.5,1212.0],["Q",843,1217,836,1217],["Q",822,1217,809,1206],["Z"]],"groups":[{"outer":0,"holes":[1,2]}]}};
-
-  function buildGeo(g){
-    const contours = [];
-    for(const c of g.cmds){
-      if(c[0]==='M') contours.push(new THREE.Path()), contours.at(-1).moveTo(c[1],c[2]);
-      else if(c[0]==='L') contours.at(-1).lineTo(c[1],c[2]);
-      else if(c[0]==='Q') contours.at(-1).quadraticCurveTo(c[1],c[2],c[3],c[4]);
-      else if(c[0]==='Z') contours.at(-1).closePath();
-    }
-    const shapes = g.groups.map(gr => {
-      const s = new THREE.Shape(contours[gr.outer].getPoints(22));
-      s.holes = gr.holes.map(h => contours[h]);
-      return s;
-    });
-    let geo = new THREE.ExtrudeGeometry(shapes, {
-      depth:110, bevelEnabled:true, bevelThickness:30, bevelSize:24,
-      bevelSegments:5, curveSegments:22
-    });
-    geo = weld(geo, 0.5);
-    geo.computeVertexNormals();
-    geo.center();
-    return geo;
-  }
-
-  /* Welding by position so the wobble reads as one continuous skin. */
-  function weld(g, tol){
-    const p = g.attributes.position, map = new Map(), remap = new Array(p.count);
-    const pos = [];
-    for(let i=0;i<p.count;i++){
-      const k = Math.round(p.getX(i)/tol)+','+Math.round(p.getY(i)/tol)+','+Math.round(p.getZ(i)/tol);
-      let j = map.get(k);
-      if(j===undefined){ j = pos.length/3; map.set(k,j); pos.push(p.getX(i),p.getY(i),p.getZ(i)); }
-      remap[i]=j;
-    }
-    const idx = [];
-    if(g.index){ for(let i=0;i<g.index.count;i++) idx.push(remap[g.index.getX(i)]); }
-    else { for(let i=0;i<p.count;i++) idx.push(remap[i]); }
-    const out = new THREE.BufferGeometry();
-    out.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
-    out.setIndex(idx);
-    return out;
-  }
-
-  /* Holographic environment from the site's own colours: paper above,
-     night below, neon streaks of the triad and the action yellow. */
-  const ec = document.createElement('canvas'); ec.width=1024; ec.height=512;
-  const g2 = ec.getContext('2d');
-  const sky = g2.createLinearGradient(0,0,0,512);
-  sky.addColorStop(0,'#FCFAF4'); sky.addColorStop(.48,'#C9C4BC');
-  sky.addColorStop(.56,'#3B353E'); sky.addColorStop(.72,'#8E8890');
-  sky.addColorStop(1,'#DDD8D0');
-  g2.fillStyle = sky; g2.fillRect(0,0,1024,512);
-  const streaks = [
-    [20,'#F20587',110,.9],[150,'#0A47F5',80,.9],[250,'#FFE04D',40,.6],[320,'#A928E8',130,.85],
-    [460,'#F20587',70,.85],[545,'#0A47F5',120,.9],[675,'#FFE04D',44,.6],[740,'#A928E8',86,.85],
-    [840,'#F20587',100,.85],[950,'#0A47F5',70,.9]
-  ];
-  for(const [x,c,w,a] of streaks){
-    const s = g2.createLinearGradient(x,0,x+w,0);
-    s.addColorStop(0,'rgba(0,0,0,0)'); s.addColorStop(.5,c); s.addColorStop(1,'rgba(0,0,0,0)');
-    g2.fillStyle = s; g2.globalAlpha = a; g2.fillRect(x,0,w,512); g2.globalAlpha = 1;
-  }
-  const envTex = new THREE.CanvasTexture(ec);
-  envTex.mapping = THREE.EquirectangularReflectionMapping;
-  envTex.colorSpace = THREE.SRGBColorSpace;
-
-  const scene = new THREE.Scene();
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromEquirectangular(envTex).texture;
-
-  const uTime = {value: 1.7};
-  const mat = new THREE.MeshPhysicalMaterial({
-    color:0xffffff, metalness:1, roughness:.045,
-    iridescence:1, iridescenceIOR:1.7, iridescenceThicknessRange:[90,860],
-    envMapIntensity:1.65
-  });
-  const NOISE = `
-  vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
-  vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
-  vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}
-  vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
-  float snoise(vec3 v){
-    const vec2 C=vec2(1.0/6.0,1.0/3.0); const vec4 D=vec4(0.0,0.5,1.0,2.0);
-    vec3 i=floor(v+dot(v,C.yyy)); vec3 x0=v-i+dot(i,C.xxx);
-    vec3 g=step(x0.yzx,x0.xyz); vec3 l=1.0-g; vec3 i1=min(g.xyz,l.zxy); vec3 i2=max(g.xyz,l.zxy);
-    vec3 x1=x0-i1+C.xxx; vec3 x2=x0-i2+C.yyy; vec3 x3=x0-D.yyy;
-    i=mod289(i);
-    vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
-    float n_=0.142857142857; vec3 ns=n_*D.wyz-D.xzx;
-    vec4 j=p-49.0*floor(p*ns.z*ns.z);
-    vec4 x_=floor(j*ns.z); vec4 y_=floor(j-7.0*x_);
-    vec4 x=x_*ns.x+ns.yyyy; vec4 y=y_*ns.x+ns.yyyy; vec4 h=1.0-abs(x)-abs(y);
-    vec4 b0=vec4(x.xy,y.xy); vec4 b1=vec4(x.zw,y.zw);
-    vec4 s0=floor(b0)*2.0+1.0; vec4 s1=floor(b1)*2.0+1.0; vec4 sh=-step(h,vec4(0.0));
-    vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy; vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
-    vec3 p0=vec3(a0.xy,h.x); vec3 p1=vec3(a0.zw,h.y); vec3 p2=vec3(a1.xy,h.z); vec3 p3=vec3(a1.zw,h.w);
-    vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
-    p0*=norm.x; p1*=norm.y; p2*=norm.z; p3*=norm.w;
-    vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0); m=m*m;
-    return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
-  }`;
-  mat.onBeforeCompile = (sh)=>{
-    sh.uniforms.uTime = uTime;
-    sh.vertexShader = 'uniform float uTime;\n' + NOISE + '\n' +
-      sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
-      float melt = smoothstep(300.0, -760.0, position.y);
-      float n = snoise(vec3(position.x*0.0026, position.y*0.0026, uTime*0.32));
-      transformed += objectNormal * n * (9.0 + 22.0*melt);
-      transformed.y -= melt*melt * (12.0 + 10.0*sin(uTime*0.7 + position.x*0.004));`);
-  };
-
-  /* The pair, intertwined in depth: the m ahead, the b threaded behind
-     and through it, counter-swaying so the ribbons keep crossing. */
-  const pair = new THREE.Group();
-  const mMesh = new THREE.Mesh(buildGeo(GLYPHS.m), mat);
-  mMesh.position.set(-330, 130, 70);
-  const bMesh = new THREE.Mesh(buildGeo(GLYPHS.b), mat);
-  bMesh.scale.setScalar(0.94);
-  bMesh.position.set(470, -250, -110);
-  pair.add(mMesh, bMesh);
-  scene.add(pair);
-
-  /* Drips: chrome beads that swell at the feet, then fall. Their own
-     calmer material: at bead scale the thin-film banding reads as
-     stripes rather than sheen. */
-  const dripMat = new THREE.MeshPhysicalMaterial({
-    color:0xffffff, metalness:1, roughness:.1,
-    iridescence:.5, iridescenceIOR:1.4, iridescenceThicknessRange:[200,420],
-    envMapIntensity:1.2
-  });
-  const dripGeo = new THREE.SphereGeometry(52, 24, 24);
-  /* Each drip hangs from its own letter's lower edge. */
-  const DRIPS = [
-    {x:-830, z:200, floor:-640, period:7.2, phase:0.0},
-    {x:-450, z:260, floor:-645, period:5.8, phase:2.9},
-    {x:  60, z:180, floor:-650, period:8.4, phase:4.6},
-    {x: 620, z:-60, floor:-930, period:6.6, phase:1.4},
-    {x: 980, z:-30, floor:-925, period:7.8, phase:3.7}
-  ].map(d => { const m = new THREE.Mesh(dripGeo, dripMat); pair.add(m); return {...d, mesh:m}; });
-  function placeDrips(t){
-    for(const d of DRIPS){
-      const p = ((t/d.period + d.phase) % 1 + 1) % 1;
-      const m = d.mesh;
-      if(p < 0.45){
-        const s = p/0.45;
-        m.position.set(d.x, d.floor + 30 - s*70, d.z);
-        m.scale.set(.45+.3*s, .45+1.25*s, .45+.3*s);
-      } else {
-        const q = (p-0.45)/0.55;
-        m.position.set(d.x, d.floor - 40 - q*q*1500, d.z);
-        m.scale.set(.75-.3*q, 1.7+.5*q, .75-.3*q);
-      }
-    }
-  }
-
-  const camera = new THREE.PerspectiveCamera(30, 1, 10, 16000);
-  camera.position.set(-140, -10, 5300);
-  camera.lookAt(-140, -10, 0);
-
-  function resize(){
-    const w = host.clientWidth, h = host.clientHeight;
-    if(!w || !h) return;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
-    renderer.setSize(w, h, false);
-    camera.aspect = w/h; camera.updateProjectionMatrix();
-  }
-  resize();
-  new ResizeObserver(resize).observe(host);
-
-  function pose(t){
-    uTime.value = t;
-    pair.rotation.y = -0.10 + 0.24*Math.sin(t*0.22);
-    pair.rotation.x =  0.02 + 0.04*Math.sin(t*0.17);
-    mMesh.rotation.y = -0.05 + 0.10*Math.sin(t*0.19 + 1.1);
-    bMesh.rotation.y =  0.12 - 0.11*Math.sin(t*0.16);
-    placeDrips(t);
-  }
-
-  pose(1.7);
-  renderer.render(scene, camera);
-  hero.classList.add('webgl');
-  if(reduce) return;
-
-  let visible = true;
-  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(host);
-  const t0 = performance.now();
-  (function frame(){
-    requestAnimationFrame(frame);
-    if(!visible) return;
-    pose(1.7 + (performance.now()-t0)/1000);
-    renderer.render(scene, camera);
-  })();
-}
-</script>
 </body>
 </html>

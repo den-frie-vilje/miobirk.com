@@ -202,7 +202,15 @@ parallax, the hero carries its own pair: two partially overlapping
 outline-only Claire-Obscure glyphs at medium size (16 to 19rem) in the
 full triad gradient, with no solid layer.
 
-## The hero m in liquid chrome (Ole, 2026-07-15)
+## The liquid-chrome hero, retired but kept as method (2026-07-15)
+
+Ole retired the mercury pair and the hero vignettes the same day the
+pair was finished: a fun experiment that worked, dropped from the
+direction, with the method noted for later. The section below stands
+as that note; the vendored three.js in `design/assets/vendor/` stays
+for the day the technique is wanted again (a launch moment, a book
+page easter egg, a talk visual). What replaced it is the hand-drawn
+layer described in "The hand" below.
 
 Ole asked for the hero glyph as a three-dimensional shape in the
 liquid, mercurial drip register of contemporary queer club graphics,
@@ -249,3 +257,33 @@ ribbons keep crossing.
 - three.js r178 is vendored (MIT, `design/assets/vendor/`); modules
   need HTTP, so the screenshot runner now serves the design directory
   over localhost instead of file://.
+
+## The hand (Ole, 2026-07-15)
+
+The hero and the masthead moved from type to a hand. Both are inline
+SVG drawn with a monoline round-capped stroke and animated on load
+with one pure-CSS technique: every path carries `pathLength="1"`, so
+`stroke-dasharray:1` plus a dash offset animated from 1 to 0 draws
+the stroke; two custom properties per path (`--d` duration, `--t`
+start) sequence the strokes like a writing hand. No JavaScript, so
+the drawing runs everywhere, including surfaces that strip scripts.
+Static final state under prefers-reduced-motion.
+
+- **The hero title is a tag.** "Ikke bare køn" hand-lettered as a
+  quick thick-marker tag (stroke 13 in a 1000-unit viewBox, rotated
+  -2deg), drawn in roughly 1.7 seconds. The emphasis that used to be
+  the purple mark under "bare" is now a change of style inside the
+  lettering itself: the script hand switches to pressed capitals
+  (stroke 15) for BARE and back. Nothing is added, the writing just
+  leans on the word. The h1 keeps a visually-hidden text node, so
+  semantics and search read "Ikke bare køn" as before.
+- **No wordmark in the masthead.** In its place a very simple tiger
+  (her middle name) in the same pen: head, ears, eyes, nose, mouth,
+  whiskers, forehead and cheek stripes, seventeen quick strokes. It
+  is the home link, aria-labelled, and draws itself in about a
+  second.
+- A first pass drew "Mio Birk" as a signature tag in the masthead;
+  Ole redirected the tag to the hero text and replaced the masthead
+  wordmark with the tiger. The signature paths live in this
+  repository's history should a signature ever be wanted (colophon,
+  about page).
