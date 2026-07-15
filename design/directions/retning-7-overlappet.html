@@ -101,6 +101,15 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 .fesse.r3{font-size:122rem;top:100rem;right:-38rem;--line:#E7DECA}
 .fesse.r4{font-size:148rem;top:126rem;left:-30rem;--line:#EBE3D2}
 @media (max-width:56rem){.fesse{opacity:.85}}
+/* Parallax, pure CSS: scroll-driven animations (Chrome 115+, Safari 26+).
+   The JS below is only a fallback for browsers without support. */
+@supports (animation-timeline: scroll(root)){
+  .fesse-layer[data-speed="0.1"]{animation:fesseSlow linear both;animation-timeline:scroll(root)}
+  .fesse-layer[data-speed="0.22"]{animation:fesseMid linear both;animation-timeline:scroll(root)}
+}
+@keyframes fesseSlow{to{transform:translate3d(0,18rem,0)}}
+@keyframes fesseMid{to{transform:translate3d(0,44rem,0)}}
+@media (prefers-reduced-motion: reduce){.fesse-layer{animation:none!important}}
 /* The hero's own pair: two partially overlapping outline-only glyphs at
    medium size, full gradient, no solid layer. */
 .hero{position:relative;overflow:hidden}
@@ -396,6 +405,7 @@ footer .flinks{display:flex;gap:1.5rem}
 
 <script>
 (function(){
+  if(window.CSS&&CSS.supports&&CSS.supports('animation-timeline: scroll(root)'))return;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
   var layers=[].slice.call(document.querySelectorAll('.fesse-layer'));
   if(!layers.length) return;
