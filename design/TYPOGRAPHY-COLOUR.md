@@ -204,37 +204,48 @@ full triad gradient, with no solid layer.
 
 ## The hero m in liquid chrome (Ole, 2026-07-15)
 
-Ole dropped the b from the hero pair and asked for the m as a
-three-dimensional shape in the liquid, mercurial drip register of
-contemporary queer club graphics, with a holographic sheen. A first
-pass extruded Typefesse Pleine's solid m; Ole judged it a molten plate
-and asked for the outline instead, so the shipped object is Typefesse
-Claire's m: the stroke band between the glyph's outer envelope and the
-solid m inside it, extruded shallow with a rounded bevel, which reads
-as poured metal tracing the letter rather than a slab of it.
+Ole asked for the hero glyph as a three-dimensional shape in the
+liquid, mercurial drip register of contemporary queer club graphics,
+with a holographic sheen. The form arrived over three passes of his
+direction: a first extrusion of Typefesse Pleine's solid m read as a
+molten plate, so the outline cut replaced it (poured metal tracing the
+letter); then the material was turned up and the b returned, so the
+shipped object is the pair from the original hero, intertwined in
+three dimensions. Each letter is Typefesse Claire's stroke band (the
+glyph's outer envelope with the solid letter subtracted), extruded
+shallow with a rounded bevel; the m stands ahead, the b threads behind
+and through it with its own tilt, and the two counter-sway so the
+ribbons keep crossing.
 
 - The glyph contours are extracted from the woff2 with fontTools and
-  inlined as path commands. The solid inner contour is subtracted as a
-  hole explicitly (three.js winding detection guesses wrong on this
-  glyph); `ExtrudeGeometry` then gives the band depth. Vertices are
-  welded by position so the surface reads as one skin.
+  inlined as path commands, with contour nesting (which contour is a
+  hole of which) computed offline by containment depth; three.js
+  winding detection guesses wrong on these glyphs. `ExtrudeGeometry`
+  gives the bands depth; vertices are welded by position so each
+  surface reads as one skin.
 - The mercury is `MeshPhysicalMaterial` at full metalness, low
   roughness, with the thin-film `iridescence` parameters carrying the
   holographic sheen. The environment map is procedural: a canvas of
-  silvery gradient bands (a bright chrome horizon) with soft vertical
+  silvery gradient bands (a bright chrome horizon) with vertical
   streaks of the triad and a restrained trace of the action yellow, so
-  the reflections are literally the site's own palette.
+  the reflections are literally the site's own palette. After Ole
+  asked for a louder material the streaks widened to cover most of the
+  horizon and the iridescence range and envMapIntensity rose; the
+  ribbons now carry visible runs of blue, pink and gold rather than
+  plain silver.
 - Motion: a simplex-noise field displaces vertices along their
-  normals, biased toward the letter's feet so the lower runs of the
-  ribbon slump and sway (gentler than the solid pass; thin bands
-  distort fast); four chrome beads swell at the feet and fall as drips
-  on offset cycles. The whole letter sways a few degrees.
+  normals, biased toward the letters' feet so the lower runs of the
+  ribbons slump and sway (gentle; thin bands distort fast); five
+  chrome beads swell at the feet of both letters and fall as drips on
+  offset cycles. The pair sways as a group while each letter
+  counter-rotates slightly against it.
   Static single frame under prefers-reduced-motion; paused offscreen
   via IntersectionObserver; pixel ratio capped at 2.
-- Fallbacks: without JavaScript or WebGL the previous outline-only
-  gradient m (Claire-Obscure) remains in the same position. On narrow
-  viewports the object gets a reserved band above the text rather than
-  sitting behind it, so ink never crosses the chrome.
+- Fallbacks: without JavaScript or WebGL the overlapping outline-only
+  gradient pair (m and b, Claire-Obscure) remains in the same
+  position. On narrow viewports the pair gets a reserved band above
+  the text rather than sitting behind it, so ink never crosses the
+  chrome.
 - three.js r178 is vendored (MIT, `design/assets/vendor/`); modules
   need HTTP, so the screenshot runner now serves the design directory
   over localhost instead of file://.

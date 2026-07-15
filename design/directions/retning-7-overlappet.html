@@ -110,27 +110,30 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 @keyframes fesseSlow{to{transform:translate3d(0,18rem,0)}}
 @keyframes fesseMid{to{transform:translate3d(0,44rem,0)}}
 @media (prefers-reduced-motion: reduce){.fesse-layer{animation:none!important}}
-/* The hero's object: one Typefesse m. With WebGL it is a three.js
-   liquid-chrome body with an iridescent holographic sheen, wobbling and
-   dripping like mercury; without JavaScript the outline-only gradient
-   glyph stands in at the same spot. */
+/* The hero's object: the m and b intertwined. With WebGL they are
+   three.js liquid-chrome ribbons (the outline cut, poured not molten)
+   with an iridescent holographic sheen, swaying and dripping like
+   mercury; without JavaScript the overlapping outline-only gradient
+   pair stands in at the same spot. */
 .hero{position:relative;overflow:hidden}
 .hero .duo{position:absolute;line-height:1;pointer-events:none;user-select:none;
   background:linear-gradient(170deg,var(--rosa) 0%,var(--lilla) 48%,var(--blaa) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .duo1{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(15rem,32vw,27rem);top:-1rem;right:7rem}
-.hero.webgl .duo1{visibility:hidden}
+.hero .duo2{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(12rem,26vw,22rem);top:7rem;right:-1rem}
+.hero.webgl .duo{visibility:hidden}
 .merc{position:absolute;top:-3rem;right:clamp(.5rem,4vw,5rem);
-  width:clamp(18rem,38vw,33rem);height:clamp(21rem,44vw,38rem);
+  width:clamp(20rem,42vw,40rem);height:clamp(20rem,42vw,40rem);
   pointer-events:none;user-select:none}
 .merc canvas{display:block;width:100%;height:100%}
 @media (max-width:56rem){
-  /* Narrow viewports: the object gets its own band above the text
+  /* Narrow viewports: the pair gets its own band above the text
      instead of sitting behind it; ink stays legible. (main .hero so it
      outweighs the later .hero padding shorthand.) */
   main .hero{padding-top:17rem}
   .hero .duo1{font-size:13rem;top:-2rem;right:-3rem}
-  .merc{top:-3.5rem;right:-3.5rem;width:17rem;height:19rem}
+  .hero .duo2{display:none}
+  .merc{top:-3rem;right:-3rem;width:19rem;height:19rem}
 }
 header,main,footer{position:relative;z-index:1}
 
@@ -268,6 +271,7 @@ footer .flinks{display:flex;gap:1.5rem}
 <main id="indhold">
   <section class="hero">
     <span class="duo duo1" aria-hidden="true">m</span>
+    <span class="duo duo2" aria-hidden="true">b</span>
     <div class="merc" aria-hidden="true"><canvas id="merc-canvas"></canvas></div>
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
@@ -441,13 +445,15 @@ footer .flinks{display:flex;gap:1.5rem}
 })();
 </script>
 
-<!-- The hero m as liquid chrome. Typefesse Pleine's m, extracted to path
-     data with fontTools, extruded in three.js and shaded as mercury:
-     full-metal MeshPhysicalMaterial with thin-film iridescence over a
-     procedural environment built from the site's own triad and yellow.
-     A slow noise field wobbles the body; drips form at the feet and
-     fall. Static under prefers-reduced-motion; without JavaScript or
-     WebGL the gradient outline glyph remains. -->
+<!-- The hero pair as liquid chrome. Typefesse Claire's m and b (the
+     outline cut), extracted to path data with fontTools, extruded in
+     three.js as stroke ribbons and shaded as mercury: full-metal
+     MeshPhysicalMaterial with thin-film iridescence over a procedural
+     environment built from the site's own triad and yellow. The two
+     letters intertwine in depth and counter-sway; a slow noise field
+     wobbles the ribbons; drips form at each letter's feet and fall.
+     Static under prefers-reduced-motion; without JavaScript or WebGL
+     the overlapping gradient outline pair remains. -->
 <script type="importmap">{"imports":{"three":"../assets/vendor/three.module.min.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
@@ -466,33 +472,36 @@ function boot(){
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Typefesse Claire "m" (the outline cut), font units (upm 2048), y-up,
-     two contours: the outer envelope and the solid m as its hole. The
-     extrusion is therefore the stroke band itself, a poured ribbon of
-     metal rather than a molten plate. */
-  const CMDS = [["M",1595,0],["L",1182,0],["Q",1103,-57,1004,-57],["Q",832,-57,743,68],["Q",609,-43,469,-43],["Q",380,-43,305,-10.5],["Q",230,22,180,82],["Q",102,172,102,313],["Q",102,346,109,397],["Q",198,921,281,1266],["Q",304,1357,362.5,1421],["Q",421,1485,512,1485],["Q",581,1485,645.5,1442],["Q",710,1399,748,1327],["L",791,1243],["Q",834,1302,873.5,1339.5],["Q",913,1377,981,1405.5],["Q",1049,1434,1133,1434],["Q",1267,1434,1371.5,1353.5],["Q",1476,1273,1522,1120],["L",1772,297],["Q",1788,245,1788,195],["Q",1788,111,1734,55.5],["Q",1680,0,1595,0],["Z"],["M",1272,1090],["L",1251,1049],["Q",1172,1081,1083,1081],["Q",969,1081,903,1028],["Q",943,953,1016.5,810.5],["Q",1090,668,1120,610],["L",1083,590],["L",711,1307],["Q",679,1368,623,1406],["Q",567,1444,508,1444],["Q",438,1444,390.5,1389.5],["Q",343,1335,324,1255],["Q",239,902,152,389],["Q",145,342,145,311],["Q",145,189,213,109],["Q",255,57,322.5,28.5],["Q",390,0,469,0],["Q",594,0,721,104],["Q",707,129,700,147],["L",573,80],["L",557,109],["L",684,186],["L",670,229],["L",532,164],["L",516,193],["L",659,270],["L",647,311],["L",496,250],["L",496,283],["Q",496,329,459,364],["Q",422,399,373,399],["Q",348,399,324,387],["L",307,426],["Q",335,440,373,440],["Q",430,440,476,405],["Q",522,370,537,313],["L",637,352],["Q",610,450,575,587.5],["Q",540,725,518.5,812.5],["Q",497,900,496,901],["L",539,911],["Q",539,908,568,792],["Q",597,676,638.5,514.5],["Q",680,353,707,260],["Q",748,112,816.5,49],["Q",885,-14,1004,-14],["Q",1230,-14,1315,315],["Q",1332,385,1348,455.5],["Q",1364,526,1371,562],["Q",1378,598,1378,600],["L",1421,592],["Q",1420,591,1413,554.5],["Q",1406,518,1390,446],["Q",1374,374,1356,305],["Q",1313,133,1229,43],["L",1595,43],["Q",1659,43,1702,86.5],["Q",1745,130,1745,197],["Q",1745,239,1731,285],["L",1481,1108],["Q",1439,1244,1346,1317.5],["Q",1253,1391,1133,1391],["Q",1072,1391,1024,1377],["Q",976,1363,938,1334],["Q",900,1305,873.5,1275.5],["Q",847,1246,815,1200],["L",883,1069],["Q",963,1126,1085,1126],["Q",1188,1126,1272,1090],["Z"]];
+  /* Typefesse Claire "m" and "b" (the outline cut), font units
+     (upm 2048), y-up. Each glyph is its outer envelope with the solid
+     letter subtracted as holes (nesting computed offline with
+     fontTools; three.js winding detection guesses wrong on these
+     glyphs), so each extrusion is the stroke band itself: poured
+     ribbons of metal rather than molten plates. */
+  const GLYPHS = {"m":{"cmds":[["M",1595,0],["L",1182,0],["Q",1103,-57,1004,-57],["Q",832,-57,743,68],["Q",609,-43,469,-43],["Q",380,-43,305.0,-10.5],["Q",230,22,180,82],["Q",102,172,102,313],["Q",102,346,109,397],["Q",198,921,281,1266],["Q",304,1357,362.5,1421.0],["Q",421,1485,512,1485],["Q",581,1485,645.5,1442.0],["Q",710,1399,748,1327],["L",791,1243],["Q",834,1302,873.5,1339.5],["Q",913,1377,981.0,1405.5],["Q",1049,1434,1133,1434],["Q",1267,1434,1371.5,1353.5],["Q",1476,1273,1522,1120],["L",1772,297],["Q",1788,245,1788,195],["Q",1788,111,1734.0,55.5],["Q",1680,0,1595,0],["Z"],["M",1272,1090],["L",1251,1049],["Q",1172,1081,1083,1081],["Q",969,1081,903,1028],["Q",943,953,1016.5,810.5],["Q",1090,668,1120,610],["L",1083,590],["L",711,1307],["Q",679,1368,623.0,1406.0],["Q",567,1444,508,1444],["Q",438,1444,390.5,1389.5],["Q",343,1335,324,1255],["Q",239,902,152,389],["Q",145,342,145,311],["Q",145,189,213,109],["Q",255,57,322.5,28.5],["Q",390,0,469,0],["Q",594,0,721,104],["Q",707,129,700,147],["L",573,80],["L",557,109],["L",684,186],["L",670,229],["L",532,164],["L",516,193],["L",659,270],["L",647,311],["L",496,250],["L",496,283],["Q",496,329,459.0,364.0],["Q",422,399,373,399],["Q",348,399,324,387],["L",307,426],["Q",335,440,373,440],["Q",430,440,476.0,405.0],["Q",522,370,537,313],["L",637,352],["Q",610,450,575.0,587.5],["Q",540,725,518.5,812.5],["Q",497,900,496,901],["L",539,911],["Q",539,908,568.0,792.0],["Q",597,676,638.5,514.5],["Q",680,353,707,260],["Q",748,112,816.5,49.0],["Q",885,-14,1004,-14],["Q",1230,-14,1315,315],["Q",1332,385,1348.0,455.5],["Q",1364,526,1371.0,562.0],["Q",1378,598,1378,600],["L",1421,592],["Q",1420,591,1413.0,554.5],["Q",1406,518,1390.0,446.0],["Q",1374,374,1356,305],["Q",1313,133,1229,43],["L",1595,43],["Q",1659,43,1702.0,86.5],["Q",1745,130,1745,197],["Q",1745,239,1731,285],["L",1481,1108],["Q",1439,1244,1346.0,1317.5],["Q",1253,1391,1133,1391],["Q",1072,1391,1024.0,1377.0],["Q",976,1363,938.0,1334.0],["Q",900,1305,873.5,1275.5],["Q",847,1246,815,1200],["L",883,1069],["Q",963,1126,1085,1126],["Q",1188,1126,1272,1090],["Z"]],"groups":[{"outer":0,"holes":[1]}]},"b":{"cmds":[["M",965,0],["L",209,0],["L",209,1430],["L",1126,1430],["Q",1196,1430,1253.0,1404.0],["Q",1310,1378,1343.0,1336.5],["Q",1376,1295,1393.5,1247.5],["Q",1411,1200,1411,1153],["Q",1411,980,1233,811],["Q",1345,748,1413.0,642.5],["Q",1481,537,1481,424],["Q",1481,215,1350.0,107.5],["Q",1219,0,965,0],["Z"],["M",922,240],["Q",922,218,906.0,204.0],["Q",890,190,866,190],["Q",825,190,772,227],["Q",591,352,471,475],["Q",410,536,410,612],["Q",410,674,453,729],["Q",375,807,375,889],["Q",375,981,451,1057],["Q",551,1157,696,1268],["Q",744,1305,780,1305],["Q",805,1305,819,1288],["Q",831,1273,831,1255],["L",840,1255],["Q",873,1255,885,1237],["Q",895,1224,895,1208],["L",895,1200],["Q",921,1197,936,1182],["Q",950,1168,950,1145],["Q",950,1111,924,1090],["L",502,717],["Q",453,674,453,610],["Q",453,552,502,506],["Q",639,372,819,246],["Q",840,231,856,231],["Q",862,231,868.0,236.0],["Q",874,241,874,248],["Q",874,265,858,281],["L",748,387],["L",770,410],["L",903,291],["Q",913,281,930,281],["Q",954,281,954,301],["Q",954,312,942,324],["L",817,453],["L",840,477],["L",973,354],["Q",996,334,1010,334],["Q",1020,334,1026.0,341.0],["Q",1032,348,1032,356],["Q",1032,367,1022,377],["L",848,547],["Q",867,560,884.0,573.5],["Q",901,587,905,590],["Q",956,628,984.5,650.0],["Q",1013,672,1069.0,717.5],["Q",1125,763,1159.0,796.0],["Q",1193,829,1237.5,878.0],["Q",1282,927,1307.0,968.5],["Q",1332,1010,1350.0,1059.0],["Q",1368,1108,1368,1153],["Q",1368,1194,1353.5,1233.5],["Q",1339,1273,1310.5,1307.5],["Q",1282,1342,1233.5,1363.0],["Q",1185,1384,1124,1384],["L",252,1384],["L",252,43],["L",965,43],["Q",1438,43,1438,424],["Q",1438,526,1371.5,624.0],["Q",1305,722,1200,780],["L",1174,756],["Q",1169,751,1148.0,731.5],["Q",1127,712,1115.5,702.0],["Q",1104,692,1076.5,669.0],["Q",1049,646,1009.0,615.5],["Q",969,585,913,543],["L",1057,403],["Q",1075,385,1075,356],["Q",1075,331,1058.0,313.0],["Q",1041,295,1014,295],["Q",1001,295,995,297],["Q",995,274,978.0,256.0],["Q",961,238,938,238],["Q",926,238,922,240],["Z"],["M",651,1079],["L",629,1106],["L",776,1221],["Q",788,1231,788,1247],["Q",788,1253,783.5,1257.5],["Q",779,1262,774,1262],["Q",761,1262,733,1241],["Q",604,1145,481,1026],["Q",418,963,418,889],["Q",418,822,483,760],["Q",505,782,586.5,850.5],["Q",668,919,711,958],["L",893,1120],["Q",905,1130,905,1141],["Q",905,1148,899.0,1153.5],["Q",893,1159,887,1159],["Q",872,1159,862,1149],["L",700,1018],["L",678,1047],["L",840,1178],["Q",854,1189,854,1202],["Q",854,1207,848.5,1212.0],["Q",843,1217,836,1217],["Q",822,1217,809,1206],["Z"]],"groups":[{"outer":0,"holes":[1,2]}]}};
 
-  /* First contour is the outer envelope, the second is the solid m
-     inside it; subtract it explicitly (winding-based hole detection
-     guesses wrong on this glyph). */
-  const contours = [];
-  for(const c of CMDS){
-    if(c[0]==='M') contours.push(new THREE.Path()), contours.at(-1).moveTo(c[1],c[2]);
-    else if(c[0]==='L') contours.at(-1).lineTo(c[1],c[2]);
-    else if(c[0]==='Q') contours.at(-1).quadraticCurveTo(c[1],c[2],c[3],c[4]);
-    else if(c[0]==='Z') contours.at(-1).closePath();
+  function buildGeo(g){
+    const contours = [];
+    for(const c of g.cmds){
+      if(c[0]==='M') contours.push(new THREE.Path()), contours.at(-1).moveTo(c[1],c[2]);
+      else if(c[0]==='L') contours.at(-1).lineTo(c[1],c[2]);
+      else if(c[0]==='Q') contours.at(-1).quadraticCurveTo(c[1],c[2],c[3],c[4]);
+      else if(c[0]==='Z') contours.at(-1).closePath();
+    }
+    const shapes = g.groups.map(gr => {
+      const s = new THREE.Shape(contours[gr.outer].getPoints(22));
+      s.holes = gr.holes.map(h => contours[h]);
+      return s;
+    });
+    let geo = new THREE.ExtrudeGeometry(shapes, {
+      depth:110, bevelEnabled:true, bevelThickness:30, bevelSize:24,
+      bevelSegments:5, curveSegments:22
+    });
+    geo = weld(geo, 0.5);
+    geo.computeVertexNormals();
+    geo.center();
+    return geo;
   }
-  const outer = new THREE.Shape(contours[0].getPoints(22));
-  outer.holes = contours.slice(1);
-  const shapes = [outer];
-
-  let geo = new THREE.ExtrudeGeometry(shapes, {
-    depth:110, bevelEnabled:true, bevelThickness:30, bevelSize:24,
-    bevelSegments:5, curveSegments:22
-  });
-  geo = weld(geo, 0.5);
-  geo.computeVertexNormals();
-  geo.center();
 
   /* Welding by position so the wobble reads as one continuous skin. */
   function weld(g, tol){
@@ -523,9 +532,9 @@ function boot(){
   sky.addColorStop(1,'#DDD8D0');
   g2.fillStyle = sky; g2.fillRect(0,0,1024,512);
   const streaks = [
-    [40,'#F20587',70,.65],[160,'#0A47F5',44,.65],[250,'#FFE04D',22,.35],[340,'#A928E8',84,.6],
-    [470,'#F20587',38,.6],[560,'#0A47F5',80,.65],[680,'#FFE04D',24,.35],[760,'#A928E8',48,.6],
-    [860,'#F20587',66,.6],[965,'#0A47F5',40,.65]
+    [20,'#F20587',110,.9],[150,'#0A47F5',80,.9],[250,'#FFE04D',40,.6],[320,'#A928E8',130,.85],
+    [460,'#F20587',70,.85],[545,'#0A47F5',120,.9],[675,'#FFE04D',44,.6],[740,'#A928E8',86,.85],
+    [840,'#F20587',100,.85],[950,'#0A47F5',70,.9]
   ];
   for(const [x,c,w,a] of streaks){
     const s = g2.createLinearGradient(x,0,x+w,0);
@@ -542,9 +551,9 @@ function boot(){
 
   const uTime = {value: 1.7};
   const mat = new THREE.MeshPhysicalMaterial({
-    color:0xffffff, metalness:1, roughness:.07,
-    iridescence:1, iridescenceIOR:1.6, iridescenceThicknessRange:[140,620],
-    envMapIntensity:1.3
+    color:0xffffff, metalness:1, roughness:.045,
+    iridescence:1, iridescenceIOR:1.7, iridescenceThicknessRange:[90,860],
+    envMapIntensity:1.65
   });
   const NOISE = `
   vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
@@ -581,8 +590,16 @@ function boot(){
       transformed.y -= melt*melt * (12.0 + 10.0*sin(uTime*0.7 + position.x*0.004));`);
   };
 
-  const letter = new THREE.Mesh(geo, mat);
-  scene.add(letter);
+  /* The pair, intertwined in depth: the m ahead, the b threaded behind
+     and through it, counter-swaying so the ribbons keep crossing. */
+  const pair = new THREE.Group();
+  const mMesh = new THREE.Mesh(buildGeo(GLYPHS.m), mat);
+  mMesh.position.set(-330, 130, 70);
+  const bMesh = new THREE.Mesh(buildGeo(GLYPHS.b), mat);
+  bMesh.scale.setScalar(0.94);
+  bMesh.position.set(470, -250, -110);
+  pair.add(mMesh, bMesh);
+  scene.add(pair);
 
   /* Drips: chrome beads that swell at the feet, then fall. Their own
      calmer material: at bead scale the thin-film banding reads as
@@ -593,32 +610,33 @@ function boot(){
     envMapIntensity:1.2
   });
   const dripGeo = new THREE.SphereGeometry(52, 24, 24);
-  const FLOOR = -790;
+  /* Each drip hangs from its own letter's lower edge. */
   const DRIPS = [
-    {x:-500, z:60,  period:7.2, phase:0.0},
-    {x:-120, z:130, period:5.8, phase:2.9},
-    {x: 300, z:40,  period:8.4, phase:4.6},
-    {x: 700, z:110, period:6.6, phase:1.4}
-  ].map(d => { const m = new THREE.Mesh(dripGeo, dripMat); scene.add(m); return {...d, mesh:m}; });
+    {x:-830, z:200, floor:-640, period:7.2, phase:0.0},
+    {x:-450, z:260, floor:-645, period:5.8, phase:2.9},
+    {x:  60, z:180, floor:-650, period:8.4, phase:4.6},
+    {x: 620, z:-60, floor:-930, period:6.6, phase:1.4},
+    {x: 980, z:-30, floor:-925, period:7.8, phase:3.7}
+  ].map(d => { const m = new THREE.Mesh(dripGeo, dripMat); pair.add(m); return {...d, mesh:m}; });
   function placeDrips(t){
     for(const d of DRIPS){
       const p = ((t/d.period + d.phase) % 1 + 1) % 1;
       const m = d.mesh;
       if(p < 0.45){
         const s = p/0.45;
-        m.position.set(d.x, FLOOR + 30 - s*70, d.z);
+        m.position.set(d.x, d.floor + 30 - s*70, d.z);
         m.scale.set(.45+.3*s, .45+1.25*s, .45+.3*s);
       } else {
         const q = (p-0.45)/0.55;
-        m.position.set(d.x, FLOOR - 40 - q*q*1500, d.z);
+        m.position.set(d.x, d.floor - 40 - q*q*1500, d.z);
         m.scale.set(.75-.3*q, 1.7+.5*q, .75-.3*q);
       }
     }
   }
 
-  const camera = new THREE.PerspectiveCamera(30, 1, 10, 14000);
-  camera.position.set(0, -300, 4600);
-  camera.lookAt(0, -300, 0);
+  const camera = new THREE.PerspectiveCamera(30, 1, 10, 16000);
+  camera.position.set(-140, -10, 5300);
+  camera.lookAt(-140, -10, 0);
 
   function resize(){
     const w = host.clientWidth, h = host.clientHeight;
@@ -632,8 +650,10 @@ function boot(){
 
   function pose(t){
     uTime.value = t;
-    letter.rotation.y = -0.14 + 0.30*Math.sin(t*0.22);
-    letter.rotation.x =  0.02 + 0.05*Math.sin(t*0.17);
+    pair.rotation.y = -0.10 + 0.24*Math.sin(t*0.22);
+    pair.rotation.x =  0.02 + 0.04*Math.sin(t*0.17);
+    mMesh.rotation.y = -0.05 + 0.10*Math.sin(t*0.19 + 1.1);
+    bMesh.rotation.y =  0.12 - 0.11*Math.sin(t*0.16);
     placeDrips(t);
   }
 
