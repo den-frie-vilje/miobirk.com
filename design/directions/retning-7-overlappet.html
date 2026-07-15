@@ -110,15 +110,28 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 @keyframes fesseSlow{to{transform:translate3d(0,18rem,0)}}
 @keyframes fesseMid{to{transform:translate3d(0,44rem,0)}}
 @media (prefers-reduced-motion: reduce){.fesse-layer{animation:none!important}}
-/* The hero's own pair: two partially overlapping outline-only glyphs at
-   medium size, full gradient, no solid layer. */
+/* The hero's object: one Typefesse m. With WebGL it is a three.js
+   liquid-chrome body with an iridescent holographic sheen, wobbling and
+   dripping like mercury; without JavaScript the outline-only gradient
+   glyph stands in at the same spot. */
 .hero{position:relative;overflow:hidden}
 .hero .duo{position:absolute;line-height:1;pointer-events:none;user-select:none;
   background:linear-gradient(170deg,var(--rosa) 0%,var(--lilla) 48%,var(--blaa) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .duo1{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(15rem,32vw,27rem);top:-1rem;right:7rem}
-.hero .duo2{font-family:'Typefesse Claire-Obscure',sans-serif;font-size:clamp(12rem,26vw,22rem);top:7rem;right:-1rem}
-@media (max-width:56rem){.hero .duo1{right:-6rem}.hero .duo2{display:none}}
+.hero.webgl .duo1{visibility:hidden}
+.merc{position:absolute;top:-3rem;right:clamp(.5rem,4vw,5rem);
+  width:clamp(18rem,38vw,33rem);height:clamp(21rem,44vw,38rem);
+  pointer-events:none;user-select:none}
+.merc canvas{display:block;width:100%;height:100%}
+@media (max-width:56rem){
+  /* Narrow viewports: the object gets its own band above the text
+     instead of sitting behind it; ink stays legible. (main .hero so it
+     outweighs the later .hero padding shorthand.) */
+  main .hero{padding-top:17rem}
+  .hero .duo1{font-size:13rem;top:-2rem;right:-3rem}
+  .merc{top:-3.5rem;right:-3.5rem;width:17rem;height:19rem}
+}
 header,main,footer{position:relative;z-index:1}
 
 /* Masthead */
@@ -255,7 +268,7 @@ footer .flinks{display:flex;gap:1.5rem}
 <main id="indhold">
   <section class="hero">
     <span class="duo duo1" aria-hidden="true">m</span>
-    <span class="duo duo2" aria-hidden="true">b</span>
+    <div class="merc" aria-hidden="true"><canvas id="merc-canvas"></canvas></div>
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
       <h1>Ikke <span class="u">bare</span> køn</h1>
@@ -426,6 +439,210 @@ footer .flinks{display:flex;gap:1.5rem}
   }
   window.requestAnimationFrame(tick);
 })();
+</script>
+
+<!-- The hero m as liquid chrome. Typefesse Pleine's m, extracted to path
+     data with fontTools, extruded in three.js and shaded as mercury:
+     full-metal MeshPhysicalMaterial with thin-film iridescence over a
+     procedural environment built from the site's own triad and yellow.
+     A slow noise field wobbles the body; drips form at the feet and
+     fall. Static under prefers-reduced-motion; without JavaScript or
+     WebGL the gradient outline glyph remains. -->
+<script type="importmap">{"imports":{"three":"../assets/vendor/three.module.min.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('merc-canvas');
+const host = canvas && canvas.parentElement;
+const hero = document.querySelector('.hero');
+if (canvas) boot();
+
+function boot(){
+  let renderer;
+  try{
+    renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  }catch(e){ return; }
+  if(!renderer.getContext()) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Typefesse Pleine "m", font units (upm 2048), y-up, one contour. */
+  const CMDS = [["M",1272,1090],["L",1251,1049],["Q",1172,1081,1083,1081],["Q",969,1081,903,1028],["Q",943,953,1016.5,810.5],["Q",1090,668,1120,610],["L",1083,590],["L",711,1307],["Q",679,1368,623,1406],["Q",567,1444,508,1444],["Q",438,1444,390.5,1389.5],["Q",343,1335,324,1255],["Q",239,902,152,389],["Q",145,342,145,311],["Q",145,189,213,109],["Q",255,57,322.5,28.5],["Q",390,0,469,0],["Q",594,0,721,104],["Q",707,129,700,147],["L",573,80],["L",557,109],["L",684,186],["L",670,229],["L",532,164],["L",516,193],["L",659,270],["L",647,311],["L",496,250],["L",496,283],["Q",496,329,459,364],["Q",422,399,373,399],["Q",348,399,324,387],["L",307,426],["Q",335,440,373,440],["Q",430,440,476,405],["Q",522,370,537,313],["L",637,352],["Q",610,450,575,587.5],["Q",540,725,518.5,812.5],["Q",497,900,496,901],["L",539,911],["Q",539,908,568,792],["Q",597,676,638.5,514.5],["Q",680,353,707,260],["Q",748,112,816.5,49],["Q",885,-14,1004,-14],["Q",1230,-14,1315,315],["Q",1332,385,1348,455.5],["Q",1364,526,1371,562],["Q",1378,598,1378,600],["L",1421,592],["Q",1420,591,1413,554.5],["Q",1406,518,1390,446],["Q",1374,374,1356,305],["Q",1313,133,1229,43],["L",1595,43],["Q",1659,43,1702,86.5],["Q",1745,130,1745,197],["Q",1745,239,1731,285],["L",1481,1108],["Q",1439,1244,1346,1317.5],["Q",1253,1391,1133,1391],["Q",1072,1391,1024,1377],["Q",976,1363,938,1334],["Q",900,1305,873.5,1275.5],["Q",847,1246,815,1200],["L",883,1069],["Q",963,1126,1085,1126],["Q",1188,1126,1272,1090],["Z"]];
+
+  const sp = new THREE.ShapePath();
+  for(const c of CMDS){
+    if(c[0]==='M') sp.moveTo(c[1],c[2]);
+    else if(c[0]==='L') sp.lineTo(c[1],c[2]);
+    else if(c[0]==='Q') sp.quadraticCurveTo(c[1],c[2],c[3],c[4]);
+  }
+  const shapes = sp.toShapes(true);
+
+  let geo = new THREE.ExtrudeGeometry(shapes, {
+    depth:280, bevelEnabled:true, bevelThickness:64, bevelSize:50,
+    bevelSegments:6, curveSegments:22
+  });
+  geo = weld(geo, 0.5);
+  geo.computeVertexNormals();
+  geo.center();
+
+  /* Welding by position so the wobble reads as one continuous skin. */
+  function weld(g, tol){
+    const p = g.attributes.position, map = new Map(), remap = new Array(p.count);
+    const pos = [];
+    for(let i=0;i<p.count;i++){
+      const k = Math.round(p.getX(i)/tol)+','+Math.round(p.getY(i)/tol)+','+Math.round(p.getZ(i)/tol);
+      let j = map.get(k);
+      if(j===undefined){ j = pos.length/3; map.set(k,j); pos.push(p.getX(i),p.getY(i),p.getZ(i)); }
+      remap[i]=j;
+    }
+    const idx = [];
+    if(g.index){ for(let i=0;i<g.index.count;i++) idx.push(remap[g.index.getX(i)]); }
+    else { for(let i=0;i<p.count;i++) idx.push(remap[i]); }
+    const out = new THREE.BufferGeometry();
+    out.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
+    out.setIndex(idx);
+    return out;
+  }
+
+  /* Holographic environment from the site's own colours: paper above,
+     night below, neon streaks of the triad and the action yellow. */
+  const ec = document.createElement('canvas'); ec.width=1024; ec.height=512;
+  const g2 = ec.getContext('2d');
+  const sky = g2.createLinearGradient(0,0,0,512);
+  sky.addColorStop(0,'#FCFAF4'); sky.addColorStop(.48,'#C9C4BC');
+  sky.addColorStop(.56,'#3B353E'); sky.addColorStop(.72,'#8E8890');
+  sky.addColorStop(1,'#DDD8D0');
+  g2.fillStyle = sky; g2.fillRect(0,0,1024,512);
+  const streaks = [
+    [40,'#F20587',70,.65],[160,'#0A47F5',44,.65],[250,'#FFE04D',22,.35],[340,'#A928E8',84,.6],
+    [470,'#F20587',38,.6],[560,'#0A47F5',80,.65],[680,'#FFE04D',24,.35],[760,'#A928E8',48,.6],
+    [860,'#F20587',66,.6],[965,'#0A47F5',40,.65]
+  ];
+  for(const [x,c,w,a] of streaks){
+    const s = g2.createLinearGradient(x,0,x+w,0);
+    s.addColorStop(0,'rgba(0,0,0,0)'); s.addColorStop(.5,c); s.addColorStop(1,'rgba(0,0,0,0)');
+    g2.fillStyle = s; g2.globalAlpha = a; g2.fillRect(x,0,w,512); g2.globalAlpha = 1;
+  }
+  const envTex = new THREE.CanvasTexture(ec);
+  envTex.mapping = THREE.EquirectangularReflectionMapping;
+  envTex.colorSpace = THREE.SRGBColorSpace;
+
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromEquirectangular(envTex).texture;
+
+  const uTime = {value: 1.7};
+  const mat = new THREE.MeshPhysicalMaterial({
+    color:0xffffff, metalness:1, roughness:.07,
+    iridescence:1, iridescenceIOR:1.6, iridescenceThicknessRange:[140,620],
+    envMapIntensity:1.3
+  });
+  const NOISE = `
+  vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+  vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
+  vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}
+  vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
+  float snoise(vec3 v){
+    const vec2 C=vec2(1.0/6.0,1.0/3.0); const vec4 D=vec4(0.0,0.5,1.0,2.0);
+    vec3 i=floor(v+dot(v,C.yyy)); vec3 x0=v-i+dot(i,C.xxx);
+    vec3 g=step(x0.yzx,x0.xyz); vec3 l=1.0-g; vec3 i1=min(g.xyz,l.zxy); vec3 i2=max(g.xyz,l.zxy);
+    vec3 x1=x0-i1+C.xxx; vec3 x2=x0-i2+C.yyy; vec3 x3=x0-D.yyy;
+    i=mod289(i);
+    vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
+    float n_=0.142857142857; vec3 ns=n_*D.wyz-D.xzx;
+    vec4 j=p-49.0*floor(p*ns.z*ns.z);
+    vec4 x_=floor(j*ns.z); vec4 y_=floor(j-7.0*x_);
+    vec4 x=x_*ns.x+ns.yyyy; vec4 y=y_*ns.x+ns.yyyy; vec4 h=1.0-abs(x)-abs(y);
+    vec4 b0=vec4(x.xy,y.xy); vec4 b1=vec4(x.zw,y.zw);
+    vec4 s0=floor(b0)*2.0+1.0; vec4 s1=floor(b1)*2.0+1.0; vec4 sh=-step(h,vec4(0.0));
+    vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy; vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+    vec3 p0=vec3(a0.xy,h.x); vec3 p1=vec3(a0.zw,h.y); vec3 p2=vec3(a1.xy,h.z); vec3 p3=vec3(a1.zw,h.w);
+    vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
+    p0*=norm.x; p1*=norm.y; p2*=norm.z; p3*=norm.w;
+    vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0); m=m*m;
+    return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
+  }`;
+  mat.onBeforeCompile = (sh)=>{
+    sh.uniforms.uTime = uTime;
+    sh.vertexShader = 'uniform float uTime;\n' + NOISE + '\n' +
+      sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
+      float melt = smoothstep(300.0, -760.0, position.y);
+      float n = snoise(vec3(position.x*0.0026, position.y*0.0026, uTime*0.32));
+      transformed += objectNormal * n * (15.0 + 38.0*melt);
+      transformed.y -= melt*melt * (16.0 + 14.0*sin(uTime*0.7 + position.x*0.004));`);
+  };
+
+  const letter = new THREE.Mesh(geo, mat);
+  scene.add(letter);
+
+  /* Drips: chrome beads that swell at the feet, then fall. Their own
+     calmer material: at bead scale the thin-film banding reads as
+     stripes rather than sheen. */
+  const dripMat = new THREE.MeshPhysicalMaterial({
+    color:0xffffff, metalness:1, roughness:.1,
+    iridescence:.5, iridescenceIOR:1.4, iridescenceThicknessRange:[200,420],
+    envMapIntensity:1.2
+  });
+  const dripGeo = new THREE.SphereGeometry(52, 24, 24);
+  const FLOOR = -730;
+  const DRIPS = [
+    {x:-500, z:60,  period:7.2, phase:0.0},
+    {x:-120, z:130, period:5.8, phase:2.9},
+    {x: 300, z:40,  period:8.4, phase:4.6},
+    {x: 700, z:110, period:6.6, phase:1.4}
+  ].map(d => { const m = new THREE.Mesh(dripGeo, dripMat); scene.add(m); return {...d, mesh:m}; });
+  function placeDrips(t){
+    for(const d of DRIPS){
+      const p = ((t/d.period + d.phase) % 1 + 1) % 1;
+      const m = d.mesh;
+      if(p < 0.45){
+        const s = p/0.45;
+        m.position.set(d.x, FLOOR + 30 - s*70, d.z);
+        m.scale.set(.45+.3*s, .45+1.25*s, .45+.3*s);
+      } else {
+        const q = (p-0.45)/0.55;
+        m.position.set(d.x, FLOOR - 40 - q*q*1500, d.z);
+        m.scale.set(.75-.3*q, 1.7+.5*q, .75-.3*q);
+      }
+    }
+  }
+
+  const camera = new THREE.PerspectiveCamera(30, 1, 10, 14000);
+  camera.position.set(0, -300, 4600);
+  camera.lookAt(0, -300, 0);
+
+  function resize(){
+    const w = host.clientWidth, h = host.clientHeight;
+    if(!w || !h) return;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+  }
+  resize();
+  new ResizeObserver(resize).observe(host);
+
+  function pose(t){
+    uTime.value = t;
+    letter.rotation.y = -0.14 + 0.30*Math.sin(t*0.22);
+    letter.rotation.x =  0.02 + 0.05*Math.sin(t*0.17);
+    placeDrips(t);
+  }
+
+  pose(1.7);
+  renderer.render(scene, camera);
+  hero.classList.add('webgl');
+  if(reduce) return;
+
+  let visible = true;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(host);
+  const t0 = performance.now();
+  (function frame(){
+    requestAnimationFrame(frame);
+    if(!visible) return;
+    pose(1.7 + (performance.now()-t0)/1000);
+    renderer.render(scene, camera);
+  })();
+}
 </script>
 </body>
 </html>

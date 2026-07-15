@@ -201,3 +201,35 @@ JavaScript and under prefers-reduced-motion. Separate from the
 parallax, the hero carries its own pair: two partially overlapping
 outline-only Claire-Obscure glyphs at medium size (16 to 19rem) in the
 full triad gradient, with no solid layer.
+
+## The hero m in liquid chrome (Ole, 2026-07-15)
+
+Ole dropped the b from the hero pair and asked for the m as a
+three-dimensional shape in the liquid, mercurial drip register of
+contemporary queer club graphics, with a holographic sheen. The
+implementation renders Typefesse Pleine's m (the solid cut; the
+outline cuts cannot be extruded) as a three.js object:
+
+- The glyph contour is extracted from the woff2 with fontTools and
+  inlined as path commands; `THREE.ShapePath` rebuilds it and
+  `ExtrudeGeometry` gives it depth with a wide bevel. Vertices are
+  welded by position so the surface reads as one skin.
+- The mercury is `MeshPhysicalMaterial` at full metalness, low
+  roughness, with the thin-film `iridescence` parameters carrying the
+  holographic sheen. The environment map is procedural: a canvas of
+  silvery gradient bands (a bright chrome horizon) with soft vertical
+  streaks of the triad and a restrained trace of the action yellow, so
+  the reflections are literally the site's own palette.
+- Motion: a simplex-noise field displaces vertices along their
+  normals, biased strongly toward the letter's feet so the lower edges
+  slump and sway (the melt); four chrome beads swell at the feet and
+  fall as drips on offset cycles. The whole letter sways a few degrees.
+  Static single frame under prefers-reduced-motion; paused offscreen
+  via IntersectionObserver; pixel ratio capped at 2.
+- Fallbacks: without JavaScript or WebGL the previous outline-only
+  gradient m (Claire-Obscure) remains in the same position. On narrow
+  viewports the object gets a reserved band above the text rather than
+  sitting behind it, so ink never crosses the chrome.
+- three.js r178 is vendored (MIT, `design/assets/vendor/`); modules
+  need HTTP, so the screenshot runner now serves the design directory
+  over localhost instead of file://.
