@@ -206,13 +206,17 @@ full triad gradient, with no solid layer.
 
 Ole dropped the b from the hero pair and asked for the m as a
 three-dimensional shape in the liquid, mercurial drip register of
-contemporary queer club graphics, with a holographic sheen. The
-implementation renders Typefesse Pleine's m (the solid cut; the
-outline cuts cannot be extruded) as a three.js object:
+contemporary queer club graphics, with a holographic sheen. A first
+pass extruded Typefesse Pleine's solid m; Ole judged it a molten plate
+and asked for the outline instead, so the shipped object is Typefesse
+Claire's m: the stroke band between the glyph's outer envelope and the
+solid m inside it, extruded shallow with a rounded bevel, which reads
+as poured metal tracing the letter rather than a slab of it.
 
-- The glyph contour is extracted from the woff2 with fontTools and
-  inlined as path commands; `THREE.ShapePath` rebuilds it and
-  `ExtrudeGeometry` gives it depth with a wide bevel. Vertices are
+- The glyph contours are extracted from the woff2 with fontTools and
+  inlined as path commands. The solid inner contour is subtracted as a
+  hole explicitly (three.js winding detection guesses wrong on this
+  glyph); `ExtrudeGeometry` then gives the band depth. Vertices are
   welded by position so the surface reads as one skin.
 - The mercury is `MeshPhysicalMaterial` at full metalness, low
   roughness, with the thin-film `iridescence` parameters carrying the
@@ -221,9 +225,10 @@ outline cuts cannot be extruded) as a three.js object:
   streaks of the triad and a restrained trace of the action yellow, so
   the reflections are literally the site's own palette.
 - Motion: a simplex-noise field displaces vertices along their
-  normals, biased strongly toward the letter's feet so the lower edges
-  slump and sway (the melt); four chrome beads swell at the feet and
-  fall as drips on offset cycles. The whole letter sways a few degrees.
+  normals, biased toward the letter's feet so the lower runs of the
+  ribbon slump and sway (gentler than the solid pass; thin bands
+  distort fast); four chrome beads swell at the feet and fall as drips
+  on offset cycles. The whole letter sways a few degrees.
   Static single frame under prefers-reduced-motion; paused offscreen
   via IntersectionObserver; pixel ratio capped at 2.
 - Fallbacks: without JavaScript or WebGL the previous outline-only
