@@ -270,17 +270,26 @@ the drawing runs everywhere, including surfaces that strip scripts.
 Static final state under prefers-reduced-motion.
 
 - **The hero title is a tag.** "Ikke bare køn" hand-lettered as a
-  quick thick-marker tag (stroke 13 in a 1000-unit viewBox, rotated
-  -2deg), drawn in roughly 1.7 seconds. The emphasis that used to be
-  the purple mark under "bare" is now a change of style inside the
-  lettering itself: the script hand switches to pressed capitals
-  (stroke 15) for BARE and back. Nothing is added, the writing just
-  leans on the word. The h1 keeps a visually-hidden text node, so
-  semantics and search read "Ikke bare køn" as before.
+  quick thick-marker tag (stroke 13 in a 990-unit viewBox), drawn in
+  roughly 1.8 seconds. Ole judged the first pass too cute, so the
+  hand was redrawn against the handstyle literature (consistent hard
+  lean, sharp points, long connected flourishes, rhythm over
+  neatness): the whole tag now leans through rotate(-2deg)
+  skewX(-8deg), the capital I carries slashed serifs, the k legs and
+  the R kick end in blade flicks that overshoot the baseline, the ø
+  slash runs far beyond the bowl, and the n exits in a long whip.
+  The emphasis that used to be the purple mark under "bare" is a
+  change of style inside the lettering itself: the script hand
+  switches to pressed capitals (stroke 15) for BARE and back.
+  Nothing is added, the writing just leans on the word. The h1 keeps
+  a visually-hidden text node, so semantics and search read "Ikke
+  bare køn" as before.
 - **No wordmark in the masthead.** In its place a very simple tiger
-  (her middle name) in the same pen: head, ears, eyes, nose, mouth,
-  whiskers, forehead and cheek stripes, seventeen quick strokes. It
-  is the home link, aria-labelled, and draws itself in about a
+  (her middle name) in the same pen. The first pass read as a cat:
+  pointed ears and whiskers are cat signals. The redraw uses the
+  tiger's own cues instead: small round ears, three forehead
+  stripes, two bold stripes entering from each side, slanted eyes.
+  Sixteen strokes, the home link, aria-labelled, drawn in about a
   second.
 - A first pass drew "Mio Birk" as a signature tag in the masthead;
   Ole redirected the tag to the hero text and replaced the masthead

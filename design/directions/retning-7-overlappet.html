@@ -117,7 +117,7 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
    like a fast hand. The emphasis on "bare" is a change of style: the
    script hand switches to pressed capitals, nothing is added. */
 .hero{position:relative;overflow:hidden}
-.tagline{display:block;width:min(46rem,94%);height:auto;transform:rotate(-2deg);margin-left:-.5rem}
+.tagline{display:block;width:min(46rem,94%);height:auto;transform:rotate(-2deg) skewX(-8deg);margin-left:-.5rem}
 .tagline path{fill:none;stroke:var(--ink);stroke-width:13;stroke-linecap:round;stroke-linejoin:round;
   stroke-dasharray:1;stroke-dashoffset:1;
   animation:tagdraw var(--d,.2s) linear var(--t,0s) forwards}
@@ -248,24 +248,23 @@ footer .flinks{display:flex;gap:1.5rem}
   <div class="wrap">
     <div class="bar">
       <a class="brand" href="#" aria-label="Mio Birk, forside">
-        <svg class="tiger" viewBox="0 0 140 120" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-          <path pathLength="1" style="--d:.2s;--t:0s" d="M 44 30 C 30 40 24 58 28 74 C 33 92 52 102 70 102 C 88 102 107 92 112 74 C 116 58 110 40 96 30"/>
-          <path pathLength="1" style="--d:.08s;--t:.22s" d="M 40 36 C 38 26 40 16 48 12 C 54 20 56 26 54 32"/>
-          <path pathLength="1" style="--d:.08s;--t:.31s" d="M 100 36 C 102 26 100 16 92 12 C 86 20 84 26 86 32"/>
-          <path pathLength="1" style="--d:.04s;--t:.4s" d="M 54 56 L 54 62"/>
-          <path pathLength="1" style="--d:.04s;--t:.45s" d="M 86 56 L 86 62"/>
-          <path pathLength="1" style="--d:.06s;--t:.5s" d="M 65 70 L 75 70 L 70 77 L 65 70"/>
-          <path pathLength="1" style="--d:.05s;--t:.57s" d="M 70 77 C 70 84 63 87 58 84"/>
-          <path pathLength="1" style="--d:.05s;--t:.63s" d="M 70 77 C 70 84 77 87 82 84"/>
-          <path pathLength="1" style="--d:.05s;--t:.69s" d="M 18 64 C 28 65 37 67 43 70"/>
-          <path pathLength="1" style="--d:.05s;--t:.75s" d="M 18 78 C 28 77 37 76 43 76"/>
-          <path pathLength="1" style="--d:.05s;--t:.81s" d="M 122 64 C 112 65 103 67 97 70"/>
-          <path pathLength="1" style="--d:.05s;--t:.87s" d="M 122 78 C 112 77 103 76 97 76"/>
-          <path pathLength="1" style="--d:.04s;--t:.93s" d="M 61 32 C 62 38 62 43 61 47"/>
-          <path pathLength="1" style="--d:.04s;--t:.98s" d="M 70 30 C 70 36 70 42 70 47"/>
-          <path pathLength="1" style="--d:.04s;--t:1.03s" d="M 79 32 C 78 38 78 43 79 47"/>
-          <path pathLength="1" style="--d:.04s;--t:1.08s" d="M 33 60 C 39 61 43 63 47 65"/>
-          <path pathLength="1" style="--d:.04s;--t:1.13s" d="M 107 60 C 101 61 97 63 93 65"/>
+        <svg class="tiger" viewBox="0 0 150 130" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+          <path pathLength="1" style="--d:.18s;--t:0s" d="M 75 16 C 50 16 30 36 28 60 C 26 90 48 112 75 112 C 102 112 124 90 122 60 C 120 36 100 16 75 16"/>
+          <path pathLength="1" style="--d:.07s;--t:.2s" d="M 40 34 C 32 24 36 12 48 12 C 56 12 60 18 60 24"/>
+          <path pathLength="1" style="--d:.07s;--t:.28s" d="M 110 34 C 118 24 114 12 102 12 C 94 12 90 18 90 24"/>
+          <path pathLength="1" style="--d:.03s;--t:.36s" d="M 56 60 L 60 63"/>
+          <path pathLength="1" style="--d:.03s;--t:.4s" d="M 94 60 L 90 63"/>
+          <path pathLength="1" style="--d:.05s;--t:.44s" d="M 68 78 L 82 78 L 75 86 L 68 78"/>
+          <path pathLength="1" style="--d:.04s;--t:.5s" d="M 75 86 L 75 92"/>
+          <path pathLength="1" style="--d:.04s;--t:.55s" d="M 75 92 C 75 97 67 99 62 96"/>
+          <path pathLength="1" style="--d:.04s;--t:.6s" d="M 75 92 C 75 97 83 99 88 96"/>
+          <path pathLength="1" style="--d:.04s;--t:.65s" d="M 75 20 L 75 38"/>
+          <path pathLength="1" style="--d:.04s;--t:.7s" d="M 65 22 L 67 34"/>
+          <path pathLength="1" style="--d:.04s;--t:.75s" d="M 85 22 L 83 34"/>
+          <path pathLength="1" style="--d:.05s;--t:.8s" d="M 30 52 L 48 56"/>
+          <path pathLength="1" style="--d:.05s;--t:.86s" d="M 28 68 L 46 68"/>
+          <path pathLength="1" style="--d:.05s;--t:.92s" d="M 120 52 L 102 56"/>
+          <path pathLength="1" style="--d:.05s;--t:.98s" d="M 122 68 L 104 68"/>
         </svg>
       </a>
       <nav aria-label="Hovedmenu">
@@ -284,34 +283,36 @@ footer .flinks{display:flex;gap:1.5rem}
   <section class="hero">
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
-      <h1><span class="sr-only">Ikke bare køn</span><svg class="tagline" viewBox="0 0 1000 320" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <h1><span class="sr-only">Ikke bare køn</span><svg class="tagline" viewBox="0 0 990 300" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
         <g>
-          <path pathLength="1" style="--d:.12s;--t:0s" d="M 40 118 C 50 110 60 106 66 110 C 60 146 52 192 48 230 C 47 238 54 240 60 234"/>
-          <path pathLength="1" style="--d:.06s;--t:.13s" d="M 104 110 C 97 150 92 196 90 230"/>
-          <path pathLength="1" style="--d:.07s;--t:.2s" d="M 126 160 C 116 172 106 181 96 187 C 104 193 114 212 120 228"/>
-          <path pathLength="1" style="--d:.06s;--t:.28s" d="M 168 106 C 161 147 156 196 154 230"/>
-          <path pathLength="1" style="--d:.07s;--t:.35s" d="M 190 156 C 180 168 170 177 160 183 C 168 189 178 208 184 224"/>
-          <path pathLength="1" style="--d:.09s;--t:.43s" d="M 206 192 C 220 186 228 174 222 165 C 216 157 204 163 200 178 C 195 196 202 220 216 224 C 227 227 238 219 244 208"/>
+          <path pathLength="1" style="--d:.04s;--t:0s" d="M 56 90 L 98 82"/>
+          <path pathLength="1" style="--d:.08s;--t:.05s" d="M 78 86 C 68 138 60 196 56 238"/>
+          <path pathLength="1" style="--d:.04s;--t:.14s" d="M 34 246 L 78 238"/>
+          <path pathLength="1" style="--d:.06s;--t:.19s" d="M 120 84 C 114 136 108 196 104 240"/>
+          <path pathLength="1" style="--d:.07s;--t:.26s" d="M 158 148 C 140 166 124 180 112 188 C 124 192 142 216 152 244 C 154 250 158 252 162 248"/>
+          <path pathLength="1" style="--d:.06s;--t:.34s" d="M 178 78 C 172 132 166 194 162 238"/>
+          <path pathLength="1" style="--d:.07s;--t:.41s" d="M 214 142 C 196 162 182 176 170 184 C 182 190 198 214 208 242"/>
+          <path pathLength="1" style="--d:.09s;--t:.49s" d="M 226 176 C 244 168 252 156 244 150 C 234 144 222 156 220 176 C 218 200 228 222 246 218 C 256 214 268 202 272 188"/>
         </g>
-        <g class="em">
-          <path pathLength="1" style="--d:.07s;--t:.55s" d="M 300 95 C 293 140 288 192 286 234"/>
-          <path pathLength="1" style="--d:.12s;--t:.63s" d="M 300 98 C 330 88 350 102 344 124 C 339 141 318 148 302 147 C 324 148 348 156 344 182 C 340 208 314 220 292 212"/>
-          <path pathLength="1" style="--d:.09s;--t:.76s" d="M 372 234 C 381 190 393 128 404 96 C 413 128 424 192 431 234"/>
-          <path pathLength="1" style="--d:.04s;--t:.86s" d="M 384 182 C 398 178 414 178 424 182"/>
-          <path pathLength="1" style="--d:.06s;--t:.91s" d="M 462 96 C 457 141 453 192 452 234"/>
-          <path pathLength="1" style="--d:.09s;--t:.98s" d="M 462 100 C 487 90 504 105 498 126 C 493 144 474 152 459 151 C 472 158 488 198 498 232"/>
-          <path pathLength="1" style="--d:.06s;--t:1.08s" d="M 564 98 C 551 141 545 192 543 232"/>
-          <path pathLength="1" style="--d:.03s;--t:1.15s" d="M 564 100 C 580 94 595 94 605 98"/>
-          <path pathLength="1" style="--d:.03s;--t:1.19s" d="M 555 164 C 567 160 579 160 587 163"/>
-          <path pathLength="1" style="--d:.03s;--t:1.23s" d="M 543 230 C 559 234 578 234 590 229"/>
+        <g class="em" transform="translate(34 0)">
+          <path pathLength="1" style="--d:.07s;--t:.61s" d="M 306 70 C 300 128 294 192 292 246"/>
+          <path pathLength="1" style="--d:.12s;--t:.69s" d="M 306 74 C 338 64 358 78 350 100 C 344 116 322 124 306 124 C 328 126 350 136 346 160 C 341 188 314 198 294 190"/>
+          <path pathLength="1" style="--d:.09s;--t:.82s" d="M 380 246 L 416 64 L 448 240 C 449 246 454 246 458 240"/>
+          <path pathLength="1" style="--d:.04s;--t:.92s" d="M 392 190 L 446 180"/>
+          <path pathLength="1" style="--d:.06s;--t:.97s" d="M 480 66 C 476 128 472 196 470 244"/>
+          <path pathLength="1" style="--d:.09s;--t:1.04s" d="M 480 70 L 524 64 C 538 64 542 78 534 94 C 528 106 508 114 488 116 C 504 130 524 190 538 240 C 540 247 546 247 550 240"/>
+          <path pathLength="1" style="--d:.06s;--t:1.14s" d="M 610 70 C 596 128 588 196 584 242"/>
+          <path pathLength="1" style="--d:.03s;--t:1.21s" d="M 610 72 L 650 62"/>
+          <path pathLength="1" style="--d:.03s;--t:1.25s" d="M 596 152 L 634 144"/>
+          <path pathLength="1" style="--d:.03s;--t:1.29s" d="M 584 240 L 628 236"/>
         </g>
-        <g>
-          <path pathLength="1" style="--d:.06s;--t:1.3s" d="M 668 106 C 661 148 656 198 654 230"/>
-          <path pathLength="1" style="--d:.07s;--t:1.37s" d="M 692 156 C 682 168 672 177 662 183 C 670 189 680 208 686 226"/>
-          <path pathLength="1" style="--d:.08s;--t:1.45s" d="M 740 172 C 733 160 718 163 713 178 C 708 194 717 213 731 211 C 745 209 752 190 746 177 C 743 170 741 168 740 172"/>
-          <path pathLength="1" style="--d:.04s;--t:1.54s" d="M 752 152 L 706 224"/>
-          <path pathLength="1" style="--d:.05s;--t:1.59s" d="M 770 166 C 767 186 765 208 765 228"/>
-          <path pathLength="1" style="--d:.08s;--t:1.65s" d="M 767 186 C 774 170 787 162 795 171 C 801 178 801 206 803 226 C 804 234 814 234 822 224"/>
+        <g transform="translate(60 0)">
+          <path pathLength="1" style="--d:.06s;--t:1.36s" d="M 682 88 C 676 140 670 198 666 238"/>
+          <path pathLength="1" style="--d:.07s;--t:1.43s" d="M 718 148 C 700 166 686 178 674 186 C 686 192 702 216 712 244"/>
+          <path pathLength="1" style="--d:.08s;--t:1.51s" d="M 762 174 C 752 160 736 166 732 184 C 728 204 740 222 756 216 C 770 210 774 190 766 176"/>
+          <path pathLength="1" style="--d:.04s;--t:1.6s" d="M 786 142 L 716 240"/>
+          <path pathLength="1" style="--d:.05s;--t:1.65s" d="M 792 168 C 788 192 786 214 786 236"/>
+          <path pathLength="1" style="--d:.08s;--t:1.71s" d="M 788 190 C 796 172 812 162 822 172 C 830 180 830 208 832 232 C 833 242 846 240 858 226 C 864 218 868 208 870 198"/>
         </g>
       </svg></h1>
       <p class="standfirst">Køn er altid i bevægelse. For at forstå kønnets
