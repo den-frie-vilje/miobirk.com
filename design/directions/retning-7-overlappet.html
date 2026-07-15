@@ -88,23 +88,19 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 .fesse-sky{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;user-select:none}
 .fesse-layer{position:absolute;inset:0;will-change:transform}
 .fesse{position:absolute;line-height:1}
-.fesse b{display:block;font-weight:400}
-.fesse .f-solid{color:var(--tint,#F3ECDD)}
-.fesse .f-open{position:absolute;top:.045em;left:.05em}
-.fesse .f-open.f-shade{color:var(--line,#E5DBC3)}
+.fesse b{display:block;font-weight:400;color:var(--line,#E7DECA)}
 .f-pleine{font-family:'Typefesse Pleine',sans-serif}
 .f-claire{font-family:'Typefesse Claire-Obscure',sans-serif}
-/* The background spells TIGER down the page: five huge letters
-   (60 to 116rem), seeded random scatter (seed 2026), overlapping,
-   drawn entirely in shades of the paper (solid a step off the ground,
-   outline a step deeper) so they read as watermarks and ink text stays
-   legible above them. */
-.fesse.r0{font-size:67rem;top:0rem;left:-6rem;--tint:#F4EFE3;--line:#E9E1D0}
-.fesse.r1{font-size:91rem;top:40rem;right:-13rem;--tint:#F4EFE3;--line:#ECE5D6}
-.fesse.r2{font-size:73rem;top:70rem;left:-27rem;--tint:#F6F1E7;--line:#ECE5D6}
-.fesse.r3{font-size:61rem;top:110rem;right:-11rem;--tint:#F6F1E7;--line:#ECE5D6}
-.fesse.r4{font-size:74rem;top:146rem;right:-9rem;--tint:#F4EFE3;--line:#E9E1D0}
-@media (max-width:56rem){.fesse{opacity:.8}}
+/* The background spells TIGER down the page: five enormous letters
+   (122 to 182rem), outline only (the Claire/Obscure cut, no solid
+   layer), in a single deeper shade of the paper, overlapping heavily.
+   Ink text stays legible above them. */
+.fesse.r0{font-size:134rem;top:-18rem;left:-34rem;--line:#EBE3D2}
+.fesse.r1{font-size:182rem;top:14rem;right:-22rem;--line:#E7DECA}
+.fesse.r2{font-size:146rem;top:56rem;left:-48rem;--line:#EBE3D2}
+.fesse.r3{font-size:122rem;top:100rem;right:-38rem;--line:#E7DECA}
+.fesse.r4{font-size:148rem;top:126rem;left:-30rem;--line:#EBE3D2}
+@media (max-width:56rem){.fesse{opacity:.85}}
 /* The hero's own pair: two partially overlapping outline-only glyphs at
    medium size, full gradient, no solid layer. */
 .hero{position:relative;overflow:hidden}
@@ -221,13 +217,13 @@ footer .flinks{display:flex;gap:1.5rem}
 
 <div class="fesse-sky" aria-hidden="true">
   <div class="fesse-layer" data-speed="0.1">
-    <span class="fesse r1"><b class="f-pleine f-solid">I</b><b class="f-claire f-open f-shade">I</b></span>
+    <span class="fesse r0"><b class="f-claire">T</b></span>
+    <span class="fesse r2"><b class="f-claire">G</b></span>
+    <span class="fesse r4"><b class="f-claire">R</b></span>
   </div>
   <div class="fesse-layer" data-speed="0.22">
-    <span class="fesse r0"><b class="f-pleine f-solid">T</b><b class="f-claire f-open f-shade">T</b></span>
-    <span class="fesse r2"><b class="f-pleine f-solid">G</b><b class="f-claire f-open f-shade">G</b></span>
-    <span class="fesse r3"><b class="f-pleine f-solid">E</b><b class="f-claire f-open f-shade">E</b></span>
-    <span class="fesse r4"><b class="f-pleine f-solid">R</b><b class="f-claire f-open f-shade">R</b></span>
+    <span class="fesse r1"><b class="f-claire">I</b></span>
+    <span class="fesse r3"><b class="f-claire">E</b></span>
   </div>
 </div>
 
@@ -403,20 +399,22 @@ footer .flinks{display:flex;gap:1.5rem}
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
   var layers=[].slice.call(document.querySelectorAll('.fesse-layer'));
   if(!layers.length) return;
-  var ticking=false;
-  function apply(){
-    ticking=false;
-    if(reduce.matches){layers.forEach(function(l){l.style.transform='none'});return}
-    var y=window.scrollY||0;
-    layers.forEach(function(l){
-      var k=parseFloat(l.dataset.speed)||0.2;
-      l.style.transform='translate3d(0,'+(y*k)+'px,0)';
-    });
+  var last=null;
+  function tick(){
+    var se=document.scrollingElement||document.documentElement;
+    var y=se.scrollTop||window.pageYOffset||0;
+    if(reduce.matches){
+      if(last!==0){layers.forEach(function(l){l.style.transform='none'});last=0}
+    }else if(y!==last){
+      last=y;
+      layers.forEach(function(l){
+        var k=parseFloat(l.dataset.speed)||0.2;
+        l.style.transform='translate3d(0,'+(y*k)+'px,0)';
+      });
+    }
+    window.requestAnimationFrame(tick);
   }
-  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(apply)}}
-  window.addEventListener('scroll',onScroll,{passive:true});
-  reduce.addEventListener?reduce.addEventListener('change',apply):null;
-  apply();
+  window.requestAnimationFrame(tick);
 })();
 </script>
 </body>
