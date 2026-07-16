@@ -258,6 +258,53 @@ ribbons keep crossing.
   need HTTP, so the screenshot runner now serves the design directory
   over localhost instead of file://.
 
+## The hand, researched (Ole, 2026-07-16)
+
+Ole asked for a better tag style, researched. Three parallel research
+passes were run: the major handstyle schools (New York Broadway
+Elegant and Brooklyn, Philadelphia wickeds via Francois Chastanet's
+ductus analysis, LA cholo block and script, Copenhagen, Amsterdam
+calligraffiti), the elegant-monoline register (Shoe Meulman's
+calligraffiti school, Faust, Retna, the Amsterdamse Krulletter), and
+letter-by-letter tag construction for exactly the letters of "Ikke
+bare koen". Key verified sources: francoischastanet.com/philadelphia-
+handstyles (ductus: downstroke-first from the top line, visible pen
+lifts and retraces as style features, monolinearity as authentic
+preference), Eye Magazine and interviews on Shoe Meulman
+("directness in the whole, finesse in the details"; Fraktur's
+rhythmic stroke metre), SprayShift and The Artist Block craft rules
+(one slant, one baseline logic, one finish move only; structure
+before flair), and graffiti.dk on Bates for the Copenhagen register:
+New York letter logic executed with Danish graphic precision.
+
+The chosen style out of that synthesis: a Copenhagen-clean monoline
+hand. Concretely, in the shipped drawing:
+
+- One constant lean (skewX(-8deg), within the researched 6 to 12
+  degree window), every stem parallel and straight; the curve-inside-
+  a-stroke wobble of earlier drafts is gone (a fast hand cannot
+  S-curve mid-stroke).
+- A vertical metre: the stems of I, k, k, b, k fall at near-even
+  intervals, the Fraktur picket fence; x-height is half the ascender.
+- A slightly rising baseline drawn into the coordinates (each word's
+  baseline a step higher), replacing the previous rotation.
+- Downstroke-first ductus with visible retraces (the b re-traces its
+  stem before the bowl; the I is one continuous bar-stem-bar Z with
+  platform serifs, the Broadway Elegant identifier).
+- One signature diagonal: all three k arms and the oe slash share the
+  same angle; the slash overshoots the bowl at both ends.
+- Terminals: blunt stops on stems; exactly two whips (the e of bare,
+  the n exit); one finish move, the n's leg sweeping back under the
+  whole line. No arrows, no stars, no crown: restraint is the DFV
+  and Soulellis register, and the craft sources' own anti-rule is
+  devices-before-structure.
+- Emphasis on "bare" unchanged in principle: larger, looser, pressed
+  harder (stroke 15 vs 13).
+
+The full agent reports with all sources are recorded in the session
+transcript; the durable rules above are what future hand-drawn work
+should reuse.
+
 ## The hand (Ole, 2026-07-15)
 
 The hero and the masthead moved from type to a hand. Both are inline

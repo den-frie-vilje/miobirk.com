@@ -110,17 +110,19 @@ a:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
 @keyframes fesseSlow{to{transform:translate3d(0,18rem,0)}}
 @keyframes fesseMid{to{transform:translate3d(0,44rem,0)}}
 @media (prefers-reduced-motion: reduce){.fesse-layer{animation:none!important}}
-/* The hero title: Ikke bare køn written as a handstyle tag with a
-   thick black marker, drawn on quickly at load. Ten strokes: whole
-   words run continuously with the pen lifting only where a real hand
-   lifts (the k arms, the slash of the oe, the return underline).
-   Pure SVG and CSS, no JavaScript: each path carries pathLength="1",
-   so a dash offset animated 1 to 0 draws the stroke; --d is its
-   duration, --t its start. The emphasis on "bare" is a change of
-   style: the word is written in one unbroken stroke, larger, looser
-   and pressed harder, nothing is added. */
+/* The hero title: Ikke bare køn as a handstyle tag, drawn on quickly
+   at load. The hand follows the researched craft rules (see
+   TYPOGRAPHY-COLOUR.md, "The hand"): one constant lean from the skew,
+   parallel stems on an even metre, downstroke-first ductus with
+   visible retraces, one signature diagonal shared by every k arm and
+   the slash of the oe, blunt stops everywhere except two whips, and
+   exactly one finish move: the n's leg sweeping back under the whole
+   line. Pure SVG and CSS, no JavaScript: each path carries
+   pathLength="1", so a dash offset animated 1 to 0 draws the stroke;
+   --d is its duration, --t its start. The emphasis on "bare" is a
+   change of style: larger, looser, pressed harder, nothing added. */
 .hero{position:relative;overflow:hidden}
-.tagline{display:block;width:min(46rem,94%);height:auto;transform:rotate(-2deg) skewX(-8deg);margin-left:-.5rem}
+.tagline{display:block;width:min(46rem,94%);height:auto;transform:skewX(-8deg);margin-left:-.5rem}
 .tagline path{fill:none;stroke:var(--ink);stroke-width:13;stroke-linecap:round;stroke-linejoin:round;
   stroke-dasharray:1;stroke-dashoffset:1;
   animation:tagdraw var(--d,.2s) linear var(--t,0s) forwards}
@@ -286,59 +288,29 @@ footer .flinks{display:flex;gap:1.5rem}
   <section class="hero">
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
-      <h1><span class="sr-only">Ikke bare køn</span><svg class="tagline" viewBox="0 0 880 310" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <h1><span class="sr-only">Ikke bare køn</span><svg class="tagline" viewBox="0 0 900 320" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
         <g>
-          <path pathLength="1" style="--d:.1s;--t:0s" d="M 44 84 C 58 64 76 54 88 58 C 78 122 66 186 60 232 C 58 242 66 246 76 238"/>
-          <path pathLength="1" style="--d:.07s;--t:.11s" d="M 118 62 C 108 138 100 196 96 234 C 95 242 102 244 108 238"/>
-          <path pathLength="1" style="--d:.07s;--t:.19s" d="M 152 132 L 112 178 L 150 244"/>
-          <path pathLength="1" style="--d:.07s;--t:.27s" d="M 196 66 C 186 142 178 198 174 236"/>
-          <path pathLength="1" style="--d:.07s;--t:.35s" d="M 230 134 L 190 180 L 228 246"/>
-          <path pathLength="1" style="--d:.07s;--t:.43s" d="M 244 196 C 258 184 270 188 264 200 C 258 210 246 212 242 202 C 240 216 250 226 264 222 C 274 218 282 208 288 196"/>
+          <path pathLength="1" style="--d:.09s;--t:0s" d="M 44 66 L 96 58 L 74 62 L 66 242 L 106 236"/>
+          <path pathLength="1" style="--d:.06s;--t:.1s" d="M 130 58 L 122 242"/>
+          <path pathLength="1" style="--d:.06s;--t:.17s" d="M 176 128 L 134 176 L 178 244"/>
+          <path pathLength="1" style="--d:.06s;--t:.24s" d="M 190 58 L 182 242"/>
+          <path pathLength="1" style="--d:.06s;--t:.31s" d="M 234 128 L 196 172 L 238 244"/>
+          <path pathLength="1" style="--d:.07s;--t:.38s" d="M 258 214 C 272 200 284 204 278 216 C 272 226 260 228 256 218 C 254 232 264 242 278 238 C 288 234 296 224 302 212"/>
         </g>
         <g class="em">
-          <path pathLength="1" style="--d:.35s;--t:.55s" d="M 336 54 C 328 122 320 192 316 236
-             C 315 245 322 248 328 241
-             C 330 214 334 196 342 188
-             C 358 180 370 192 364 210
-             C 358 226 340 232 326 226
-             C 336 238 350 240 360 232
-             C 372 216 382 202 392 196
-             C 380 194 372 204 370 218
-             C 370 234 382 242 394 238
-             C 406 234 412 220 410 206
-             C 409 220 410 232 414 240
-             C 417 247 424 246 430 238
-             C 440 216 448 200 454 192
-             L 478 180 L 462 197
-             C 460 212 458 226 458 238
-             C 460 246 468 246 474 238
-             C 484 218 492 202 500 194
-             C 512 184 522 190 516 202
-             C 510 214 496 216 492 206
-             C 490 220 500 228 514 224
-             C 530 218 544 206 554 188"/>
+          <path pathLength="1" style="--d:.12s;--t:.5s" d="M 340 46 L 330 236 L 334 172 C 358 160 374 176 370 200 C 366 224 346 236 332 230"/>
+          <path pathLength="1" style="--d:.11s;--t:.63s" d="M 424 162 C 406 152 388 162 386 190 C 384 216 400 230 416 222 C 426 217 430 204 430 186 L 430 232 C 431 241 439 242 446 234"/>
+          <path pathLength="1" style="--d:.07s;--t:.75s" d="M 458 160 L 454 232 L 464 170 C 470 160 480 156 488 162"/>
+          <path pathLength="1" style="--d:.08s;--t:.83s" d="M 508 208 C 524 192 538 196 531 210 C 524 222 510 224 506 212 C 504 228 516 240 532 235 C 544 231 552 220 558 206"/>
         </g>
         <g>
-          <path pathLength="1" style="--d:.3s;--t:.95s" d="M 600 64 C 592 136 584 198 580 234
-             C 578 244 586 246 594 238
-             L 646 140
-             L 606 184
-             L 644 244
-             C 652 214 658 198 664 186
-             C 674 170 688 166 698 174
-             C 708 182 706 200 694 210
-             C 682 220 668 216 666 202
-             C 664 188 676 178 690 180
-             C 702 196 712 212 722 212
-             C 730 200 734 188 736 180
-             C 736 194 736 210 736 224
-             C 744 196 756 182 766 188
-             C 774 194 774 212 776 228
-             C 778 240 792 238 804 224
-             C 812 214 816 204 818 194"/>
-          <path pathLength="1" style="--d:.05s;--t:1.27s" d="M 708 152 L 654 238"/>
+          <path pathLength="1" style="--d:.06s;--t:.95s" d="M 600 52 L 592 228"/>
+          <path pathLength="1" style="--d:.06s;--t:1.02s" d="M 642 122 L 604 166 L 646 232"/>
+          <path pathLength="1" style="--d:.09s;--t:1.09s" d="M 690 158 C 672 152 660 166 662 190 C 664 212 680 222 694 214 C 706 207 710 190 704 172 C 700 160 694 154 690 158"/>
+          <path pathLength="1" style="--d:.05s;--t:1.19s" d="M 652 238 L 712 144"/>
+          <path pathLength="1" style="--d:.04s;--t:1.25s" d="M 728 160 L 724 228"/>
+          <path pathLength="1" style="--d:.3s;--t:1.3s" d="M 726 184 C 734 164 750 156 760 166 C 768 174 768 194 770 210 C 772 226 770 236 762 244 C 730 262 640 270 520 268 C 380 266 260 258 210 250 C 200 248 198 242 206 238"/>
         </g>
-        <path pathLength="1" style="--d:.28s;--t:1.35s" d="M 792 256 C 700 280 420 288 152 272 C 132 270 126 262 136 254"/>
       </svg></h1>
       <p class="standfirst">Køn er altid i bevægelse. For at forstå kønnets
       betydning må vi tage højde for alt det, køn væves sammen med. Når noget
