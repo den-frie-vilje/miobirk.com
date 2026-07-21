@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mio Birk – Ikke Bare Køn</title>
+<!-- Retning 10: Kaelderen. The Keller Kreuzberg register (queer Berlin
+     shop-window pop: flat cobalt and bubblegum fields, one rounded sans
+     for everything, uppercase letterspaced headings, square flat
+     buttons, cheeky-but-honest microcopy) applied to Mio's editorial
+     content. Reference measured from kellerkreuzberg.com's own theme
+     tokens: blue 0 54 217, pink 254 164 239, purple 217 113 252, near
+     black 28 28 28, Acme for headings and body. Acme is OFL (Huerta
+     Tipografica, Google Fonts) with full Danish coverage (verified via
+     cmap). The hero headline is set in the tag font chosen in the
+     open-source handstyle font research; see TYPOGRAPHY-COLOUR.md. -->
+<style>
+@font-face{font-family:'Acme';src:url('../assets/fonts/acme.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'TagFont';src:url('../assets/fonts/tagfont.woff2') format('woff2');font-display:swap}
+:root{
+  --blaa:#0036D9;      /* the ground: forskning's colour carries the room */
+  --rosa:#FEA4EF;      /* the voice */
+  --lilla:#D971FC;     /* the between, used sparingly */
+  --ink:#1C1C1C;
+  --hvid:#FFFFFF;
+  --flag-rosa:#D60270; --flag-lilla:#9B4F96; --flag-blaa:#0038A8;
+}
+@supports (color: color(display-p3 1 1 1)){
+  :root{
+    --blaa:color(display-p3 .04 .21 .82);
+    --rosa:color(display-p3 1 .65 .93);
+    --lilla:color(display-p3 .83 .45 .98);
+  }
+}
+::selection{background:var(--rosa);color:var(--blaa)}
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation-duration:.01ms!important}}
+body{
+  background:var(--blaa);color:var(--hvid);
+  font-family:Acme,system-ui,sans-serif;
+  font-size:1.1rem;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--rosa);text-underline-offset:3px}
+a:hover{color:var(--hvid)}
+a:focus-visible{outline:2.5px solid var(--rosa);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:var(--hvid);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:1rem;top:1rem}
+.wrap{max-width:64rem;margin:0 auto;padding:0 clamp(1.2rem,4vw,2.8rem)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* KK grammar: uppercase, letterspaced, centred headings */
+h2{font-weight:400;font-size:clamp(1.6rem,3.4vw,2.4rem);letter-spacing:.18em;text-transform:uppercase;text-align:center;color:var(--rosa)}
+.kicker{font-size:.95rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rosa)}
+
+/* Announce bar: pink, blue text */
+.announce{background:var(--rosa);color:var(--blaa);text-align:center;
+  font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1rem}
+
+/* Masthead: blue, centred brand, nav below */
+header{padding:1.6rem 0 1.2rem;text-align:center}
+.brand{display:inline-block;color:var(--rosa);text-decoration:none;font-size:2rem;letter-spacing:.26em;text-transform:uppercase}
+.brand:hover{color:var(--hvid)}
+nav{margin-top:1.1rem}
+nav ul{list-style:none;display:flex;justify-content:center;gap:clamp(1.2rem,3vw,2.4rem);flex-wrap:wrap}
+nav a{font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+
+/* Hero: the tag on cobalt */
+.hero{padding:clamp(3rem,9vh,6rem) 0 clamp(3rem,8vh,5rem);text-align:center}
+.hero h1{font-weight:400;margin:0}
+.hero .tagline{display:block;margin:0 auto;width:min(46rem,94%);height:auto}
+.hero .tagline text{font-family:'TagFont',Acme,cursive;fill:var(--rosa)}
+.hero .standfirst{max-width:38rem;margin:2.2rem auto 0;font-size:clamp(1.15rem,2vw,1.35rem);line-height:1.6}
+.hero .byline{margin-top:1.2rem;font-style:italic;color:var(--rosa);font-size:1rem;letter-spacing:.06em}
+
+/* Buttons: flat, square, KK pink/blue */
+.btn{display:inline-block;background:var(--rosa);color:var(--blaa);text-decoration:none;
+  font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:1em 1.8em;border:0;border-radius:0}
+.btn:hover{background:var(--hvid);color:var(--blaa)}
+.btn.ghost{background:transparent;color:var(--rosa);border:1.5px solid var(--rosa)}
+.btn.ghost:hover{color:var(--hvid);border-color:var(--hvid);background:transparent}
+
+/* Book: the black band */
+.book{background:var(--ink);padding:clamp(3rem,8vh,5rem) 0}
+.book-grid{display:grid;grid-template-columns:minmax(12rem,16rem) 1fr;gap:clamp(2rem,5vw,4rem);align-items:center;max-width:56rem;margin:0 auto}
+@media (max-width:48rem){.book-grid{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.cover-img{display:block;width:100%;max-width:16rem;height:auto}
+.flagmark{width:7rem;margin:0 0 1.2rem}
+.flagmark i{display:block}
+.flagmark .s1{height:4px;background:var(--flag-rosa)}
+.flagmark .s2{height:2px;background:var(--flag-lilla)}
+.flagmark .s3{height:4px;background:var(--flag-blaa)}
+@media (max-width:48rem){.flagmark{margin:0 auto 1.2rem}}
+.book h3{font-weight:400;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:.08em;text-transform:uppercase;color:var(--rosa);line-height:1.25}
+.book .sub{font-style:italic;color:var(--hvid);margin-top:.4rem;font-size:1.1rem}
+.book p{margin-top:1rem;max-width:34rem}
+.book .fine{font-size:.85rem;color:#BDB7BD;margin-top:1.2rem;max-width:34rem}
+.book .cta{margin-top:1.8rem;display:flex;gap:1rem;flex-wrap:wrap}
+@media (max-width:48rem){.book .cta{justify-content:center}}
+
+/* Udgivelser: blue ground, pink rules */
+.sec{padding:clamp(3rem,8vh,5rem) 0}
+.udg-list{list-style:none;max-width:46rem;margin:2.4rem auto 0}
+.udg-list li{padding:1.3rem 0;border-top:1.5px solid var(--rosa)}
+.udg-list li:last-child{border-bottom:1.5px solid var(--rosa)}
+.udg-label{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rosa)}
+.udg-label .aar{color:var(--hvid);opacity:.75;letter-spacing:.12em}
+.udg-title{font-size:1.25rem;line-height:1.35;margin-top:.3rem}
+.udg-meta{font-style:italic;opacity:.85;font-size:1rem;margin-top:.2rem}
+.udg-more{text-align:center;margin-top:2rem}
+.register{display:flex;justify-content:center;gap:1.6rem;flex-wrap:wrap;margin-top:2rem;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.register span i{display:inline-block;width:.7em;height:.7em;margin-right:.45em;border-radius:0}
+.register .r1 i{background:var(--rosa)}
+.register .r2 i{background:var(--lilla)}
+.register .r3 i{background:var(--hvid)}
+
+/* Foredrag: pink band, ink text */
+.doors{background:var(--rosa);color:var(--ink);padding:clamp(3rem,8vh,5rem) 0}
+.doors h2{color:var(--blaa)}
+.doors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.6rem,4vw,3rem);max-width:56rem;margin:2.4rem auto 0}
+@media (max-width:48rem){.doors-grid{grid-template-columns:1fr}}
+.door h3{font-weight:400;font-size:1.05rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blaa)}
+.door p{margin-top:.6rem;font-size:1rem}
+.door a{color:var(--blaa);font-weight:400}
+.door a:hover{color:var(--ink)}
+
+/* Om: blue, the statement in italic pink, KK's own move */
+.om{text-align:center}
+.om .display{font-style:italic;font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.45;letter-spacing:.04em;color:var(--rosa);max-width:44rem;margin:0 auto;text-transform:uppercase}
+.om p{max-width:38rem;margin:1.8rem auto 0}
+.om .sign{font-style:italic;color:var(--rosa);margin-top:1.4rem}
+
+/* Footer */
+footer{border-top:1.5px solid var(--rosa);padding:2.2rem 0 2.6rem;font-size:.95rem}
+.foot{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;align-items:baseline}
+.foot .fb{letter-spacing:.18em;text-transform:uppercase;color:var(--rosa)}
+.foot address{font-style:italic}
+.foot .links{display:flex;gap:1.4rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#indhold">Gå til indhold</a>
+
+<div class="announce" role="note">Ny gratis bog · Tvivlen Skygger for Trygheden · 2026</div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#">Mio Birk</a>
+    <nav aria-label="Hovedmenu">
+      <ul>
+        <li><a href="#bogen">Bogen</a></li>
+        <li><a href="#udgivelser">Udgivelser</a></li>
+        <li><a href="#foredrag">Foredrag og presse</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="indhold">
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Mio Tiger Birk, ph.d.</p>
+      <h1><span class="sr-only">Ikke bare køn</span><svg class="tagline" viewBox="0 0 900 260" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><text x="450" y="185" text-anchor="middle" font-size="150">Ikke bare køn</text></svg></h1>
+      <p class="standfirst">Køn er altid i bevægelse. For at forstå kønnets betydning må vi tage højde for alt det, køn væves sammen med. Når noget handler om køn, handler det derfor ikke bare om køn.</p>
+      <p class="byline">Kønsforsker, formidler og digter</p>
+    </div>
+  </section>
+
+  <section class="book" id="bogen">
+    <div class="wrap">
+      <div class="book-grid">
+        <img class="cover-img" src="../assets/omslag.png" alt="Bogomslag: Tvivlen Skygger for Trygheden – Når biseksuelle falder mellem to stole. Mio Tiger Birk.">
+        <div class="book-text">
+          <div class="flagmark" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div>
+          <h3>Tvivlen Skygger for Trygheden</h3>
+          <p class="sub">Når biseksuelle falder mellem to stole</p>
+          <p>Tvivl og manglende synlighed kan forme biseksuelle og andre bi+ personers liv – fra nære relationer til uddannelse og arbejdsliv. Med afsæt i bi- og panseksuelles egne fortællinger og forskning tilbyder bogen ny viden om bi+ personers trivsel og tryghed i en dansk kontekst.</p>
+          <p>Bogen er gratis, og du skal hverken oprette dig eller oplyse din e-mailadresse.</p>
+          <p class="fine">Dette materiale er støttet økonomisk af Offerfonden. Materialets udførelse, indhold og resultater er alene forfatterens ansvar. De vurderinger og synspunkter, der fremgår af materialet, er forfatterens egne og deles ikke nødvendigvis af Rådet for Offerfonden.</p>
+          <div class="cta">
+            <a class="btn" href="#">Hent bogen gratis</a>
+            <a class="btn ghost" href="#">Læs i browseren</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="udgivelser">
+    <div class="wrap">
+      <h2>Udgivelser</h2>
+      <ul class="udg-list">
+        <li>
+          <p class="udg-label">Bog <span class="aar">· 2026</span></p>
+          <p class="udg-title">Tvivlen Skygger for Trygheden: Når biseksuelle falder mellem to stole</p>
+          <p class="udg-meta">Ikke Bare Køn. Ny viden om bi+ personers trivsel og tryghed i en dansk kontekst.</p>
+        </li>
+        <li>
+          <p class="udg-label">Artikel <span class="aar">· 2026</span></p>
+          <p class="udg-title">Mellem To Stole: Når alle er det lidt, er ingen det fuldt ud</p>
+          <p class="udg-meta">ADHD-medlemsmagasinet.</p>
+        </li>
+        <li>
+          <p class="udg-label">Essay <span class="aar">· 2025</span></p>
+          <p class="udg-title">Cat Ladies, Herbivores and Incels: Competing Meanings of Singlehood</p>
+          <p class="udg-meta">Towards Intersectional Feminist Singlehood Studies. Om konkurrerende kulturelle forestillinger om at være single.</p>
+        </li>
+        <li>
+          <p class="udg-label">Forskningsartikel <span class="aar">· 2024</span></p>
+          <p class="udg-title">Phallic Metaphors and Metonyms: Emerging Meanings of Viagra and Masculinity in News Media</p>
+          <p class="udg-meta">Sexualities. Om de betydninger af maskulinitet, Viagra sætter i spil i nyhedsmedierne.</p>
+        </li>
+        <li>
+          <p class="udg-label">Digt <span class="aar">· 2024</span></p>
+          <p class="udg-title">Det Uendelige Univers</p>
+          <p class="udg-meta">Slagtryk.</p>
+        </li>
+        <li>
+          <p class="udg-label">Forskningsartikel <span class="aar">· 2023</span></p>
+          <p class="udg-title">Reconfigurations of Illness and Masculinity on Instagram</p>
+          <p class="udg-meta">Mediekultur. Om sygdom og maskulinitet på Instagram.</p>
+        </li>
+      </ul>
+      <p class="udg-more"><a href="#">Alle udgivelser →</a></p>
+      <div class="register" aria-label="Registre">
+        <span class="r1"><i></i>Poesi</span>
+        <span class="r2"><i></i>Formidling og essays</span>
+        <span class="r3"><i></i>Forskning</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="doors" id="foredrag">
+    <div class="wrap">
+      <h2>Foredrag, presse og læsning</h2>
+      <div class="doors-grid">
+        <div class="door">
+          <h3>Foredrag og undervisning</h3>
+          <p>Jeg holder foredrag og underviser om køn, seksualitet og bi+ trivsel, fra fagmiljøer til foreninger. Honorar efter aftale.</p>
+          <p><a href="#">Book et foredrag →</a></p>
+        </div>
+        <div class="door">
+          <h3>Presse</h3>
+          <p>Pressefotos med kreditering, kort og lang biografi, og hvordan jeg omtales korrekt.</p>
+          <p><a href="#">Pressemateriale →</a></p>
+        </div>
+        <div class="door">
+          <h3>Læsning</h3>
+          <p>Forskning, essays og digte, ordnet efter genre, med fulde henvisninger.</p>
+          <p><a href="#">Til udgivelserne →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec om" id="kontakt">
+    <div class="wrap">
+      <p class="display">Med Ikke Bare Køn undersøger jeg kønnets betydning i samspil med temaer som seksualitet, trivsel og diskrimination.</p>
+      <p>Jeg trækker på min erfaring som forsker, formidler og underviser, og på min ph.d. i samfundsvidenskab fra Aarhus Universitet (2019). Er du interesseret i at høre mere, er du velkommen til at skrive til mig på <a href="mailto:kontakt@miobirk.com">kontakt@miobirk.com</a>.</p>
+      <p class="sign">– Mio Tiger Birk</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="fb">Ikke Bare Køn</span>
+    <address>Mio Tiger Birk · © 2026</address>
+    <span class="links">
+      <a href="https://bsky.app/profile/ikkebarekon.bsky.social">Bluesky</a>
+      <a href="#">LinkedIn</a>
+      <a href="mailto:kontakt@miobirk.com">E-mail</a>
+    </span>
+  </div>
+</footer>
+</body>
+</html>
