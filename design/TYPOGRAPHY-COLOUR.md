@@ -398,3 +398,43 @@ type scale in use. Retning 10 passes at 1440 and 390 wide: zero
 overflow, zero contrast failures over 66 measured text elements,
 zero collisions. Screenshots remain deliverables for Ole, never the
 basis of analysis.
+
+## Kaelderen typography pass (Ole, 2026-07-21)
+
+Ole judged the first Kaelderen typography a carryover from Overlappet
+and asked for a deep pass by a typography designer agent, with more
+courageous sizes, alignments and leading. The agent researched the
+current bar first (Utopia fluid type method, poster typography
+practice, all-caps leading and tracking ranges, one-weight hierarchy
+technique; sources in the spec) and returned a full specification,
+applied verbatim with two measured corrections. The decisions:
+
+- Nine-step fluid scale (390 to 1440px), closing the former 12-20px
+  dead zone: fine 13, label 14, body 17-19, lede 21-28, h4 24,
+  title 22-30, h2 36-72, display 44-120, hero 64-212.
+- Hero: two stacked Sedgwick Ave Display lines, "Ikke bare" at
+  64-212px pink, "koen" at 1.45em white, line-height .92, full
+  bleed, rotate -2deg; standfirst 19-24px, 44ch, 1.45; kicker and
+  byline white.
+- Book band as poster: title 44-120px uppercase pink at .95 leading
+  with forced breaks, cover to 30rem with rotate 2deg and a flat
+  cobalt offset shadow, asymmetric hard-left grid (the page's one
+  break from the centred grammar), Offerfonden fine print moved to
+  the band's foot at 13px, buttons to 24px slabs (which is also what
+  makes blue-on-pink pass AA large-text).
+- Section headings 36-72px at 1.05 leading, tracking dropped from
+  .18em to .08em (label tracking does not belong at display size);
+  om statement 32-56px at 1.15; udgivelser titles 22-30px over 2px
+  rules with 1.6x row height.
+- Contrast rule as a system: on cobalt, pink only at or above 24px,
+  all small text white; on pink, small text ink, blue at or above
+  24px; on the ink band pink is free. This reassigned about ten
+  latent large-text-only usages (kicker, labels, footer brand,
+  announce bar, byline) to white or ink.
+- Spacing: section padding 4.5-8rem, heading-to-content 2.5-4rem.
+
+Measured after the pass, at 1440 and 390 wide: overflow 0, contrast
+failures 0 of all text elements, collisions 0 beyond the two designed
+overlaps (the stacked hero lines). The measurement harness gained
+per-element typography metrics (size, unitless leading, estimated
+measure in characters, tracking, alignment) for this verification.
