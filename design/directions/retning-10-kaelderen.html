@@ -116,22 +116,18 @@ nav a:hover{text-decoration:underline;text-decoration-color:var(--rosa);text-dec
 .flagmark .s1{height:4px;background:var(--flag-rosa)}
 .flagmark .s2{height:2px;background:var(--flag-lilla)}
 .flagmark .s3{height:4px;background:var(--flag-blaa)}
-.book h3{grid-column:1/-1;position:relative;z-index:2;font-weight:400;
-  font-size:var(--t-display);line-height:.95;letter-spacing:.02em;
-  text-transform:uppercase;color:var(--rosa);margin-top:var(--s-m)}
-.book .text-col{margin-top:1rem}
+.book .text-col{margin-top:var(--s-m)}
 .book .sub{font-style:italic;font-size:var(--t-lede);line-height:1.35;margin-top:0}
 .book p{margin-top:1rem;max-width:34rem}
 .book .cta{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
-.cover-img{display:block;position:relative;z-index:1;width:100%;max-width:30rem;height:auto;
-  margin-top:calc(-1 * clamp(2rem,6vw,5.5rem));
+.cover-img{display:block;width:100%;max-width:30rem;height:auto;margin-top:var(--s-m);
   transform:rotate(2deg);box-shadow:1rem 1rem 0 var(--blaa)}
 .book .fine{grid-column:1/-1;font-size:var(--t-fine);line-height:1.5;color:#BDB7BD;
   max-width:70ch;margin-top:clamp(2.5rem,5vw,4rem)}
 @media (max-width:48rem){
   .book-grid{grid-template-columns:1fr}
-  .book h3,.book .fine{grid-column:auto}
-  .cover-img{max-width:20rem;margin:-1.5rem auto 0}
+  .book .fine{grid-column:auto}
+  .cover-img{max-width:20rem;margin:var(--s-m) auto 0}
 }
 
 /* Udgivelser */
@@ -213,7 +209,7 @@ footer{border-top:2px solid var(--rosa);padding:3rem 0 3.5rem;font-size:var(--t-
           <span class="tag">Ny bog · Gratis · 2026</span>
           <div class="flagmark" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div>
         </div>
-        <h3>Tvivlen<br>Skygger for<br>Trygheden</h3>
+        <h3 class="sr-only">Tvivlen Skygger for Trygheden: Når biseksuelle falder mellem to stole</h3>
         <div class="text-col">
           <p class="sub">Når biseksuelle falder mellem to stole</p>
           <p>Tvivl og manglende synlighed kan forme biseksuelle og andre bi+ personers liv – fra nære relationer til uddannelse og arbejdsliv. Med afsæt i bi- og panseksuelles egne fortællinger og forskning tilbyder bogen ny viden om bi+ personers trivsel og tryghed i en dansk kontekst.</p>
