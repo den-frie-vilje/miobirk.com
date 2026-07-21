@@ -16,7 +16,8 @@
      open-source handstyle font research; see TYPOGRAPHY-COLOUR.md. -->
 <style>
 @font-face{font-family:'Acme';src:url('../assets/fonts/acme.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'TagFont';src:url('../assets/fonts/tagfont.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'Sedgwick Ave Display';src:url('../assets/fonts/sedgwickave-display.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'Sedgwick Ave';src:url('../assets/fonts/sedgwickave.woff2') format('woff2');font-display:swap}
 :root{
   --blaa:#0036D9;      /* the ground: forskning's colour carries the room */
   --rosa:#FEA4EF;      /* the voice */
@@ -68,8 +69,14 @@ nav a{font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;text-decorat
 /* Hero: the tag on cobalt */
 .hero{padding:clamp(3rem,9vh,6rem) 0 clamp(3rem,8vh,5rem);text-align:center}
 .hero h1{font-weight:400;margin:0}
-.hero .tagline{display:block;margin:0 auto;width:min(46rem,94%);height:auto}
-.hero .tagline text{font-family:'TagFont',Acme,cursive;fill:var(--rosa)}
+.hero .tagword{display:inline-block;margin-top:1rem;font-family:'Sedgwick Ave Display',Acme,cursive;
+  color:var(--rosa);font-size:clamp(3.4rem,9.4vw,7rem);line-height:1.04;letter-spacing:.01em;
+  transform:rotate(-2deg)}
+.hero .tagword i{font-style:normal;display:inline-block}
+.hero .tagword .sp{width:.35em}
+.hero .tagword i:nth-child(3n+1){transform:rotate(2.4deg) translateY(.02em)}
+.hero .tagword i:nth-child(3n+2){transform:rotate(-2deg) translateY(-.025em)}
+.hero .tagword i:nth-child(4n+3){transform:rotate(1.2deg) translateY(.035em) scale(1.04)}
 .hero .standfirst{max-width:38rem;margin:2.2rem auto 0;font-size:clamp(1.15rem,2vw,1.35rem);line-height:1.6}
 .hero .byline{margin-top:1.2rem;font-style:italic;color:var(--rosa);font-size:1rem;letter-spacing:.06em}
 
@@ -162,7 +169,7 @@ footer{border-top:1.5px solid var(--rosa);padding:2.2rem 0 2.6rem;font-size:.95r
   <section class="hero">
     <div class="wrap">
       <p class="kicker">Mio Tiger Birk, ph.d.</p>
-      <h1><span class="sr-only">Ikke bare køn</span><svg class="tagline" viewBox="0 0 900 260" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><text x="450" y="185" text-anchor="middle" font-size="150">Ikke bare køn</text></svg></h1>
+      <h1><span class="sr-only">Ikke bare køn</span><span class="tagword" aria-hidden="true"><i>I</i><i>k</i><i>k</i><i>e</i><i class="sp"></i><i>b</i><i>a</i><i>r</i><i>e</i><i class="sp"></i><i>k</i><i>ø</i><i>n</i></span></h1>
       <p class="standfirst">Køn er altid i bevægelse. For at forstå kønnets betydning må vi tage højde for alt det, køn væves sammen med. Når noget handler om køn, handler det derfor ikke bare om køn.</p>
       <p class="byline">Kønsforsker, formidler og digter</p>
     </div>

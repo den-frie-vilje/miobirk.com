@@ -346,3 +346,55 @@ Static final state under prefers-reduced-motion.
   wordmark with the tiger. The signature paths live in this
   repository's history should a signature ever be wanted (colophon,
   about page).
+
+## The tag font and retning 10, Kaelderen (Ole, 2026-07-21)
+
+Ole rejected the hand-drawn tag ("it's horrible") and asked for two
+things: an open-source font that has ligatures and looks like a tag,
+and a different style direction taken from kellerkreuzberg.com, seen
+with editorial content.
+
+**The font research** (agent pass over Google Fonts, Velvetyne, OSP,
+Tunera, Collletttivo, Fontshare, Open Font Library, Use&Modify; every
+claim verified by downloading binaries and inspecting cmap and GSUB
+with fontTools): genuinely libre handstyle fonts with Danish
+coverage are essentially one project, **Sedgwick Ave and Sedgwick Ave
+Display** (Kevin Burke / Pedro Vergani for the Google hip hop Doodle,
+OFL 1.1, ae-oe-aa verified, real ligatures via liga, no letter
+alternates and no calt). The authentic writer-made libre tags
+(UniWide, Rase, by graffiti writer Raseone) all fail on Danish
+charset; Fontshare's Sharpie and TypeType's TT Disruptors fail the
+libre requirement; Shantell Sans has the best OpenType toolbox (744
+alternates, calt, variable bounce) but is a friendly marker print,
+not a tag. Both Sedgwick cuts are vendored as woff2 in
+design/assets/fonts/. Because no qualifying font varies repeated
+letters natively, the three k's and two e's of "Ikke bare koen" are
+varied at the layout level: per-letter spans with small alternating
+rotations and offsets, the honest workaround.
+
+**Retning 10, Kaelderen** (design/directions/retning-10-kaelderen.html)
+applies the Keller Kreuzberg register to Mio's editorial content.
+Keller Kreuzberg is a queer, sex-positive store and gallery in
+Berlin; its system was measured from its own Shopify theme tokens,
+not eyeballed: flat cobalt #0036D9 and bubblegum #FEA4EF fields, a
+purple accent #D971FC, near-black #1C1C1C bands, white; one rounded
+condensed sans (Acme, OFL, Huerta Tipografica, Danish coverage
+verified via cmap) for headings and body; uppercase letterspaced
+centred headings (their 0.18em); square flat buttons pink-on-blue and
+blue-on-pink; cheeky microcopy. The palette maps almost one to one
+onto the site's bi-triad (rosa, blaa, lilla), which is the design
+argument for trying it: the register system survives with the volume
+turned up. The hero headline is Sedgwick Ave Display in pink on
+cobalt with the per-letter jitter.
+
+**Working method note:** from this round on, design QA is measured,
+not judged from screenshots (Ole's instruction). The harness
+(scratchpad measure.mjs, to be moved into the repo at scaffold time)
+reports font load state, horizontal overflow, WCAG contrast per text
+element with the effective background resolved through ancestors and
+element opacity folded in (colours normalised from display-p3 via
+canvas rasterisation), text-on-text bounding box collisions, and the
+type scale in use. Retning 10 passes at 1440 and 390 wide: zero
+overflow, zero contrast failures over 66 measured text elements,
+zero collisions. Screenshots remain deliverables for Ole, never the
+basis of analysis.
